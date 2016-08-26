@@ -46,6 +46,7 @@ public class MController {
 
         //TODO 插入新增的用户到mysql
 
+
         return "news";
     }
 
