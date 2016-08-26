@@ -4,7 +4,6 @@
     <title>Hot News</title>
     <meta charset="GBK">
     <link rel="shortcut icon" href="favicon.ico">
-    <%--<script src="js/angular.min.js"></script>--%>
 
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/signin.css">
@@ -18,7 +17,7 @@
 <body>
 
     <div class="container">
-        <form id="singinForm" action="login.do" method="post" class="form-signin">
+        <form id="login" action="login.do" method="post" class="form-signin">
 
             <h3 class="form-signin-heading" align="center">Welcome to Hot News!</h3>
 

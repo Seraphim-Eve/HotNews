@@ -16,26 +16,32 @@
     <link rel="stylesheet" href="css/signin.css">
 
     <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.validate.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/register.js"></script>
 
 </head>
 <body>
     <div class="container">
 
-        <form action="register.do" method="POST" class="form-signin">
+        <form id="register" action="register.do" method="POST" class="form-signin">
 
             <h2 class="form-signin-heading" align="center">×¢²á</h2>
 
             <div class="form-group">
-                <input type="text" name="nickname" class="form-control" placeholder="êÇ³Æ" maxlength="10" required autofocus>
+                <input id="nickname" type="text" name="nickname" class="form-control" placeholder="êÇ³Æ" maxlength="10">
             </div>
 
             <div class="form-group">
-                <input type="email" name="username" class="form-control" placeholder="ÓÊÏä" required>
+                <input id="email" type="email" name="email" class="form-control" placeholder="ÓÊÏä" maxlength="30">
             </div>
 
             <div class="form-group">
-                <input type="password" name="password" class="form-control" placeholder="ÃÜÂë" maxlength="10" required>
+                <input id="password" type="password" name="password" class="form-control" placeholder="ÃÜÂë" maxlength="12">
+            </div>
+
+            <div class="form-group">
+                <input id="repeatPassword" type="password" name="repeatPassword" class="form-control" placeholder="È·ÈÏÃÜÂë" maxlength="12">
             </div>
 
             <div class="form-group">

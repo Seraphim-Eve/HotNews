@@ -12,23 +12,23 @@
             }
         });
 
-        $("#singinForm").validate({
+        $("#login").validate({
             rules: {
                 email: {
                     required: true
                 },
                 password: {
                     required: true,
-                    minlength: 6,
+                    minlength: 8,
                     maxlength: 12
                 }
             },
             messages: {
-                email: "请输入有效的电子邮箱地址.",
+                email: "请输入有效的电子邮箱地址!",
                 password: {
-                    required: "请输入您的密码.",
-                    minlength: "输入的密码小于6位.",
-                    maxlength: "输入的密码大于12位."
+                    required: "请输入您的密码!",
+                    minlength: "输入的密码小于8位!",
+                    maxlength: "输入的密码大于12位!"
                 }
             }
 
