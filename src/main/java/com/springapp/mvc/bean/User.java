@@ -6,7 +6,7 @@ package com.springapp.mvc.bean;
 public class User {
 
     /**
-     * 代表系统的username
+     * email=username
      */
     private String email;
 
@@ -39,10 +39,12 @@ public class User {
         this.nickname = nickname;
     }
 
+    @Deprecated
     public String getUsername() {
         return username;
     }
 
+    @Deprecated
     public void setUsername(String username) {
         this.username = username;
     }

@@ -40,6 +40,13 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
+
+    <!-- mysql exception -->
+    <error-page>
+        <exception-type>java.sql.SQLException</exception-type>
+        <location>/index.jsp</location>
+    </error-page>
+
     <!-- 404 -->
     <error-page>
         <error-code>404</error-code>

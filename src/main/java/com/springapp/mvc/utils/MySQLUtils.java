@@ -3,6 +3,7 @@ package com.springapp.mvc.utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 
 /**
@@ -15,6 +16,9 @@ public class MySQLUtils {
     static {
         Properties pp = new Properties();
         try {
+
+            Class.forName("com.mysql.jdbc.Driver");
+
             pp.load(MySQLUtils.class.getClassLoader().getResourceAsStream("mysql.properties"));
 
             String url = pp.getProperty("db.url");
@@ -34,6 +38,17 @@ public class MySQLUtils {
      */
     public static Connection getConn() {
         return conn;
+    }
+
+
+    /**
+     * insert data to users table.
+     * @param sql
+     * @return 是否成功插入
+     */
+    public static boolean insert(String sql) throws SQLException {
+        Statement stmt = conn.createStatement();
+        return stmt.executeUpdate(sql) > 0;
     }
 
     /**

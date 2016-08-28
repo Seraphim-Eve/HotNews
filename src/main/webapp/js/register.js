@@ -53,7 +53,7 @@
             }
         });
 
-        $("#nickname").popover({
+        /*$("#nickname").popover({
             content: '你可以使用中文和英文.',
             placement: 'left'
         });
@@ -79,7 +79,7 @@
 
         $("#password").mouseleave(function () {
             $("#password").popover('hide');
-        });
+        });*/
 
     });
 })(jQuery)
