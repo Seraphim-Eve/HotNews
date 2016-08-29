@@ -3,11 +3,10 @@ package com.springapp.mvc;
 import com.springapp.mvc.bean.User;
 import com.springapp.mvc.utils.MySQLUtils;
 import com.springapp.mvc.utils.StringUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 
@@ -84,13 +83,11 @@ public class MController {
         return "hello";
     }
 
-    /**
-     *
-     * @return
-     */
+
     @RequestMapping(value = "check.do", method = RequestMethod.POST)
-    public String checkMail(@ModelAttribute User user) {
-        //TODO 检查email是否存在.
-        return "检查1次,emil: " + user.getEmail();
+    @ResponseBody
+    public String checkMail(@RequestParam("email") String email) {
+        //TODO 检查邮箱是否存在.
+        return email;
     }
 }

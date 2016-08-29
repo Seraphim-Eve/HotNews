@@ -2,8 +2,11 @@
     $(document).ready(function () {
 
         //check mail
-        $("#email").keypress(function () {
+        $("#email").keyup(function () {
             var value = $("#email").val();
+            //TODO 检查邮箱是否合法. 合法请求查看是否可以使用该邮箱.
+
+            //console.log(value);
             $.ajax({
                 method: "POST",
                 url: "check.do",
