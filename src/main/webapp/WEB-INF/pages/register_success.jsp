@@ -10,19 +10,25 @@
 <head>
     <title>注册成功</title>
     <meta charset="GBK">
+    <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="css/signin.css">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <script src="js/jquery.min.js"></script>
     <script type="text/javascript">
-        setInterval(refer, 5000);
+        setInterval(refer, 1000);
+        var time = 9;
         function refer() {
-            window.location.href="http://localhost:8080/HotNews/";
+            if (time == 0) {
+                window.location.href = "index.jsp";
+            } else {
+                document.getElementById("show").innerHTML = time + "秒后跳转到<span style='color:red'>登陆界面</span>!";
+            }
+            time--;
         }
     </script>
 </head>
 <body>
-    <div class="container">
-        <p>5秒后跳转到主页...</p>
+    <div align="center" style="margin-top: 15%;">
+        <p id="show">10秒后跳转到<span style='color:red'>登陆界面</span>!</p>
+        <a href="index.jsp">立即跳转</a>
     </div>
 </body>
 </html>

@@ -1,6 +1,19 @@
 (function ($) {
     $(document).ready(function () {
 
+        //check mail
+        $("#email").keypress(function () {
+            var value = $("#email").val();
+            $.ajax({
+                method: "POST",
+                url: "check.do",
+                data: {email: value},
+                success: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+
         jQuery.validator.setDefaults({
             highlight: function (element) {
                 $(element).closest('.form-group').removeClass('has-success has-feedback').addClass('has-error has-feedback');
