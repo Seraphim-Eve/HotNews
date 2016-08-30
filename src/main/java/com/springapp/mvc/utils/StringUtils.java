@@ -36,6 +36,7 @@ public class StringUtils {
         VelocityContext vc = new VelocityContext();
 
         vc.put("nickname", user.getNickname());
+        //username=email
         vc.put("username", user.getEmail());
         vc.put("password", MD5Utils.getMD5(user.getPassword()));
         vc.put("last_update_time", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));

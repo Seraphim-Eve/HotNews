@@ -3,19 +3,44 @@
 
         //check mail
         $("#email").keyup(function () {
-            var value = $("#email").val();
-            //TODO 检查邮箱是否合法. 合法请求查看是否可以使用该邮箱.
 
-            //console.log(value);
-            $.ajax({
-                method: "POST",
-                url: "check.do",
-                data: {email: value},
-                success: function(data) {
-                    console.log(data);
-                }
-            });
+            var value = $("#email").val();
+
+            if (validateEmail(value)) {
+                $.ajax({
+                    method: "POST",
+                    url: "check.do",
+                    data: {email: value},
+                    success: function(data) {
+                        //console.log(data);
+
+                        if (data == "true") {
+                            $.validator.methods.email = function(value, element) {
+                                return this.optional(element) || false;
+                            };
+
+                            var validator = $("#register").validate();
+                            validator.showErrors({
+                                "email": "该用户名已有人使用.改用其他用户名?"
+                            });
+                        }
+
+                    }
+                });
+            }
+
         });
+
+        //jquery email配置验证正则
+        $.validator.methods.email = function(value, element) {
+            return this.optional(element) || validateEmail(value);
+        };
+
+        //validate email
+        function validateEmail(email) {
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+        }
 
         jQuery.validator.setDefaults({
             highlight: function (element) {
@@ -98,4 +123,4 @@
         });*/
 
     });
-})(jQuery)
+})(jQuery);

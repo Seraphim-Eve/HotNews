@@ -3,7 +3,6 @@ package com.springapp.mvc;
 import com.springapp.mvc.bean.User;
 import com.springapp.mvc.utils.MySQLUtils;
 import com.springapp.mvc.utils.StringUtils;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -84,10 +83,19 @@ public class MController {
     }
 
 
+    /**
+     * 邮箱是否存在检查
+     * @param email 检查的邮箱
+     * @return true: 邮箱存在, false: 邮箱不存在.
+     */
     @RequestMapping(value = "check.do", method = RequestMethod.POST)
     @ResponseBody
-    public String checkMail(@RequestParam("email") String email) {
+    public String checkMail(@RequestParam("email") String email) throws SQLException {
         //TODO 检查邮箱是否存在.
-        return email;
+        String sql = "select * from Users where username = '" + email + "'";
+        if (MySQLUtils.queryEmail(sql)) {
+            return "true";
+        }
+        return "false";
     }
 }

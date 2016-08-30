@@ -1,9 +1,6 @@
 package com.springapp.mvc.utils;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Properties;
 
 /**
@@ -49,6 +46,23 @@ public class MySQLUtils {
     public static boolean insert(String sql) throws SQLException {
         Statement stmt = conn.createStatement();
         return stmt.executeUpdate(sql) > 0;
+    }
+
+    /**
+     * 检查邮箱是否存在
+     * @param sql
+     * @return true: 存在, false: 不存在.
+     */
+    public static boolean queryEmail(String sql) throws SQLException {
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        int size = 0;
+        if (rs != null) {
+            rs.beforeFirst();
+            rs.last();
+            size = rs.getRow();
+        }
+        return size > 0;
     }
 
     /**
