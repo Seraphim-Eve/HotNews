@@ -1,6 +1,7 @@
 package com.springapp.mvc;
 
 import com.springapp.mvc.bean.User;
+import com.springapp.mvc.utils.MD5Utils;
 import com.springapp.mvc.utils.MySQLUtils;
 import com.springapp.mvc.utils.StringUtils;
 import org.springframework.stereotype.Controller;
@@ -19,15 +20,33 @@ public class MController {
      * @return
      */
     @RequestMapping(value = "login.do", method = RequestMethod.POST)
-    public String loginCheck(@ModelAttribute User user, ModelMap modelMap) {
+    public String loginCheck(@ModelAttribute User user, ModelMap modelMap) throws SQLException {
 
-        modelMap.addAttribute("email", user.getEmail());
+        String email = user.getEmail();
+        String password = MD5Utils.getMD5(user.getPassword());
+        String sql = "select * from Users where username = '" + email + "' and password = '" + password + "'";
+        if (MySQLUtils.queryEmail(sql)) {
+            //登陆到主页面
+            return "forward:news.do";
+        }
+        //重定向到index.jsp页面
+        modelMap.addAttribute("msg", "输入的用户名或密码错误!");
+        modelMap.addAttribute("email", email);
+        return "forward:index.jsp";
+    }
 
-        //TODO 密码需要编码为MD5,与数据库做对比
-
-        modelMap.addAttribute("password", user.getPassword());
-        modelMap.addAttribute("nickname", "Rui Shawn");
-
+    /**
+     * 登陆到主页面
+     * @param user
+     * @param modelMap
+     * @return 主页面
+     * @throws SQLException
+     */
+    @RequestMapping(value = "news.do")
+    public String news(@ModelAttribute User user, ModelMap modelMap) throws SQLException {
+        String sql = "select * from Users where username = '" + user.getEmail() + "' and password = '" + MD5Utils.getMD5(user.getPassword()) + "'";
+        User u = MySQLUtils.queryForUser(sql);
+        modelMap.addAttribute("nickname", u.getNickname());
         return "news";
     }
 
@@ -91,7 +110,6 @@ public class MController {
     @RequestMapping(value = "check.do", method = RequestMethod.POST)
     @ResponseBody
     public String checkMail(@RequestParam("email") String email) throws SQLException {
-        //TODO 检查邮箱是否存在.
         String sql = "select * from Users where username = '" + email + "'";
         if (MySQLUtils.queryEmail(sql)) {
             return "true";

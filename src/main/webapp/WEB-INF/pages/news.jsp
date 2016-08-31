@@ -25,7 +25,7 @@
     <nav class="navbar navbar-default navbar-fixed-top" style="opacity: .9" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header" style="margin-top: 5px;">
-                <img src="favicon.ico" alt="HotNews">${nickname},我们在看!
+                <img src="favicon.ico" alt="HotNews"><strong style="font-weight: bold;">${nickname}</strong>,我们在看!
             </div>
 
             <div class="collapse navbar-collapse">

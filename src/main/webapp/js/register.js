@@ -2,36 +2,39 @@
     $(document).ready(function () {
 
         //check mail
-        $("#email").keyup(function () {
+        /*$("#email").blur(function () {
+            check();
+        });*/
 
+        //check mail
+        $("#register").submit(function () {
             var value = $("#email").val();
-
+            var flag = false;
             if (validateEmail(value)) {
                 $.ajax({
                     method: "POST",
                     url: "check.do",
+                    async: false, //为了赋值flag变量的值
                     data: {email: value},
                     success: function(data) {
                         //console.log(data);
-
                         if (data == "true") {
+
                             $.validator.methods.email = function(value, element) {
                                 return this.optional(element) || false;
                             };
+                            $("#email-error").text("该用户名已有人使用.改用其他用户名?");
 
-                            var validator = $("#register").validate();
-                            validator.showErrors({
-                                "email": "该用户名已有人使用.改用其他用户名?"
-                            });
+                            //$.validator.methods.email.messages("该用户名已有人使用.改用其他用户名?");
+
                         }
-
                     }
                 });
             }
-
+            return flag;
         });
 
-        //jquery email配置验证正则
+        //check email
         $.validator.methods.email = function(value, element) {
             return this.optional(element) || validateEmail(value);
         };
@@ -96,29 +99,32 @@
 
         /*$("#nickname").popover({
             content: '你可以使用中文和英文.',
-            placement: 'left'
+            placement: 'left',
+            trigger: 'focus'
         });
 
         $("#email").popover({
             content: '例如: example@mail.com',
-            placement: 'left'
+            placement: 'left',
+            trigger: 'focus'
         });
 
         $("#password").popover({
             title: '密码强度:',
             content: '请至少使用 8 个字符.',
-            placement: 'left'
+            placement: 'left',
+            trigger: 'focus'
         });
 
-        $("#nickname").mouseleave(function () {
+        $("#nickname").blur(function () {
             $("#nickname").popover('hide');
         });
 
-        $("#email").mouseleave(function () {
+        $("#email").blur(function () {
             $("#email").popover('hide');
         });
 
-        $("#password").mouseleave(function () {
+        $("#password").blur(function () {
             $("#password").popover('hide');
         });*/
 

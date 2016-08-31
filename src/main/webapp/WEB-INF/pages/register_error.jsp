@@ -19,7 +19,7 @@
             if (time == 0) {
                 window.location.href = "registerJump.do";
             } else {
-                document.getElementById("show").innerHTML = time + "秒后跳转到<span style='color:red'>注册界面</span>!"
+                document.getElementById("show").innerHTML = time + "秒后跳转到<span style='font-weight: bold;'>注册界面</span>!"
             }
             time--;
         }
@@ -27,7 +27,8 @@
 </head>
 <body>
     <div align="center" style="margin-top: 15%;">
-        <p id="show">10秒后跳转到<span style='color:red'>注册界面</span>!</p>
+        <h3><span style='color:red; font-weight: bold;'>注册失败</span></h3>
+        <p id="show">10秒后跳转到<span style='font-weight: bold;'>注册界面</span>!</p>
         <a href="registerJump.do">立即跳转</a>
     </div>
 </body>

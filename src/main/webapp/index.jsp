@@ -22,7 +22,7 @@
             <h3 class="form-signin-heading" align="center">Welcome to Hot News!</h3>
 
             <div class="form-group">
-                <input type="email" name="email" class="form-control" placeholder="ÓÊÏä" maxlength="30" autofocus/>
+                <input type="email" name="email" class="form-control" placeholder="ÓÊÏä" maxlength="30" value="${email}" autofocus/>
             </div>
 
             <div class="form-group">
@@ -31,6 +31,10 @@
 
             <div class="form-group">
                 <input type="submit" class="btn btn-lg btn-primary btn-block" value="µÇÂ½">
+            </div>
+
+            <div align="center">
+                <strong style="color: red;">${msg}</strong>
             </div>
 
             <div class="form-group">

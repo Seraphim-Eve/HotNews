@@ -1,5 +1,7 @@
 package com.springapp.mvc.utils;
 
+import com.springapp.mvc.bean.User;
+
 import java.sql.*;
 import java.util.Properties;
 
@@ -63,6 +65,26 @@ public class MySQLUtils {
             size = rs.getRow();
         }
         return size > 0;
+    }
+
+    /**
+     * 查询用户
+     * @param sql 查询SQL
+     * @return 返回用户
+     */
+    public static User queryForUser(String sql) throws SQLException {
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        User user = new User();
+        if (rs.next()) {
+            String nickname = rs.getString("nickname");
+            String username = rs.getString("username");
+            String password = rs.getString("password");
+            user.setNickname(nickname);
+            user.setEmail(username);
+            user.setPassword(password);
+        }
+        return user;
     }
 
     /**

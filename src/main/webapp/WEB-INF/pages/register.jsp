@@ -29,11 +29,11 @@
             <h2 class="form-signin-heading" align="center">×¢²á</h2>
 
             <div class="form-group">
-                <input id="nickname" type="text" name="nickname" class="form-control" placeholder="êÇ³Æ" maxlength="10" autofocus>
+                <input id="nickname" type="text" name="nickname" class="form-control" placeholder="êÇ³Æ" maxlength="10" value="${nickname}" autofocus>
             </div>
 
             <div class="form-group">
-                <input id="email" type="email" name="email" class="form-control" placeholder="ÓÊÏä" maxlength="30">
+                <input id="email" type="email" name="email" class="form-control" placeholder="ÓÊÏä" maxlength="30" value="${email}">
             </div>
 
             <div class="form-group">
