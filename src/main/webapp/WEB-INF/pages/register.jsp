@@ -33,7 +33,7 @@
             </div>
 
             <div class="form-group">
-                <input id="email" type="email" name="email" class="form-control" placeholder="ÓÊÏä" maxlength="30" value="${email}">
+                <input id="email" type="text" name="email" class="form-control" placeholder="ÓÊÏä" maxlength="30" value="${email}">
             </div>
 
             <div class="form-group">

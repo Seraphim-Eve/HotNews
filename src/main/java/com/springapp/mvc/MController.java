@@ -4,14 +4,26 @@ import com.springapp.mvc.bean.User;
 import com.springapp.mvc.utils.MD5Utils;
 import com.springapp.mvc.utils.MySQLUtils;
 import com.springapp.mvc.utils.StringUtils;
+import com.sun.deploy.net.HttpResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 
 @Controller
 public class MController {
+
+
+    /**
+     * 跳转到主页
+     * @return
+     */
+    @RequestMapping(value = "index.do")
+    public String index() {
+        return "index";
+    }
 
     /**
      * 登陆检查
@@ -32,7 +44,7 @@ public class MController {
         //重定向到index.jsp页面
         modelMap.addAttribute("msg", "输入的用户名或密码错误!");
         modelMap.addAttribute("email", email);
-        return "forward:index.jsp";
+        return "index";
     }
 
     /**

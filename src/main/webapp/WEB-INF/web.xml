@@ -22,7 +22,7 @@
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
         <init-param>
             <param-name>encoding</param-name>
-            <param-value>UTF-8</param-value>
+            <param-value>GBK</param-value>
         </init-param>
         <init-param>
             <param-name>forceEncoding</param-name>
@@ -35,16 +35,21 @@
         <url-pattern>*.jsp</url-pattern>
     </filter-mapping>
 
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>*</url-pattern>
+    </filter-mapping>
+
 
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>index.do</welcome-file>
     </welcome-file-list>
 
 
     <!-- mysql exception -->
     <error-page>
         <exception-type>java.sql.SQLException</exception-type>
-        <location>/index.jsp</location>
+        <location>/index.do</location>
     </error-page>
 
     <!-- 404 -->

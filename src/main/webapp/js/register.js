@@ -1,15 +1,8 @@
 (function ($) {
     $(document).ready(function () {
 
-        //check mail
-        /*$("#email").blur(function () {
-            check();
-        });*/
-
-        //check mail
-        $("#register").submit(function () {
-            var value = $("#email").val();
-            var flag = false;
+        $.validator.addMethod("isExists", function(value, element) {
+            var flag = true;
             if (validateEmail(value)) {
                 $.ajax({
                     method: "POST",
@@ -17,27 +10,19 @@
                     async: false, //为了赋值flag变量的值
                     data: {email: value},
                     success: function(data) {
-                        //console.log(data);
                         if (data == "true") {
-
-                            $.validator.methods.email = function(value, element) {
-                                return this.optional(element) || false;
-                            };
-                            $("#email-error").text("该用户名已有人使用.改用其他用户名?");
-
-                            //$.validator.methods.email.messages("该用户名已有人使用.改用其他用户名?");
-
+                            //邮箱存在
+                            flag = false;
                         }
                     }
                 });
             }
             return flag;
-        });
+        }, "该用户名已有人使用.改用其他用户名?");
 
-        //check email
-        $.validator.methods.email = function(value, element) {
-            return this.optional(element) || validateEmail(value);
-        };
+        $.validator.addMethod("regex", function(value, element) {
+            return validateEmail(value);
+        }, "请输入有效的电子邮箱地址!");
 
         //validate email
         function validateEmail(email) {
@@ -63,7 +48,9 @@
                     maxlength: 10
                 },
                 email: {
-                    required: true
+                    required: true,
+                    regex: true,
+                    isExists: true
                 },
                 password: {
                     required: true,
@@ -82,7 +69,9 @@
                     required: "请输入昵称!",
                     maxlength: "你输入的昵称超过10个字符!"
                 },
-                email: "请输入有效的电子邮箱地址!",
+                email: {
+                    required: "请输入有效的电子邮箱地址!"
+                },
                 password: {
                     required: "请输入密码!",
                     minlength: "输入的密码小于8位!",
@@ -114,19 +103,6 @@
             content: '请至少使用 8 个字符.',
             placement: 'left',
             trigger: 'focus'
-        });
-
-        $("#nickname").blur(function () {
-            $("#nickname").popover('hide');
-        });
-
-        $("#email").blur(function () {
-            $("#email").popover('hide');
-        });
-
-        $("#password").blur(function () {
-            $("#password").popover('hide');
         });*/
-
     });
 })(jQuery);

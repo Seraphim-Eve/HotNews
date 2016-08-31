@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=GBK" %>
-<html lang="zh">
+<html>
 <head>
     <title>Hot News</title>
     <meta charset="GBK">

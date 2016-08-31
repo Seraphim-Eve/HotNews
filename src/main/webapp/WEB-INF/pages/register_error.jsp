@@ -26,7 +26,7 @@
     </script>
 </head>
 <body>
-    <div align="center" style="margin-top: 15%;">
+    <div align="center" style="margin-top: 10%;">
         <h3><span style='color:red; font-weight: bold;'>注册失败</span></h3>
         <p id="show">10秒后跳转到<span style='font-weight: bold;'>注册界面</span>!</p>
         <a href="registerJump.do">立即跳转</a>
