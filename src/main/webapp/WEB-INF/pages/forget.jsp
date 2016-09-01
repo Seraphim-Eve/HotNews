@@ -18,6 +18,7 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.validate.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/forgot.js"></script>
 
 </head>
 <body>
@@ -27,7 +28,7 @@
             <h3 class="form-signin-heading" align="center">÷ÿ÷√√‹¬Î</h3>
 
             <div class="form-group">
-                <input type="email" name="email" class="form-control" placeholder="” œ‰" maxlength="30" required autofocus/>
+                <input type="text" name="email" class="form-control" placeholder="” œ‰" maxlength="30" autofocus/>
             </div>
 
             <div class="form-group">

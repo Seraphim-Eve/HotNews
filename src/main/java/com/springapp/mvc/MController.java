@@ -4,12 +4,10 @@ import com.springapp.mvc.bean.User;
 import com.springapp.mvc.utils.MD5Utils;
 import com.springapp.mvc.utils.MySQLUtils;
 import com.springapp.mvc.utils.StringUtils;
-import com.sun.deploy.net.HttpResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 
 @Controller
@@ -20,7 +18,7 @@ public class MController {
      * 跳转到主页
      * @return
      */
-    @RequestMapping(value = "index.do")
+    @RequestMapping(value = "index.do", method = RequestMethod.GET)
     public String index() {
         return "index";
     }
@@ -37,10 +35,12 @@ public class MController {
         String email = user.getEmail();
         String password = MD5Utils.getMD5(user.getPassword());
         String sql = "select * from Users where username = '" + email + "' and password = '" + password + "'";
+
         if (MySQLUtils.queryEmail(sql)) {
-            //登陆到主页面
+            //登陆到主页
             return "forward:news.do";
         }
+
         //重定向到index.jsp页面
         modelMap.addAttribute("msg", "输入的用户名或密码错误!");
         modelMap.addAttribute("email", email);
@@ -108,9 +108,9 @@ public class MController {
      * @param user
      * @return
      */
-    @RequestMapping(value = "forgot.do", method = RequestMethod.GET)
+    @RequestMapping(value = "forgot.do", method = RequestMethod.POST)
     public String forgot(@ModelAttribute User user) {
-        return "hello";
+        return "reset";
     }
 
 
