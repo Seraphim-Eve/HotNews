@@ -110,6 +110,7 @@ public class MController {
      */
     @RequestMapping(value = "forgot.do", method = RequestMethod.POST)
     public String forgot(@ModelAttribute User user) {
+
         return "reset";
     }
 

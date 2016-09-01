@@ -5,7 +5,6 @@ import com.springapp.mvc.utils.MD5Utils;
 import com.springapp.mvc.utils.MySQLUtils;
 import com.springapp.mvc.utils.StringUtils;
 import org.apache.velocity.VelocityContext;
-import org.apache.velocity.app.Velocity;
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.util.DigestUtils;
 
@@ -17,7 +16,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Properties;
 
 /**
  * Created by Xr on 2016/8/25.
@@ -78,5 +76,13 @@ public class Test {
         user.setNickname("Rui Shawn");
         user.setPassword("xiaorui");
         System.out.println(StringUtils.getString(sql, user));
+    }
+
+    @org.junit.Test
+    public void t6() {
+        String str = "";
+        if (!str.isEmpty()) {
+
+        }
     }
 }
