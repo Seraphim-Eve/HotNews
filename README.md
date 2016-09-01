@@ -1,1 +1,3 @@
-## HotNews使用?
+## HotNews使用
+- 环境
+- 使用
