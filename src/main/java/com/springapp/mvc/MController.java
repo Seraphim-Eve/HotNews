@@ -9,11 +9,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 
 @Controller
 public class MController {
-
 
     /**
      * 跳转到主页
@@ -31,15 +31,15 @@ public class MController {
      * @return
      */
     @RequestMapping(value = "login.do", method = RequestMethod.POST)
-    public String loginCheck(@ModelAttribute User user, ModelMap modelMap) throws SQLException {
+    public String loginCheck(@ModelAttribute User user, ModelMap modelMap, HttpSession session) throws SQLException {
 
         String email = user.getEmail();
         String password = MD5Utils.getMD5(user.getPassword());
         String sql = "select * from Users where username = '" + email + "' and password = '" + password + "'";
 
         if (MySQLUtils.queryEmail(sql)) {
-            //登陆到主页
-            return "forward:news.do";
+            session.setAttribute("username", email);
+            return "forward:news.do"; //登陆到主页
         }
 
         //重定向到index.jsp页面
@@ -118,11 +118,12 @@ public class MController {
 
     /**
      * 注销
-     * @param request
+     * @param session
      * @return
      */
     @RequestMapping(value = "logout.do", method = RequestMethod.GET)
-    public String logout(HttpServletRequest request) {
+    public String logout(HttpSession session) {
+        session.invalidate();
         return "index";
     }
 
