@@ -2,29 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e5239e39-f779-468e-b193-970cdb6caa02" name="Default" comment="1.">
-      <change type="DELETED" beforePath="C:\Users\Xr\Desktop\HotNews\.idea\.name" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Xr\Desktop\HotNews\.idea\artifacts\HotNews_war.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Xr\Desktop\HotNews\.idea\artifacts\HotNews_war_exploded.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Xr\Desktop\HotNews\.idea\compiler.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Xr\Desktop\HotNews\.idea\copyright\profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Xr\Desktop\HotNews\.idea\libraries\Maven__aopalliance_aopalliance_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Xr\Desktop\HotNews\.idea\libraries\Maven__commons_logging_commons_logging_1_1_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Xr\Desktop\HotNews\.idea\libraries\Maven__javax_servlet_jsp_jsp_api_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Xr\Desktop\HotNews\.idea\libraries\Maven__javax_servlet_servlet_api_2_5.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Xr\Desktop\HotNews\.idea\libraries\Maven__junit_junit_4_11.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Xr\Desktop\HotNews\.idea\libraries\Maven__mysql_mysql_connector_java_5_1_6.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Xr\Desktop\HotNews\.idea\libraries\Maven__org_hamcrest_hamcrest_core_1_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Xr\Desktop\HotNews\.idea\libraries\Maven__org_springframework_spring_aop_4_1_1_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Xr\Desktop\HotNews\.idea\libraries\Maven__org_springframework_spring_beans_4_1_1_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Xr\Desktop\HotNews\.idea\libraries\Maven__org_springframework_spring_context_4_1_1_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Xr\Desktop\HotNews\.idea\libraries\Maven__org_springframework_spring_core_4_1_1_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Xr\Desktop\HotNews\.idea\libraries\Maven__org_springframework_spring_expression_4_1_1_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Xr\Desktop\HotNews\.idea\libraries\Maven__org_springframework_spring_test_4_1_1_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Xr\Desktop\HotNews\.idea\libraries\Maven__org_springframework_spring_web_4_1_1_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Xr\Desktop\HotNews\.idea\libraries\Maven__org_springframework_spring_webmvc_4_1_1_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Xr\Desktop\HotNews\.idea\misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Xr\Desktop\HotNews\.idea\modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Xr\Desktop\HotNews\.idea\vcs.xml" afterPath="" />
       <change type="DELETED" beforePath="C:\Users\Xr\Desktop\HotNews\.idea\workspace.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/resources/mysql.properties" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/resources/mysql.properties" />
     </list>
@@ -1129,7 +1106,7 @@
       <workItem from="1472605852428" duration="19574000" />
       <workItem from="1472693230246" duration="176000" />
       <workItem from="1472693430609" duration="377000" />
-      <workItem from="1472693823183" duration="7314000" />
+      <workItem from="1472693823183" duration="7403000" />
     </task>
     <task id="LOCAL-00001" summary="1. 修改注册成功和注册失败页面.&#10;2. 新增注册时邮箱检查.">
       <created>1472462717564</created>
@@ -1161,11 +1138,17 @@
       <option name="project" value="LOCAL" />
       <updated>1472708564572</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="1. 删除idea文件夹">
+      <created>1472708864291</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1472708864291</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54443000" />
+    <option name="totallyTimeSpent" value="54532000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1227,7 +1210,8 @@
     <MESSAGE value="1. 增加重置密码." />
     <MESSAGE value="1. 重置密码页面更新" />
     <MESSAGE value="1. 删除target文件夹." />
-    <option name="LAST_COMMIT_MESSAGE" value="1. 删除target文件夹." />
+    <MESSAGE value="1. 删除idea文件夹" />
+    <option name="LAST_COMMIT_MESSAGE" value="1. 删除idea文件夹" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
