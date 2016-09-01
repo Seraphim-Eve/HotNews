@@ -32,6 +32,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="#">Blog</a></li>
                     <li><a href="https://github.com/RuiShaw">GitHub</a></li>
+                    <li><a href="logout.do">µÇ³ö</a></li>
                 </ul>
             </div>
         </div>

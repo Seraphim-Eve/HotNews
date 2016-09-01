@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
 
 @Controller
@@ -114,6 +115,16 @@ public class MController {
         return "reset";
     }
 
+
+    /**
+     * 注销
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "logout.do", method = RequestMethod.GET)
+    public String logout(HttpServletRequest request) {
+        return "index";
+    }
 
     /**
      * 邮箱是否存在检查
