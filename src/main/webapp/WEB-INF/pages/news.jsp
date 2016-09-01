@@ -47,57 +47,13 @@
             <ul class="list-group">
 
                 <li class="list-group-item title">
-                    <a href="http://yinwang.org/blog-cn/2016/07/10/tesla-autopilot-fatal-crash">Tesla autopilot
-                        引起致命车祸</a>
+                    <a href="#">测试1</a>
                 </li>
 
                 <li class="list-group-item title">
-                    <a href="http://yinwang.org/blog-cn/2016/07/05/google-maps">Google Maps的设计问题</a>
+                    <a href="#">测试2</a>
                 </li>
 
-                <li class="list-group-item title">
-                    <a href="http://yinwang.org/blog-cn/2016/06/28/yangsheng">养生节目带来的危害</a>
-                </li>
-
-                <li class="list-group-item title">
-                    <a href="http://yinwang.org/blog-cn/2016/06/27/tiger-for-rent">老虎出租</a>
-                </li>
-
-                <li class="list-group-item title">
-                    <a href="http://yinwang.org/blog-cn/2016/06/24/robot-tax">欧盟草拟法案，对机器人征税</a>
-                </li>
-
-                <li class="list-group-item title">
-                    <a href="http://yinwang.org/blog-cn/2016/06/22/plan-change">两个计划的变动</a>
-                </li>
-
-                <li class="list-group-item title">
-                    <a href="http://yinwang.org/blog-cn/2016/06/20/it-and-society">IT业给世界带来的危机</a>
-                </li>
-
-                <li class="list-group-item title">
-                    <a href="http://yinwang.org/blog-cn/2016/06/19/leaving-united-states">关于离开美国的决定</a>
-                </li>
-
-                <li class="list-group-item title">
-                    <a href="http://yinwang.org/blog-cn/2016/06/14/information-inequality">美国社会的信息不平等现象</a>
-                </li>
-
-                <li class="list-group-item title">
-                    <a href="http://yinwang.org/blog-cn/2016/06/08/java-value-type">Java 有值类型吗？</a>
-                </li>
-
-                <li class="list-group-item title">
-                    <a href="http://yinwang.org/blog-cn/2016/06/06/swift">Swift 语言的设计错误</a>
-                </li>
-
-                <li class="list-group-item title">
-                    <a href="http://yinwang.org/blog-cn/2016/05/25/my-tweet">我的 tweet 系统</a>
-                </li>
-
-                <li class="list-group-item title">
-                    <a href="http://yinwang.org/blog-cn/2016/05/22/positive-thinking">正面思维的误区</a>
-                </li>
             </ul>
         </div>
     </div>
