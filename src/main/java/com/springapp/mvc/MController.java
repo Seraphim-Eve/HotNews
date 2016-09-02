@@ -178,7 +178,7 @@ public class MController {
      * ÷ÿ÷√√‹¬Î
      * @return
      */
-    @RequestMapping(value = "effective_code.do")
+    @RequestMapping(value = "effective_code.do", method = RequestMethod.POST)
     public String effectiveCode() {
         return "effective_code";
     }
