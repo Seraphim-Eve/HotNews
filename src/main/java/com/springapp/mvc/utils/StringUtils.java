@@ -35,15 +35,27 @@ public class StringUtils {
         VelocityEngine ve = new VelocityEngine(props);
         VelocityContext vc = new VelocityContext();
 
+        vc.put("email", user.getEmail());
         vc.put("nickname", user.getNickname());
-        //username=email
         vc.put("username", user.getEmail());
         vc.put("password", MD5Utils.getMD5(user.getPassword()));
-        vc.put("last_update_time", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+        vc.put("reg_time", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 
         StringWriter sw = new StringWriter();
         ve.evaluate(vc, sw, "", str);
 
         return sw.toString();
+    }
+
+    /**
+     * 判断空值
+     * @param str
+     * @return 如果值str是空或者"",返回"",否则返回str
+     */
+    public static String nvl(String str) {
+        if (null != str && !str.isEmpty()) {
+            return str;
+        }
+        return "";
     }
 }

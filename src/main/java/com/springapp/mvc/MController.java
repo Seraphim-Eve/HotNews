@@ -1,16 +1,16 @@
 package com.springapp.mvc;
 
 import com.springapp.mvc.bean.User;
-import com.springapp.mvc.utils.MD5Utils;
-import com.springapp.mvc.utils.MailUtils;
-import com.springapp.mvc.utils.MySQLUtils;
-import com.springapp.mvc.utils.StringUtils;
+import com.springapp.mvc.utils.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Controller
 public class MController {
@@ -39,6 +39,10 @@ public class MController {
 
         if (MySQLUtils.queryEmail(sql)) {
             session.setAttribute("username", email);
+            //更新last_login_time字段
+            String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            sql = "update Users set last_login_time = '" + time  + "' where username = '" + email + "'";
+            MySQLUtils.insert(sql);
             return "forward:news.do"; //登陆到主页
         }
 
@@ -64,6 +68,15 @@ public class MController {
     }
 
     /**
+     * 查看(测试session)
+     * @return
+     */
+    @RequestMapping(value = "view.do", method = RequestMethod.GET)
+    public String view() {
+        return "view";
+    }
+
+    /**
      * 用户注册跳转
      * @return
      */
@@ -80,7 +93,7 @@ public class MController {
     @RequestMapping(value = "register.do", method = RequestMethod.POST)
     public String register(@ModelAttribute User user, ModelMap modelMap) throws SQLException {
 
-        String sql = "insert into Users(nickname, username, password, last_update_time) values('${nickname}', '${username}', '${password}', '${last_update_time}')";
+        String sql = "insert into Users(email, nickname, username, password, reg_time) values('${email}', '${nickname}', '${username}', '${password}', '${reg_time}')";
         sql = StringUtils.getString(sql, user);
 
         if (MySQLUtils.insert(sql)) {
@@ -105,21 +118,70 @@ public class MController {
     }
 
     /**
-     * 重置密码
+     * 重置密码邮件发送
      * @param user
      * @return
      */
     @RequestMapping(value = "forgot.do", method = RequestMethod.POST)
-    public String forgot(@ModelAttribute User user) {
+    public String forgot(@ModelAttribute User user, HttpServletRequest request) {
         try {
-            MailUtils.sendMail(user.getEmail());
+            String path = request.getContextPath();
+            String website_host = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
+
+            String code = UUIDUtils.code();
+
+            MailUtils.sendMail(user.getEmail(), website_host, code);
+
+            String sql = "update Users set reset_code = '" + code + "' where username = '" + user.getEmail() + "'";
+            MySQLUtils.insert(sql);
+
+            //启动一个线程计算重置密码code失效时间
+            PlanTask pt = new PlanTask(user.getEmail());
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return "reset_error";
         }
-        return "reset";
+        return "reset_success";
     }
 
+    /**
+     * code验证
+     * 处理邮件中点击过来的密码重置页面
+     * @param email
+     * @param code
+     * @return
+     */
+    @RequestMapping(value = "reset.do", method = RequestMethod.GET)
+    public String reset(@RequestParam("email") String email, @RequestParam("code") String code, ModelMap modelMap) {
+
+        if (null != email && !email.isEmpty() && null != code && !code.isEmpty()) {
+
+            String sql = "select * from Users where email = '" + email + "' and reset_code = '" + code + "'";
+            try {
+                if (MySQLUtils.queryEmail(sql)) {
+                    //code有效 -> effective_code
+                    modelMap.addAttribute("email", email);
+                    modelMap.addAttribute("reset_code", code);
+                    return "effective_code";
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        //code无效 -> failure_code
+        return "failure_code";
+    }
+
+    /**
+     * 重置密码
+     * @return
+     */
+    @RequestMapping(value = "effective_code.do")
+    public String effectiveCode() {
+        return "effective_code";
+    }
 
     /**
      * 注销

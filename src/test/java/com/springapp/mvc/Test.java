@@ -16,6 +16,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by Xr on 2016/8/25.
@@ -84,5 +86,20 @@ public class Test {
         if (!str.isEmpty()) {
 
         }
+    }
+
+    @org.junit.Test
+    public void t7() {
+        Timer timer = new Timer();
+        //1√Î = 1000∫¡√Î
+        //1∑÷÷” = 60√Î
+        //30∑÷÷”
+        long time = 30 * 60 * 1000;
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                System.out.println("«Â≥˝code!!!");
+            }
+        }, time);
     }
 }

@@ -1,8 +1,5 @@
 package com.springapp.mvc.filter;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.filter.OncePerRequestFilter;
-
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +11,7 @@ import java.io.IOException;
  */
 public class SessionFilter implements Filter {
 
-    private static final String[] IGNORE_URL = new String[]{"/", "/login.do", "/index.do", "/registerJump.do", "/forgotJump.do", "/register.do", "/forgot.do", "/logout.do", "/check.do"};
+    private static final String[] IGNORE_URL = new String[]{"/", "/login.do", "/index.do", "/registerJump.do", "/forgotJump.do", "/register.do", "/forgot.do", "/logout.do", "/check.do", "/reset.do"};
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

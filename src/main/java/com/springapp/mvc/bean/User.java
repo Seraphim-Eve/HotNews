@@ -6,7 +6,7 @@ package com.springapp.mvc.bean;
 public class User {
 
     /**
-     * email=username
+     * email = username
      */
     private String email;
 
@@ -15,13 +15,30 @@ public class User {
      */
     private String nickname;
 
-    @Deprecated
+    /**
+     * username = email
+     */
     private String username;
 
     /**
      * 用户密码MD5
      */
     private String password;
+
+    /**
+     * 重置密码验证code
+     */
+    private String reset_code;
+
+    /**
+     * 最后一次登录时间
+     */
+    private String last_login_time;
+
+    /**
+     * 注册时间
+     */
+    private String reg_time;
 
     public String getEmail() {
         return email;
@@ -39,12 +56,10 @@ public class User {
         this.nickname = nickname;
     }
 
-    @Deprecated
     public String getUsername() {
         return username;
     }
 
-    @Deprecated
     public void setUsername(String username) {
         this.username = username;
     }
@@ -55,5 +70,29 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getReset_code() {
+        return reset_code;
+    }
+
+    public void setReset_code(String reset_code) {
+        this.reset_code = reset_code;
+    }
+
+    public String getLast_login_time() {
+        return last_login_time;
+    }
+
+    public void setLast_login_time(String last_login_time) {
+        this.last_login_time = last_login_time;
+    }
+
+    public String getReg_time() {
+        return reg_time;
+    }
+
+    public void setReg_time(String reg_time) {
+        this.reg_time = reg_time;
     }
 }

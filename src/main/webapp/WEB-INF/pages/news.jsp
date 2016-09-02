@@ -47,7 +47,7 @@
             <ul class="list-group">
 
                 <li class="list-group-item title">
-                    <a href="#">≤‚ ‘1</a>
+                    <a href="view.do">≤Èø¥</a>
                 </li>
 
                 <li class="list-group-item title">

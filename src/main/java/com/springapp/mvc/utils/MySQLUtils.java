@@ -75,14 +75,24 @@ public class MySQLUtils {
     public static User queryForUser(String sql) throws SQLException {
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
-        User user = new User();
+        User user = null;
         if (rs.next()) {
             String nickname = rs.getString("nickname");
             String username = rs.getString("username");
             String password = rs.getString("password");
-            user.setNickname(nickname);
+            String reg_time = rs.getString("reg_time");
+            String reset_code = StringUtils.nvl(rs.getString("reset_code"));
+            String last_login_time = rs.getString("last_login_time");
+
+            user = new User();
             user.setEmail(username);
+            user.setUsername(username);
+            user.setNickname(nickname);
             user.setPassword(password);
+            user.setReg_time(reg_time);
+            user.setReset_code(reset_code);
+            user.setLast_login_time(last_login_time);
+
         }
         return user;
     }

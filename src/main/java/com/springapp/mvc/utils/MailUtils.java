@@ -31,7 +31,7 @@ public class MailUtils {
      * @param emailAddress 收件人
      * @throws Exception
      */
-    public static void sendMail(String emailAddress) throws Exception{
+    public static void sendMail(String emailAddress, String website_host, String code) throws Exception{
         String host = prop.getProperty("host");
         String username = prop.getProperty("username");
         String password = prop.getProperty("password");
@@ -43,7 +43,7 @@ public class MailUtils {
 
         Session session = Session.getDefaultInstance(properties);
 
-        MimeMessage mimeMessage = createMime(session, username, emailAddress);
+        MimeMessage mimeMessage = createMime(session, username, emailAddress, website_host, code);
 
         Transport transport = session.getTransport();
 
@@ -62,7 +62,7 @@ public class MailUtils {
      * @param receiveMail 收件人
      * @return
      */
-    private static MimeMessage createMime(Session session, String sendMail, String receiveMail) throws Exception {
+    private static MimeMessage createMime(Session session, String sendMail, String receiveMail, String website_host, String code) throws Exception {
         MimeMessage message = new MimeMessage(session);
 
         //设置发送人
@@ -77,8 +77,28 @@ public class MailUtils {
         //设置主题
         message.setSubject("HotNews密码重置", "UTF-8");
 
+        //组合url(receiveMail,code)
+        //http://www.ruixiao.org:80/HotNews
+        String url = website_host + "/reset.do?email=" + receiveMail + "&code=" + code;
+
+        String html = "<div bgcolor=\"#FFFFFF\" leftmargin=\"0\" marginheight=\"0\" marginwidth=\"0\" topmargin=\"0\"> \n" +
+                "   <table align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"680\"> \n" +
+                "    <tbody><tr> \n" +
+                "     <td style=\"border-bottom:2px solid #d30403\"><img src=\"http://event50.wanmei.com/wanmei/201312/email/images/logo.jpg\" style=\"display:block; border:none 0\"></td> \n" +
+                "    </tr> \n" +
+                "    <tr> \n" +
+                "     <td align=\"center\" colspan=\"2\">\n" +
+                "      <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"680\"> \n" +
+                "       <tbody><tr> \n" +
+                "        <td style=\"color:#333;line-height:28px;font-size:14px;font-family:Verdana,'宋体';\"> 亲爱的用户：" + user.getEmail() + " 您好<br> <br> 您的密码修改链接如下：<br> <br> <a href=\"" + url + "\" target=\"_blank\">" + (website_host + "/reset") + "</a><br> <br> 本邮件请使用HTML方式显示，否则以上链接可能无法正确显示。<br> <br> 如果点击以上链接不能进入，请把以上链接复制粘贴到浏览器的地址栏，然后回车来执行此链接。<br> <br> 此链接半小时内有效，如链接失效请到网站重新操作！ </td> \n" +
+                "       </tr> \n" +
+                "      </tbody></table></td> \n" +
+                "    </tr>\n" +
+                "   </tbody></table> \n" +
+                "  </div>";
+
         //设置邮件内容
-        message.setContent("测试<table><tr><td>111</td></tr></table>", "text/html;charset=UTF-8");
+        message.setContent(html, "text/html;charset=UTF-8");
 
         //设置发送时间
         message.setSentDate(new Date());
