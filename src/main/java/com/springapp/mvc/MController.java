@@ -2,13 +2,13 @@ package com.springapp.mvc;
 
 import com.springapp.mvc.bean.User;
 import com.springapp.mvc.utils.MD5Utils;
+import com.springapp.mvc.utils.MailUtils;
 import com.springapp.mvc.utils.MySQLUtils;
 import com.springapp.mvc.utils.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 
@@ -111,7 +111,12 @@ public class MController {
      */
     @RequestMapping(value = "forgot.do", method = RequestMethod.POST)
     public String forgot(@ModelAttribute User user) {
-
+        try {
+            MailUtils.sendMail(user.getEmail());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return "reset_error";
+        }
         return "reset";
     }
 
