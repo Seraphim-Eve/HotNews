@@ -46,13 +46,22 @@ public class MController {
             String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
             sql = "update Users set last_login_time = '" + time  + "' where username = '" + email + "'";
             MySQLUtils.insert(sql);
-            return "forward:news.do"; //登陆到主页
+            return "forward:blog.do"; //登陆到主页
         }
 
         //重定向到index.jsp页面
         modelMap.addAttribute("msg", "输入的用户名或密码错误!");
         modelMap.addAttribute("email", email);
         return "index";
+    }
+
+    /**
+     * 博客为首页
+     * @return
+     */
+    @RequestMapping(value = "blog.do")
+    public String blog(@ModelAttribute User user) {
+        return "blog";
     }
 
     /**
