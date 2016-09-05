@@ -19,6 +19,18 @@ import java.util.Date;
 public class MController {
 
     /**
+     * 登陆超时跳转主页
+     * @return
+     */
+    @RequestMapping(value = "indexTimeout.do", method = RequestMethod.GET)
+    public String loginTimeout(@RequestParam("loginTimeout") String loginTimeout, ModelMap modelMap) {
+        if (null != loginTimeout && !loginTimeout.isEmpty()) {
+            modelMap.addAttribute("msg", "登陆超时,请重新登陆!");
+        }
+        return "index";
+    }
+
+    /**
      * 跳转到主页
      * @return
      */
