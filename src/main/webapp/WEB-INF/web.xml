@@ -62,9 +62,9 @@
     </welcome-file-list>
 
 
-    <!-- login timeout: 1 min -->
+    <!-- login timeout: 30 min -->
     <session-config>
-        <session-timeout>1</session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
 
     <!-- mysql exception -->
