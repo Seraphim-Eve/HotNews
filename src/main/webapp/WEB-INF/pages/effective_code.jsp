@@ -11,7 +11,7 @@
 <head>
     <title>ÃÜÂëÐÞ¸Ä</title>
     <jsp:include page="include.jsp"></jsp:include>
-    <javascript src="js/effective_code.js"></javascript>
+    <script src="js/effective_code.js"></script>
 </head>
 <body>
     <div class="container">
