@@ -1,6 +1,8 @@
 package com.springapp.mvc;
 
 import com.springapp.mvc.bean.User;
+import com.springapp.mvc.impl.HotNewsImpl;
+import com.springapp.mvc.service.HotNews;
 import com.springapp.mvc.utils.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Controller
@@ -64,6 +67,13 @@ public class MController {
         String sql = "select * from Users where username = '" + user.getEmail() + "' and password = '" + MD5Utils.getMD5(user.getPassword()) + "'";
         User u = MySQLUtils.queryForUser(sql);
         modelMap.addAttribute("nickname", u.getNickname());
+
+        //TODO 准备登陆主页后的数据显示
+        //主页显示18条新闻
+        HotNews hn = new HotNewsImpl();
+        ArrayList<String> hotNews = hn.getHotNews();
+        modelMap.addAttribute("hotNews", hotNews);
+
         return "news";
     }
 

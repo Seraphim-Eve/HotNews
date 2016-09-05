@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=GBK" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Hot News</title>
@@ -30,23 +32,24 @@
     </nav>
 
     <br/>
+    <br/>
+
     <div class="container center-block">
+
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Blog</h3>
             </div>
+
             <ul class="list-group">
-
-                <li class="list-group-item title">
-                    <a href="view.do">≤Èø¥</a>
-                </li>
-
-                <li class="list-group-item title">
-                    <a href="#">≤‚ ‘2</a>
-                </li>
-
+                <f:forEach items="${hotNews}" var="news">
+                    <li class="list-group-item title">
+                        ${news}
+                    </li>
+                </f:forEach>
             </ul>
         </div>
+
     </div>
 
 </body>
