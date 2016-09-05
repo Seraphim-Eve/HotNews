@@ -179,8 +179,22 @@ public class MController {
      * @return
      */
     @RequestMapping(value = "effective_code.do", method = RequestMethod.POST)
-    public String effectiveCode() {
-        return "effective_code";
+    public String effectiveCode(@ModelAttribute User user) throws SQLException {
+
+        if (null != user.getEmail() && !user.getEmail().isEmpty() && null != user.getReset_code() && !user.getReset_code().isEmpty()) {
+            String sql = "select * from Users where email = '" + user.getEmail() + "' and reset_code = '" + user.getReset_code() + "'";
+            try {
+                if (MySQLUtils.queryEmail(sql)) {
+                    //修改密码,设置reset_code为null(设置为null防止重复提交页面修改密码.)
+                    sql = "update Users set password = '" + MD5Utils.getMD5(user.getPassword()) + "', reset_code = null where username = '" + user.getEmail() + "' and reset_code = '" + user.getReset_code() + "'";
+                    MySQLUtils.insert(sql);
+                    return "effective_success";
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return "failure_code";
     }
 
     /**

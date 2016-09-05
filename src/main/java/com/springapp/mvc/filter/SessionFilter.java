@@ -11,7 +11,7 @@ import java.io.IOException;
  */
 public class SessionFilter implements Filter {
 
-    private static final String[] IGNORE_URL = new String[]{"/", "/login.do", "/index.do", "/registerJump.do", "/forgotJump.do", "/register.do", "/forgot.do", "/logout.do", "/check.do", "/reset.do"};
+    private static final String[] IGNORE_URL = new String[]{"/", "/login.do", "/index.do", "/registerJump.do", "/forgotJump.do", "/register.do", "/forgot.do", "/logout.do", "/check.do", "/reset.do", "/effective_code.do"};
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
