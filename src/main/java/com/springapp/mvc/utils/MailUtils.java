@@ -84,7 +84,7 @@ public class MailUtils {
         String html = "<div bgcolor=\"#FFFFFF\" leftmargin=\"0\" marginheight=\"0\" marginwidth=\"0\" topmargin=\"0\"> \n" +
                 "   <table align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"680\"> \n" +
                 "    <tbody><tr> \n" +
-                "     <td style=\"border-bottom:2px solid #d30403\"><img src=\"http://event50.wanmei.com/wanmei/201312/email/images/logo.jpg\" style=\"display:block; border:none 0\"></td> \n" +
+                "     <td style=\"border-bottom:2px solid #d30403\"><h1>HotNews</h1></td> \n" +
                 "    </tr> \n" +
                 "    <tr> \n" +
                 "     <td align=\"center\" colspan=\"2\">\n" +

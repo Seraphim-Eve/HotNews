@@ -125,19 +125,29 @@ public class MController {
     @RequestMapping(value = "forgot.do", method = RequestMethod.POST)
     public String forgot(@ModelAttribute User user, HttpServletRequest request) {
         try {
-            String path = request.getContextPath();
-            String website_host = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
+            //为了防止重复提交更改密码
+            //检查reset_code是否为空
+            if (null != user.getEmail() && !user.getEmail().isEmpty()) {
+                String sql = "select * from Users where username = '" + user.getEmail() + "' and reset_code is null";
+                if (MySQLUtils.queryEmail(sql)) {
+                    //reset_code为空: 则发送重置密码邮件
+                    String path = request.getContextPath();
+                    String website_host = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
 
-            String code = UUIDUtils.code();
+                    String code = UUIDUtils.code();
 
-            MailUtils.sendMail(user.getEmail(), website_host, code);
+                    MailUtils.sendMail(user.getEmail(), website_host, code);
 
-            String sql = "update Users set reset_code = '" + code + "' where username = '" + user.getEmail() + "'";
-            MySQLUtils.insert(sql);
+                    sql = "update Users set reset_code = '" + code + "' where username = '" + user.getEmail() + "'";
+                    MySQLUtils.insert(sql);
 
-            //启动一个线程计算重置密码code失效时间
-            PlanTask pt = new PlanTask(user.getEmail());
-
+                    //启动一个线程计算重置密码code失效时间
+                    PlanTask pt = new PlanTask(user.getEmail());
+                } else {
+                    //reset_code不为空: 则不发送重置密码邮件,跳转到提示已经发送密码修改邮件.
+                    return "reset_repeat";
+                }
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return "reset_error";
