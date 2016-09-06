@@ -34,7 +34,7 @@ public class MController {
      * 跳转到主页
      * @return
      */
-    @RequestMapping(value = "index.do", method = RequestMethod.GET)
+    @RequestMapping(value = "index.do")
     public String index() {
         return "index";
     }
@@ -58,7 +58,7 @@ public class MController {
             String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
             sql = "update Users set last_login_time = '" + time  + "' where username = '" + email + "'";
             MySQLUtils.insert(sql);
-            return "forward:blog.do"; //登陆到主页
+            return "forward:main.do"; //登陆到主页
         }
 
         //重定向到index.jsp页面
@@ -77,25 +77,33 @@ public class MController {
     }
 
     /**
+     * 新闻页面
+     * @param user
+     * @return
+     */
+    @RequestMapping(value = "news.do")
+    public String news(@ModelAttribute User user, ModelMap modelMap) {
+        //准备tab中News数据显示
+        //主页显示16条新闻
+        HotNews hn = new HotNewsImpl();
+        ArrayList<String> hotNews = hn.getHotNews();
+        modelMap.addAttribute("hotNews", hotNews);
+        return "news";
+    }
+
+    /**
      * 登陆到主页面
      * @param user
      * @param modelMap
      * @return 主页面
      * @throws SQLException
      */
-    @RequestMapping(value = "news.do")
-    public String news(@ModelAttribute User user, ModelMap modelMap) throws SQLException {
+    @RequestMapping(value = "main.do")
+    public String main(@ModelAttribute User user, ModelMap modelMap) throws SQLException {
         String sql = "select * from Users where username = '" + user.getEmail() + "' and password = '" + MD5Utils.getMD5(user.getPassword()) + "'";
         User u = MySQLUtils.queryForUser(sql);
         modelMap.addAttribute("nickname", u.getNickname());
-
-        //TODO 准备登陆主页后的数据显示
-        //主页显示18条新闻
-        HotNews hn = new HotNewsImpl();
-        ArrayList<String> hotNews = hn.getHotNews();
-        modelMap.addAttribute("hotNews", hotNews);
-
-        return "news";
+        return "main";
     }
 
     /**
@@ -239,6 +247,45 @@ public class MController {
     }
 
     /**
+     * 登陆主页后密码修改页面跳转
+     * @return
+     */
+    @RequestMapping(value = "reset_password_jump.do")
+    public String resetPassword() {
+        return "reset_password";
+    }
+
+    /**
+     * 登陆主页后密码修改页面提交
+     * @return
+     */
+    @RequestMapping(value = "reset_password.do")
+    public String resetPassword2(@RequestParam("s_password") String s_password, @RequestParam("n_password") String n_password,
+                                 HttpSession session, ModelMap modelMap) throws SQLException {
+
+        //原密码
+        s_password = MD5Utils.getMD5(s_password);
+        //新密码
+        n_password = MD5Utils.getMD5(n_password);
+
+        //用户名
+        String username = session.getAttribute("username").toString();
+
+        String sql = "update Users set password = '" + n_password + "' where username = '" + username + "' and password = '" + s_password + "'";
+
+        if (MySQLUtils.insert(sql)) {
+            //session失效
+            session.invalidate();
+            modelMap.addAttribute("msg", "密码修改成功!请重新登陆!");
+            //TODO 注意index页面会嵌入iframe中.
+            return "redirect:index.do";
+        } else {
+            modelMap.addAttribute("msg", "密码修改失败!");
+        }
+        return "reset_password";
+    }
+
+    /**
      * 注销
      * @param session
      * @return
@@ -258,6 +305,25 @@ public class MController {
     @ResponseBody
     public String checkMail(@RequestParam("email") String email) throws SQLException {
         String sql = "select * from Users where username = '" + email + "'";
+        if (MySQLUtils.queryEmail(sql)) {
+            return "true";
+        }
+        return "false";
+    }
+
+    /**
+     * 检查密码是否正确
+     * @return true: 密码正确, false: 密码错误
+     */
+    @RequestMapping(value = "check_password.do", method = RequestMethod.POST)
+    @ResponseBody
+    public String checkPassword(@RequestParam("password") String password, HttpSession session) throws SQLException {
+
+        password = MD5Utils.getMD5(password);
+        String username = session.getAttribute("username").toString();
+
+        String sql = "select * from Users where username = '" + username + "' and password = '" + password +"'";
+
         if (MySQLUtils.queryEmail(sql)) {
             return "true";
         }

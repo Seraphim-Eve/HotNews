@@ -50,7 +50,7 @@ public class HotNewsImpl implements HotNews {
             Document document = Jsoup.parse(result);
             Elements elements = document.select("a");
             for (Element element : elements) {
-                if (element.hasClass("list-title") && count <= 18) {
+                if (element.hasClass("list-title") && count <= 16) {
                     dataSet.add(element.toString());
                     count++;
                 }
