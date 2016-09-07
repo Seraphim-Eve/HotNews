@@ -20,7 +20,7 @@ public class HotNewsImpl implements HotNews {
 
     /**
      * get HotNews from baidu.
-     * 默认18条数据.
+     * 默认16条数据.
      * @return
      */
     @Override

@@ -7,7 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=GBK" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Hot News</title>
@@ -79,13 +78,18 @@
         </div>
     </nav>
 
+    <br/>
+    <br/>
+
     <div class="tab-content">
         <div class="tab-pane fade in active" id="blog">
-            <iframe class="container center-block" name="forms" src="blog.do" scrolling="auto" frameborder="0" style="height: 90%;"></iframe>
+            <%--<iframe class="container center-block" name="forms" src="blog.do" scrolling="auto" frameborder="0" style="height: 90%;"></iframe>--%>
+            <jsp:include page="/blog.do"></jsp:include>
         </div>
 
         <div class="tab-pane fade" id="news">
-            <iframe class="container center-block" name="forms" src="news.do" scrolling="auto" frameborder="0" style="height: 90%;"></iframe>
+            <%--<iframe class="container center-block" name="forms" src="news.do" scrolling="auto" frameborder="0" style="height: 90%;"></iframe>--%>
+            <jsp:include page="/news.do"></jsp:include>
         </div>
 
         <%--<div class="tab-pane fade" id="reset">
