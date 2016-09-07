@@ -293,7 +293,7 @@ public class MController {
     @RequestMapping(value = "logout.do", method = RequestMethod.GET)
     public String logout(HttpSession session) {
         session.invalidate();
-        return "index";
+        return "redirect:index.do";
     }
 
     /**
