@@ -11,18 +11,7 @@
 <head>
     <title>Hot News</title>
     <jsp:include page="include.jsp"></jsp:include>
-    <script type="text/javascript">
-        $(function () {
-            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                // 获取已激活的标签页的名称
-                var activeTab = $(e.target).text();
-                // 获取前一个激活的标签页的名称
-                var previousTab = $(e.relatedTarget).text();
-                $(".active-tab span").html(activeTab);
-                $(".previous-tab span").html(previousTab);
-            });
-        });
-    </script>
+    <script src="js/reset_password.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -36,11 +25,11 @@
                 <ul class="nav navbar-nav navbar-right">
 
                     <li class="active">
-                        <a href="#blog" data-toggle="tab">Blog</a>
+                        <a id="blog_link" href="#blog" data-toggle="tab">Blog</a>
                     </li>
 
                     <li>
-                        <a href="#news" data-toggle="tab">News</a>
+                        <a id="news_link" href="#news" data-toggle="tab">News</a>
                     </li>
 
                     <li>
@@ -49,20 +38,20 @@
 
                     <li class="dropdown">
 
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <a href="#" id="dropdown" class="dropdown-toggle" data-toggle="dropdown">
                             Profile
                             <span class="caret"></span>
                         </a>
 
-                        <ul class="dropdown-menu" role="menu">
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown">
                             <li>
-                                <a href="reset_password_jump.do">密码修改</a>
+                                <a href="#reset" data-toggle="tab">密码修改</a>
                             </li>
 
                             <li class="divider"></li>
 
                             <li>
-                                <a href="#" data-toggle="tab">其他</a>
+                                <a href="#author" data-toggle="tab">了解作者</a>
                             </li>
                         </ul>
 
@@ -82,19 +71,67 @@
     <br/>
 
     <div class="tab-content">
+        <!-- blog -->
         <div class="tab-pane fade in active" id="blog">
-            <%--<iframe class="container center-block" name="forms" src="blog.do" scrolling="auto" frameborder="0" style="height: 90%;"></iframe>--%>
             <jsp:include page="/blog.do"></jsp:include>
         </div>
 
+        <!-- news -->
         <div class="tab-pane fade" id="news">
-            <%--<iframe class="container center-block" name="forms" src="news.do" scrolling="auto" frameborder="0" style="height: 90%;"></iframe>--%>
             <jsp:include page="/news.do"></jsp:include>
         </div>
 
-        <%--<div class="tab-pane fade" id="reset">
-            <iframe class="container center-block" name="forms" src="reset_password_jump.do" scrolling="auto" frameborder="0" style="height: 90%;"></iframe>
-        </div>--%>
+        <!-- reset -->
+        <div class="tab-pane fade" id="reset">
+            <div class="container center-block">
+                <form id="reset_password" action="reset_password.do" method="post" class="form-signin">
+
+                    <div class="form-group">
+                        <input id="s_password" name="s_password" type="password" class="form-control" placeholder="原密码" autofocus>
+                    </div>
+
+                    <div class="form-group">
+                        <input id="n_password" name="n_password" type="password" class="form-control" placeholder="新密码" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input id="repeat_n_password" name="repeat_n_password" type="password" class="form-control" placeholder="重复新密码" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary btn-lg btn-block" value="修改">
+                    </div>
+
+                    <div align="center">
+                        <strong style="color: red;">${msg}</strong>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <!-- about author -->
+        <div class="tab-pane fade" id="author">
+            <div class="container">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">关于作者</h3>
+                    </div>
+                    <div class="panel-body">
+                        Name: Rui Shawn
+                    </div>
+
+                    <div class="panel-body">
+                        Email: Xiaorui0629@gmail.com
+                    </div>
+
+                    <div class="panel-body">
+                        WebSite: https://www.ruixiao.org
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 </body>

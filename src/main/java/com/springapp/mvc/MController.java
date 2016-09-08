@@ -277,8 +277,7 @@ public class MController {
             //session失效
             session.invalidate();
             modelMap.addAttribute("msg", "密码修改成功!请重新登陆!");
-            //TODO 注意index页面会嵌入iframe中.
-            return "redirect:index.do";
+            return "forward:index.do";
         } else {
             modelMap.addAttribute("msg", "密码修改失败!");
         }
