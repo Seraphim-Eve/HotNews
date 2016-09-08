@@ -90,5 +90,56 @@
         </div>
     </nav>
 
+    <div class="tab-content">
+        <!-- blog -->
+        <div class="tab-pane fade in" id="blog">
+            <jsp:include page="/blog.do"></jsp:include>
+        </div>
+
+        <!-- news -->
+        <div class="tab-pane fade" id="news">
+            <jsp:include page="/news.do"></jsp:include>
+        </div>
+
+        <!-- reset -->
+        <div class="tab-pane fade" id="reset">
+            <div class="container center-block">
+                <form id="reset_password" action="reset_password.do" method="post" class="form-signin">
+
+                    <div class="form-group">
+                        <input id="s_password" name="s_password" type="password" class="form-control" placeholder="原密码" autofocus>
+                    </div>
+
+                    <div class="form-group">
+                        <input id="n_password" name="n_password" type="password" class="form-control" placeholder="新密码" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input id="repeat_n_password" name="repeat_n_password" type="password" class="form-control" placeholder="重复新密码" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary btn-lg btn-block" value="修改">
+                    </div>
+
+                    <div align="center">
+                        <strong style="color: red;">${msg}</strong>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <!-- about author -->
+        <div class="tab-pane fade" id="author">
+            <div class="well center-block" style="max-width: 400px;">
+                <p align="center">
+                    <strong style="color: red;">发送成功</strong>,请检查你的邮箱,并重置密码.
+                </p>
+                <a href="index.do" class="btn btn-default btn-lg btn-block">返回登陆</a>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
