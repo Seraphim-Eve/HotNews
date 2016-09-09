@@ -133,9 +133,9 @@
     </nav>
 
     <!-- music player -->
-    <div class="container">
+    <div class="container" style="position:relative;z-index:1031;top:-35px;">
         <div align="center">
-            <div id="bar-ui" class="sm2-bar-ui" style="z-index:1031;top:-35px;">
+            <div id="bar-ui" class="sm2-bar-ui">
 
                 <!-- ÒôÀÖ²¥·Å¿ØÖÆ -->
                 <div class="bd sm2-main-controls">
