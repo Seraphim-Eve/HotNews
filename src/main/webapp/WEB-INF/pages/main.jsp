@@ -21,7 +21,7 @@
 
     <script type="text/javascript">
         $(document).tooltip({
-            //support html
+            //support html for tooltip
             content: function () {
                 return $(this).prop('title');
             }
@@ -30,6 +30,7 @@
         //每秒调用一次
         setInterval(setTime, 1000);
 
+        //时间显示
         function setTime() {
             if ($("#time").css("display") == "none") {
                 $("#time").css("display", "block");
@@ -73,6 +74,7 @@
 </head>
 <body>
 
+    <!-- 导航栏 -->
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container-fluid">
 
@@ -133,7 +135,7 @@
     <!-- music player -->
     <div class="container">
         <div align="center">
-            <div class="sm2-bar-ui" style="z-index:1031;top:-35px;">
+            <div id="bar-ui" class="sm2-bar-ui" style="z-index:1031;top:-35px;">
 
                 <!-- 音乐播放控制 -->
                 <div class="bd sm2-main-controls">
@@ -198,14 +200,14 @@
                     <!-- 播放列表 -->
                     <div class="sm2-inline-element sm2-button-element sm2-menu">
                         <div class="sm2-button-bd">
-                            <a href="#menu" title="菜单" class="sm2-inline-button menu">菜单</a>
+                            <a id="menu" href="#menu" title="菜单" class="sm2-inline-button menu">菜单</a>
                         </div>
                     </div>
 
                 </div>
 
                 <!-- 音乐菜单下拉表 -->
-                <div class="bd sm2-playlist-drawer sm2-element">
+                <div id="music_list" class="bd sm2-playlist-drawer sm2-element">
 
                     <div class="sm2-inline-texture">
                         <div class="sm2-box-shadow"></div>
@@ -229,6 +231,7 @@
                                 </div>
                             </li>
 
+                            <!-- TODO 写个爬虫抓百度音乐数据 -->
                             <!-- standard one-line items -->
                             <li><a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20People%20Asking.mp3"><b>SonReal</b> - People Asking <span class="label">Explicit</span></a></li>
                             <li><a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20Already%20There%20Remix%20ft.%20Rich%20Kidd%2C%20Saukrates.mp3"><b>SonReal</b> - Already There Remix ft. Rich Kidd, Saukrates <span class="label">Explicit</span></a></li>
@@ -241,82 +244,66 @@
                             <li><a href="http://freshly-ground.com/data/audio/sm2/birds-in-kauai-128kbps-aac-lc.mp4">Birds In Kaua'i (AAC)</a></li>
                             <li><a href="http://freshly-ground.com/data/audio/sm2/20130320%20-%20Po%27ipu%20Beach%20Waves.ogg">Po'ipu Beach Waves (OGG)</a></li>
                             <li><a href="http://freshly-ground.com/data/audio/sm2/bottle-pop.wav">A corked beer bottle (WAV)</a></li>
-                            <li><a href="../../demo/_mp3/rain.mp3">Rain</a></li>
+                            <%--<li><a href="../../demo/_mp3/rain.mp3">Rain</a></li>--%>
 
                         </ul>
 
                     </div>
 
-                    <div class="sm2-extra-controls">
+                </div>
 
-                        <div class="bd">
+            </div>
+        </div>
+    </div>
 
-                            <div class="sm2-inline-element sm2-button-element">
-                                <a href="#prev" title="Previous" class="sm2-inline-button previous">&lt; previous</a>
-                            </div>
+    <!-- 导航栏内容 -->
+    <div class="tab-content">
+        <!-- blog -->
+        <div class="tab-pane fade in active" id="blog">
+            <jsp:include page="/blog.do"></jsp:include>
+        </div>
 
-                            <div class="sm2-inline-element sm2-button-element">
-                                <a href="#next" title="Next" class="sm2-inline-button next">&gt; next</a>
-                            </div>
+        <!-- news -->
+        <div class="tab-pane fade" id="news">
+            <jsp:include page="/news.do"></jsp:include>
+        </div>
 
-                        </div>
-
+        <!-- reset -->
+        <div class="tab-pane fade" id="reset">
+            <div class="container center-block">
+                <form id="reset_password" action="reset_password.do" method="post" class="form-signin">
+                    <h3 align="center">密码修改</h3>
+                    <div class="form-group">
+                        <input id="s_password" name="s_password" type="password" class="form-control" placeholder="原密码" autofocus>
                     </div>
 
-                </div>
+                    <div class="form-group">
+                        <input id="n_password" name="n_password" type="password" class="form-control" placeholder="新密码" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input id="repeat_n_password" name="repeat_n_password" type="password" class="form-control" placeholder="重复新密码" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary btn-lg btn-block" value="修改">
+                    </div>
+
+                    <div align="center">
+                        <strong style="color: red;">${msg}</strong>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <!-- about author -->
+        <div class="tab-pane fade" id="author">
+            <div class="well center-block" style="max-width: 400px;">
 
             </div>
         </div>
     </div>
 
-    <div class="container">
-        <div class="tab-content">
-            <!-- blog -->
-            <div class="tab-pane fade in active" id="blog">
-                <jsp:include page="/blog.do"></jsp:include>
-            </div>
-
-            <!-- news -->
-            <div class="tab-pane fade" id="news">
-                <jsp:include page="/news.do"></jsp:include>
-            </div>
-
-            <!-- reset -->
-            <div class="tab-pane fade" id="reset">
-                <div class="container center-block">
-                    <form id="reset_password" action="reset_password.do" method="post" class="form-signin">
-                        <h3 align="center">密码修改</h3>
-                        <div class="form-group">
-                            <input id="s_password" name="s_password" type="password" class="form-control" placeholder="原密码" autofocus>
-                        </div>
-
-                        <div class="form-group">
-                            <input id="n_password" name="n_password" type="password" class="form-control" placeholder="新密码" required>
-                        </div>
-
-                        <div class="form-group">
-                            <input id="repeat_n_password" name="repeat_n_password" type="password" class="form-control" placeholder="重复新密码" required>
-                        </div>
-
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-primary btn-lg btn-block" value="修改">
-                        </div>
-
-                        <div align="center">
-                            <strong style="color: red;">${msg}</strong>
-                        </div>
-
-                    </form>
-                </div>
-            </div>
-
-            <!-- about author -->
-            <div class="tab-pane fade" id="author">
-                <div class="well center-block" style="max-width: 400px;">
-
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 </html>
