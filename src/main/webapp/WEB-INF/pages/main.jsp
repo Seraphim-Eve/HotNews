@@ -72,7 +72,6 @@
 
 
         $(document).ready(function () {
-
             //处理页面tab切换的active
             $('a[data-toggle="tab"]').click(function () {
                 //console.log(this);
@@ -97,6 +96,7 @@
 </head>
 <body>
 
+    <!-- 导航栏 -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
 
@@ -308,7 +308,25 @@
             <!-- about author -->
             <div class="tab-pane fade" id="author">
                 <div class="well center-block" style="max-width: 400px;">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                        <input type="text" class="form-control" placeholder="Rui Shawn" readonly>
+                    </div>
 
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                        <input type="text" class="form-control" placeholder="Xiaorui0629@gmail.com" readonly>
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-link"></span></span>
+                        <input type="text" class="form-control" placeholder="https://www.ruixiao.org" readonly>
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><img src="github.ico" width="14px;" height="16px;"></span>
+                        <input type="text" class="form-control" placeholder="https://github.com/RuiShaw" readonly>
+                    </div>
                 </div>
             </div>
         </div>
