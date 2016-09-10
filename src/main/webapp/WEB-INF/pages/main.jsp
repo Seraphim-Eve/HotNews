@@ -70,64 +70,88 @@
             return (clock);
         }
 
+
+        $(document).ready(function () {
+
+            //处理页面tab切换的active
+            $('a[data-toggle="tab"]').click(function () {
+                //console.log(this);
+                var attr = $(this).attr("href");
+                $("body").find('a[data-toggle="tab"]').each(function (i, n) {
+                    var href = $(n).attr("href");
+                    if (href != attr) {
+                        //console.log($(n).attr("href"));
+                        $(n).parent().removeClass("active");
+                        if (href != "#author" || href != "#reset") {
+                            $("#dropdownList").removeClass("active");
+                        } else {
+                            $(n).parent().removeClass("active");
+                        }
+                    }
+                });
+            });
+
+        });
+
     </script>
 </head>
 <body>
 
-    <!-- 导航栏 -->
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
 
             <div class="navbar-header">
                 <img class="navbar-brand" src="favicon.ico" title="欢迎<b style='color: red;'>${nickname}</b>来到HotNews!">
             </div>
 
-            <ul class="nav navbar-nav navbar-left">
-                <li class="active">
-                    <a id="blog_link" href="#blog" data-toggle="tab">Blog</a>
-                </li>
+            <div class="collapse navbar-collapse">
 
-                <li>
-                    <a id="news_link" href="#news" data-toggle="tab">News</a>
-                </li>
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a id="blog_link" href="#blog" data-toggle="tab">Blog</a>
+                    </li>
 
-                <li>
-                    <a href="https://github.com/RuiShaw"  target="_blank">GitHub</a>
-                </li>
-            </ul>
+                    <li>
+                        <a id="news_link" href="#news" data-toggle="tab">News</a>
+                    </li>
 
-            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://github.com/RuiShaw"  target="_blank">GitHub</a>
+                    </li>
+                </ul>
 
-                <!-- time to show -->
-                <li style="padding-top:10px; padding-right:10px;">
-                    <div id="time" title="当前时间" style="padding: .2em .6em .3em;text-align: center;border-radius: .25em; background-color: #5cb85c; color: #fff; display: none;"></div>
-                </li>
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- time to show -->
+                    <li style="padding-top:10px; padding-right:10px;">
+                        <div id="time" title="当前时间" style="padding: .2em .6em .3em;text-align: center;border-radius: .25em; background-color: #5cb85c; color: #fff; display: none;"></div>
+                    </li>
 
-                <li class="dropdown">
-                    <a href="#" id="dropdown" class="dropdown-toggle" data-toggle="dropdown">
-                        Profile
-                        <span class="caret"></span>
-                    </a>
+                    <li id="dropdownList" class="dropdown">
+                        <a href="#" id="dropdown" class="dropdown-toggle" data-toggle="dropdown">
+                            Profile
+                            <span class="caret"></span>
+                        </a>
 
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown">
-                        <li>
-                            <a href="#reset" data-toggle="tab">密码修改</a>
-                        </li>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown">
+                            <li>
+                                <a href="#reset" data-toggle="tab">密码修改</a>
+                            </li>
 
-                        <li class="divider"></li>
+                            <li class="divider"></li>
 
-                        <li>
-                            <a href="#author" data-toggle="tab">了解作者</a>
-                        </li>
-                    </ul>
-                </li>
+                            <li>
+                                <a href="#author" data-toggle="tab">了解作者</a>
+                            </li>
+                        </ul>
+                    </li>
 
-                <li>
-                    <a href="logout.do">登出</a>
-                </li>
-            </ul>
+                    <li>
+                        <a href="logout.do">登出</a>
+                    </li>
+                </ul>
 
-        </div>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
     </nav>
 
     <!-- music player -->
