@@ -49,7 +49,7 @@ Email:<a href='mailto:Xiaorui0629@gmail.com'>Xiaorui0629@gmail.com</a>
 
 
 ## 关于作者
-NickName: Rui Shawn<br/>
+NickName: Rui Shaw<br/>
 Email: <a href='mailto:Xiaorui0629@gmail.com'>Xiaorui0629@gmail.com</a><br/>
 WebSite: <a href='www.ruixiao.org'>www.ruixiao.org</a><br/>
 
