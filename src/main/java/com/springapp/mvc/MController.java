@@ -77,6 +77,16 @@ public class MController {
     }
 
     /**
+     *
+     * @return
+     */
+    @RequestMapping(value = "blogGet.do", method = RequestMethod.POST)
+    @ResponseBody
+    public String blogGet() {
+        return "blog";
+    }
+
+    /**
      * –¬Œ≈“≥√Ê
      * @param user
      * @return
