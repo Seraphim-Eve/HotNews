@@ -1,5 +1,6 @@
 package com.springapp.mvc;
 
+import com.springapp.mvc.bean.Blog;
 import com.springapp.mvc.bean.User;
 import com.springapp.mvc.impl.HotNewsImpl;
 import com.springapp.mvc.service.HotNews;
@@ -77,13 +78,34 @@ public class MController {
     }
 
     /**
-     *
+     * 博客查看
      * @return
      */
-    @RequestMapping(value = "blogGet.do", method = RequestMethod.POST)
-    @ResponseBody
-    public String blogGet() {
-        return "blog";
+    @RequestMapping(value = "blog_view.do", method = RequestMethod.GET)
+    public String blogView(@RequestParam String id) {
+        //TODO 准备博客数据及评论
+        /*System.out.println(id);*/
+        return "blog_view";
+    }
+
+    /**
+     * 博客编辑跳转
+     * @return
+     */
+    @RequestMapping(value = "blog_editor.do", method = RequestMethod.GET)
+    public String blogEditor() {
+        return "blog_editor";
+    }
+
+    /**
+     * 博客创建
+     * @param blog
+     * @return
+     */
+    @RequestMapping(value = "blog_create.do", method= RequestMethod.POST)
+    public String blogCreate(@ModelAttribute Blog blog) {
+        //TODO 保存传过来的blog内容存入到mysql
+        return "blog_editor";
     }
 
     /**
