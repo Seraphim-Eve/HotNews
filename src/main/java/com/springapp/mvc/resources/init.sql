@@ -15,10 +15,11 @@ create table if not exists blog(
 	id varchar(50) primary key comment '博客id(e.g: blog_)',
 	title varchar(50) not null comment '博客标题',
 	discuss_id varchar(50) comment '博客评论id(关联评论表)',
-	good int not null comment '点赞数量',
-	time varchar(50) not null comment '博客创建时间',
-	username varchar(50) not null comment '博客作者',
-	authority varchar(10) not null comment '博客权限(私有/公开) default:私有',
+	good_id VARCHAR(50) comment '点赞id(关联点赞表)',
+	create_time varchar(50) not null comment '博客创建时间',
+  update_time varchar(50) comment '博客更新时间',
+	author varchar(50) not null comment '博客作者',
+	authority varchar(20) not null comment '博客权限(私有/公开) default:私有(private)',
 	content text comment '博客内容'
 );
 
@@ -29,4 +30,10 @@ create table if not exists discuss(
   d_user varchar(50) not null comment '评论用户',
   content text comment '评论内容'
 );
+
+/* 点赞表 */
+create table if not exists good(
+  id varchar(50) not NULL COMMENT '赞id',
+  good_username varchar(50) not null comment '点赞的用户'
+)
 

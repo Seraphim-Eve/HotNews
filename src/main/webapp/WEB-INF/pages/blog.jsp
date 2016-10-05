@@ -25,16 +25,18 @@
 
         <ul class="list-group">
 
-            <!-- TODO 博客内容组织 -->
-            <li class="list-group-item title">
-                <a href="blog_view.do?id=123" target="_blank">
-                    Collapsible Group 2
-                </a>
-                <!-- TODO 这里的1表示：有1个新的评论，如有n,则有N个评论.-->
-                <span class="badge pull-right" title="总评论"><span class="glyphicon glyphicon-pencil"></span>1</span>
-                <!-- TODO 赞数量 -->
-                <span class="badge pull-right" title="赞"><span class="glyphicon glyphicon-thumbs-up"></span>1</span>
-            </li>
+            <c:forEach items="${blog_list}" var="blog">
+                <!-- 博客列表 -->
+                <li class="list-group-item title">
+                    <a href="blog_view.do?id=${blog.getId()}" target="_blank">
+                        ${blog.getTitle()}
+                    </a>
+                    <!-- 这里的1表示：有1个新的评论，如有n,则有N个评论.-->
+                    <span class="badge pull-right" title="评论数"><span class="glyphicon glyphicon-pencil"></span>${blog.getDiscuss_num()}</span>
+                    <!-- 赞数量 -->
+                    <span class="badge pull-right" title="点赞数"><span class="glyphicon glyphicon-thumbs-up"></span>${blog.getGood_num()}</span>
+                </li>
+            </c:forEach>
 
         </ul>
     </div>

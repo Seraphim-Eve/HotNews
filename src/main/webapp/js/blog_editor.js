@@ -1,17 +1,19 @@
 (function ($) {
-    $("#blog_editor").validate({
-        rules: {
-            blog_title: {
-                required: true,
-                maxlength: 10
+    $(document).ready(function () {
+        $("#blog_editor").validate({
+            rules: {
+                title: {
+                    required: true,
+                    maxlength: 10
+                }
+            },
+            messages: {
+                title: {
+                    required: "<strong style='color: red;'>请输入标题!</strong>",
+                    maxlength: "<strong style='color: red;'>你输入的标题超过10个字符!</strong>"
+                }
             }
-        },
-        messages: {
-            blog_title: {
-                required: "请输入昵称!",
-                maxlength: "你输入的昵称超过10个字符!"
-            }
-        }
+        });
     });
 
 })(jQuery);

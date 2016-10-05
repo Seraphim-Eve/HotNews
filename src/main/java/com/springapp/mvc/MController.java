@@ -11,10 +11,14 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class MController {
@@ -73,7 +77,62 @@ public class MController {
      * @return
      */
     @RequestMapping(value = "blog.do")
-    public String blog(@ModelAttribute User user) {
+    public String blog(@ModelAttribute User user, ModelMap modelMap) throws SQLException {
+        //TODO 读取博客内容
+
+        String author = user.getEmail();
+
+        String sql =
+                "select id,title,IFNULL(discuss_id, 0) as discuss_id, IFNULL(good_id, 0) as good_id from blog where author = '" + author + "' " + //作者本身所有的博客
+                "union all " +
+                "select id,title,IFNULL(discuss_id, 0) as discuss_id, IFNULL(good_id, 0) as good_id from blog where authority = 'public' and author != '" + author + "'"; //其他公开的博客
+
+        Connection conn = MySQLUtils.getConn();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+
+        //博客列表
+        List<Blog> list = new ArrayList<Blog>();
+
+        while (rs.next()) {
+            Blog blog = new Blog();
+
+            String id = rs.getString("id");
+            blog.setId(id);
+
+            String title = rs.getString("title");
+            blog.setTitle(title);
+
+            String discuss_id = rs.getString("discuss_id");
+            if (!discuss_id.equals("0")) {
+                //TODO 查询讨论表
+                sql = "select count(*) as discuss_num from discuss where id = '" + discuss_id + "'";
+                ResultSet tmp = stmt.executeQuery(sql);
+                int discuss_num = Integer.valueOf(tmp.getString("discuss_num"));
+                blog.setDiscuss_num(discuss_num);
+            } else {
+                //讨论数为0
+                blog.setDiscuss_num(0);
+            }
+
+            String good_id = rs.getString("good_id");
+            if (!good_id.equals("0")) {
+                //TODO 查询点赞表
+                sql = "select count(*) as good_num from good where id = '" + good_id + "'";
+                ResultSet tmp = stmt.executeQuery(sql);
+                int good_num = Integer.valueOf(tmp.getString("good_num"));
+                blog.setGood_num(good_num);
+            } else {
+                //点赞数为0
+                blog.setGood_num(0);
+            }
+
+            list.add(blog);
+        }
+
+        //存数据
+        modelMap.put("blog_list", list);
+
         return "blog";
     }
 
@@ -103,8 +162,32 @@ public class MController {
      * @return
      */
     @RequestMapping(value = "blog_create.do", method= RequestMethod.POST)
-    public String blogCreate(@ModelAttribute Blog blog) {
+    public String blogCreate(@ModelAttribute Blog blog, HttpSession session, ModelMap modelMap) throws SQLException {
         //TODO 保存传过来的blog内容存入到mysql
+
+        //博客id
+        String blog_id = "blog_" + UUIDUtils.code();
+        blog.setId(blog_id);
+
+        //博客创建时间
+        String create_time = DateUtils.getCurrDate();
+        blog.setCreate_time(create_time);
+
+        //博客作者
+        String author = session.getAttribute("username").toString();
+        blog.setAuthor(author);
+
+        String sql = "insert into blog(id, title, create_time, author, authority, content) values('${id}', '${title}', '${create_time}', '${author}', '${authority}', '${content}')";
+
+        sql = StringUtils.getString(sql, blog);
+
+        if (MySQLUtils.insert(sql)) {
+            modelMap.put("msg", "插入博客成功!");
+        } else {
+            modelMap.put("msg", "插入博客失败!");
+            //TODO 存储填写博客的内容
+            modelMap.put("mm", "");
+        }
         return "blog_editor";
     }
 

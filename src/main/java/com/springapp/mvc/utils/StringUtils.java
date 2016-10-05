@@ -1,5 +1,6 @@
 package com.springapp.mvc.utils;
 
+import com.springapp.mvc.bean.Blog;
 import com.springapp.mvc.bean.User;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
@@ -40,6 +41,32 @@ public class StringUtils {
         vc.put("username", user.getEmail());
         vc.put("password", MD5Utils.getMD5(user.getPassword()));
         vc.put("reg_time", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+
+        StringWriter sw = new StringWriter();
+        ve.evaluate(vc, sw, "", str);
+
+        return sw.toString();
+    }
+
+
+    /**
+     * blog×Ö¶ÎÌæ»»
+     * @param str
+     * @param blog
+     * @return
+     */
+    public static String getString(String str, Blog blog) {
+        VelocityEngine ve = new VelocityEngine(props);
+        VelocityContext vc = new VelocityContext();
+
+        //('${id}', '${title}', '${create_time}', '${author}', '${authority}', '${content}')
+
+        vc.put("id", blog.getId());
+        vc.put("title", blog.getTitle());
+        vc.put("create_time", blog.getCreate_time());
+        vc.put("author", blog.getAuthor());
+        vc.put("authority", blog.getAuthority());
+        vc.put("content", blog.getContent());
 
         StringWriter sw = new StringWriter();
         ve.evaluate(vc, sw, "", str);

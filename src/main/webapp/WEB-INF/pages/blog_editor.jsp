@@ -10,14 +10,22 @@
 <head>
     <title>博客撰写</title>
     <link rel="shortcut icon" href="favicon.ico">
+    <!-- 编辑器样式 -->
     <link href="umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+
     <link href="bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
 
     <script type="text/javascript" src="js/jquery.min.js"></script>
+
+    <!--编辑器js -->
     <script type="text/javascript" charset="gbk" src="umeditor/umeditor.config.js"></script>
     <script type="text/javascript" charset="gbk" src="umeditor/umeditor.min.js"></script>
     <script type="text/javascript" src="umeditor/lang/zh-cn/zh-cn.js"></script>
+
+    <!-- 其他js -->
     <script type="text/javascript" src="js/jquery.validate.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+
     <script type="text/javascript" src="js/blog_editor.js"></script>
 </head>
 <body>
@@ -26,8 +34,8 @@
         <div id="content" style="padding: 2% 8% 5% 8%; border: 1px solid LightGrey; border-radius: 4px;">
             <form id="blog_editor" action="blog_create.do" method="post">
                 <div class="form-group">
-                    <label for="blog_title">博客标题:</label>
-                    <input id="blog_title" name="blog_title" type="text" class="form-control" placeholder="标题" maxlength="20" autofocus required>
+                    <label for="title">博客标题:</label>
+                    <input id="title" name="title" type="text" class="form-control" placeholder="标题" maxlength="10" autofocus required>
                 </div>
 
                 <div class="form-group">
@@ -51,6 +59,8 @@
 
             <div align="center">
                 <p>Notes: 每次发表博客后,请重新刷新主页面,才能看到最新发表的博客!</p>
+                <br/>
+                <p style="color: red;">${msg}</p>
             </div>
 
         </div>
