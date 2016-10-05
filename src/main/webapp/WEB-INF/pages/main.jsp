@@ -268,8 +268,7 @@
         <div class="tab-content">
             <!-- blog -->
             <div class="tab-pane fade in active" id="blog">
-                <%--<jsp:include page="/blog.do"></jsp:include>--%>
-                <%@include file="blog.jsp"%>
+                <jsp:include page="/blog.do"></jsp:include>
             </div>
 
             <!-- news -->
