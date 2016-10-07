@@ -52,6 +52,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        //TODO 1. 增加全局点击删除按钮; 2. 增加编辑按钮重用博客创建页面;
         $("#delete").click(function () {
             swal({
                 title: "确定要删除?",

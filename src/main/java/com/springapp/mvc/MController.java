@@ -317,7 +317,7 @@ public class MController {
         } else {
             System.out.println("删除博客id:" + blog_id + " 失败!");
         }
-
+        //TODO 页面未展现出最新的数据
         return "forward:blog.do";
     }
 
