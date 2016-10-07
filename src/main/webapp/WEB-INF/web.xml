@@ -70,7 +70,7 @@
     <!-- mysql exception -->
     <error-page>
         <exception-type>java.sql.SQLException</exception-type>
-        <location>/index.do</location>
+        <location>/jsp/exception/500.jsp</location>
     </error-page>
 
     <!-- 404 -->

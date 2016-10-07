@@ -35,20 +35,19 @@
             <form id="blog_editor" action="blog_create.do" method="post">
                 <div class="form-group">
                     <label for="title">博客标题:</label>
-                    <input id="title" name="title" type="text" class="form-control" placeholder="标题" maxlength="10" autofocus required>
+                    <input id="title" name="title" type="text" class="form-control" placeholder="标题" maxlength="10" value="${title}" autofocus required>
                 </div>
 
                 <div class="form-group">
                     <label for="sel">博客权限:</label>
                     <select class="form-control" id="sel" name="authority">
-                        <option value="private">私有</option>
-                        <option value="public">公开</option>
+                        ${option}
                     </select>
                 </div>
 
                 <br/>
                 <!-- editor(编辑器) -->
-                <script id="container" name="content" type="text/plain" style="width:956px;height:240px;"><p>输入博客内容.</p></script>
+                <script id="container" name="content" type="text/plain" style="width:956px;height:240px;"><p>${blog_content}</p></script>
 
                 <br/>
 

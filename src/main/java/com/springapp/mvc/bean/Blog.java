@@ -8,6 +8,9 @@ import java.util.Map;
  */
 public class Blog {
 
+    //博客身份标示
+    public String flag;
+
     //博客id
     public String id;
 
@@ -135,6 +138,14 @@ public class Blog {
 
     public void setGood_num(int good_num) {
         this.good_num = good_num;
+    }
+
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag;
     }
 
     /**

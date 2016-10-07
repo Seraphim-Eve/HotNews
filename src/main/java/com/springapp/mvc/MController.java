@@ -5,11 +5,13 @@ import com.springapp.mvc.bean.User;
 import com.springapp.mvc.impl.HotNewsImpl;
 import com.springapp.mvc.service.HotNews;
 import com.springapp.mvc.utils.*;
+import com.sun.deploy.net.HttpResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -73,8 +75,11 @@ public class MController {
     }
 
     /**
-     * 博客为首页
+     * 博客内容列表
+     * @param user
+     * @param modelMap
      * @return
+     * @throws SQLException
      */
     @RequestMapping(value = "blog.do")
     public String blog(@ModelAttribute User user, ModelMap modelMap) throws SQLException {
@@ -83,9 +88,9 @@ public class MController {
         String author = user.getEmail();
 
         String sql =
-                "select id,title,IFNULL(discuss_id, 0) as discuss_id, IFNULL(good_id, 0) as good_id from blog where author = '" + author + "' " + //作者本身所有的博客
+                "select 'true' as flag, id, title, IFNULL(discuss_id, 0) as discuss_id, IFNULL(good_id, 0) as good_id from blog where author = '" + author + "' " + //作者本身所有的博客
                 "union all " +
-                "select id,title,IFNULL(discuss_id, 0) as discuss_id, IFNULL(good_id, 0) as good_id from blog where authority = 'public' and author != '" + author + "'"; //其他公开的博客
+                "select 'false' as flag, id, title, IFNULL(discuss_id, 0) as discuss_id, IFNULL(good_id, 0) as good_id from blog where authority = 'public' and author != '" + author + "'"; //其他公开的博客
 
         Connection conn = MySQLUtils.getConn();
         Statement stmt = conn.createStatement();
@@ -97,6 +102,9 @@ public class MController {
         while (rs.next()) {
             Blog blog = new Blog();
 
+            String flag = rs.getString("flag");
+            blog.setFlag(flag);
+
             String id = rs.getString("id");
             blog.setId(id);
 
@@ -105,9 +113,12 @@ public class MController {
 
             String discuss_id = rs.getString("discuss_id");
             if (!discuss_id.equals("0")) {
-                //TODO 查询讨论表
+                //查询讨论表
                 sql = "select count(*) as discuss_num from discuss where id = '" + discuss_id + "'";
-                ResultSet tmp = stmt.executeQuery(sql);
+                //如果不新创建stmt就会抛Operation not allowed after ResultSet closed!
+                //在重复使用stmt.executeQuery(sql)的时候就会关闭上一个ResultSet.
+                Statement st = conn.createStatement();
+                ResultSet tmp = st.executeQuery(sql);
                 int discuss_num = Integer.valueOf(tmp.getString("discuss_num"));
                 blog.setDiscuss_num(discuss_num);
             } else {
@@ -117,11 +128,14 @@ public class MController {
 
             String good_id = rs.getString("good_id");
             if (!good_id.equals("0")) {
-                //TODO 查询点赞表
+                //查询点赞表
                 sql = "select count(*) as good_num from good where id = '" + good_id + "'";
-                ResultSet tmp = stmt.executeQuery(sql);
-                int good_num = Integer.valueOf(tmp.getString("good_num"));
-                blog.setGood_num(good_num);
+                Statement st = conn.createStatement();
+                ResultSet tmp = st.executeQuery(sql);
+                while (tmp.next()) {
+                    int good_num = Integer.valueOf(tmp.getString("good_num"));
+                    blog.setGood_num(good_num);
+                }
             } else {
                 //点赞数为0
                 blog.setGood_num(0);
@@ -141,19 +155,170 @@ public class MController {
      * @return
      */
     @RequestMapping(value = "blog_view.do", method = RequestMethod.GET)
-    public String blogView(@RequestParam String id) {
+    public String blogView(@RequestParam String id, ModelMap modelMap, HttpSession httpSession) throws SQLException {
         //TODO 准备博客数据及评论
-        /*System.out.println(id);*/
+        String sql = "select title, IFNULL(discuss_id,0) as discuss_id, IFNULL(good_id, 0) as good_id, content from blog where id = '" + id + "'";
+        Connection conn = MySQLUtils.getConn();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+
+        //当前用户名
+        String username = httpSession.getAttribute("username").toString();
+
+        while (rs.next()) {
+            String title = rs.getString("title");
+            String content = rs.getString("content");
+            modelMap.put("title", title);
+            modelMap.put("content", content);
+            String discuss_id = rs.getString("discuss_id");
+            String good_id = rs.getString("good_id");
+            if (!discuss_id.equals("0")) {
+                sql = "select d_user, content from discuss where id = '" + discuss_id + "'";
+                //TODO 读取评论列表
+            }
+
+            if (!good_id.equals("0")) {
+                sql = "select good_username from good where id = '" + good_id + "'";
+                Statement st = conn.createStatement();
+                ResultSet tmp = st.executeQuery(sql);
+                int count = 0;
+                int max = 0; //共多少条点赞数据
+                while (tmp.next()) {
+                    max = tmp.getRow();
+                    String g_username = tmp.getString("good_username");
+                    if (!g_username.isEmpty() && g_username.equals(username)) {
+                        //当前用户不能重复赞
+                        modelMap.put("good", "<button id='good' type='button' class='btn btn-default btn-lg' disabled='disabled'>\n" +
+                                "                    <span class='glyphicon glyphicon-thumbs-up'></span>\n" +
+                                "                </button>");
+                        break;
+                    } else {
+                        count++;
+                    }
+                }
+
+                if (count != 0 && max != 0 && count == max) {
+                    //没有当前用户的点赞记录
+                    modelMap.put("good", "<button id='good' type='button' class='btn btn-default btn-lg'>\n" +
+                            "                    <span class='glyphicon glyphicon-thumbs-up'></span>\n" +
+                            "                </button>");
+                }
+
+            } else {
+                //当前用户可以赞(当前文章还未被点赞)
+                modelMap.put("good", "<button id='good' type='button' class='btn btn-default btn-lg'>\n" +
+                        "                    <span class='glyphicon glyphicon-thumbs-up'></span>\n" +
+                        "                </button>");
+            }
+        }
+
+        //博客id
+        modelMap.put("id", id);
+
         return "blog_view";
     }
+
+
+    /**
+     * 博客点赞请求
+     * 返还code解释: 100: 已经点过赞. 200: 点赞成功. 300: 点赞失败.
+     * @param blog_id
+     * @return
+     */
+    @RequestMapping(value = "blog_good.do", method = RequestMethod.POST)
+    @ResponseBody
+    public String blogGood(@RequestParam String blog_id, HttpSession httpSession) throws SQLException {
+
+        String username = httpSession.getAttribute("username").toString();
+        String sql = "select IFNULL(good_id, 0) as good_id from blog where id = '" + blog_id  + "'";
+        Connection conn = MySQLUtils.getConn();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+
+        while (rs.next()) {
+            String good_id = rs.getString("good_id");
+            if (!good_id.equals("0")) {
+                sql = "select * from good where good_username = '" + username + "' and id = '" + good_id + "'";
+                Statement st = conn.createStatement();
+                ResultSet tmp = st.executeQuery(sql);
+
+                int row = 0;
+                if (tmp != null) {
+                    tmp.beforeFirst();
+                    tmp.last();
+                    row = tmp.getRow();
+                }
+
+                if (row > 0) {
+                    //已经点过赞了
+                    return "100";
+                }
+
+                //存点赞用户
+                sql = "insert into good(id, good_username) values('" + good_id + "', '" + username + "')";
+                String code = "";
+                if (MySQLUtils.insert(sql)) {
+                    code = "200";
+                } else {
+                    code = "300";
+                }
+                return code;
+
+            } else {
+
+                //没有good_id
+                String g_id = "good_" + UUIDUtils.code();
+                sql = "insert into good(id, good_username) values('" + g_id + "', '" + username + "')";
+                String code = "";
+                if (MySQLUtils.insert(sql)) {
+                    //关联good_id与blog_id;
+                    sql = "update blog set good_id = '" + g_id + "' where id = '" + blog_id + "'";
+                    if (MySQLUtils.insert(sql)) {
+                        System.out.println("blog_id: " + blog_id + " 与 " + "good_id: " + g_id + " 关联成功!");
+                    } else {
+                        System.out.println("blog_id: " + blog_id + " 与 " + "good_id: " + g_id + " 关联失败!");
+                    }
+                    code = "200";
+                } else {
+                    code = "300";
+                }
+                return code;
+
+            }
+        }
+        return "";
+    }
+
 
     /**
      * 博客编辑跳转
      * @return
      */
     @RequestMapping(value = "blog_editor.do", method = RequestMethod.GET)
-    public String blogEditor() {
+    public String blogEditor(ModelMap modelMap) {
+        modelMap.put("blog_content", "输入博客内容.");
+        modelMap.put("option", "<option value='private'>私有</option><option value='public'>公开</option>");
         return "blog_editor";
+    }
+
+
+    /**
+     * 删除博客请求
+     * @param blog_id
+     * @return
+     * @throws SQLException
+     */
+    @RequestMapping(value = "blog_delete.do", method = RequestMethod.POST)
+    public String blogDelete(@RequestParam String blog_id) throws SQLException{
+
+        String sql = "delete from blog where id='" + blog_id + "'";
+        if (MySQLUtils.insert(sql)) {
+            System.out.println("删除博客id:" + blog_id + " 成功!");
+        } else {
+            System.out.println("删除博客id:" + blog_id + " 失败!");
+        }
+
+        return "forward:blog.do";
     }
 
     /**
@@ -163,8 +328,6 @@ public class MController {
      */
     @RequestMapping(value = "blog_create.do", method= RequestMethod.POST)
     public String blogCreate(@ModelAttribute Blog blog, HttpSession session, ModelMap modelMap) throws SQLException {
-        //TODO 保存传过来的blog内容存入到mysql
-
         //博客id
         String blog_id = "blog_" + UUIDUtils.code();
         blog.setId(blog_id);
@@ -183,10 +346,16 @@ public class MController {
 
         if (MySQLUtils.insert(sql)) {
             modelMap.put("msg", "插入博客成功!");
+            modelMap.put("blog_content", "输入博客内容.");
         } else {
             modelMap.put("msg", "插入博客失败!");
-            //TODO 存储填写博客的内容
-            modelMap.put("mm", "");
+            modelMap.put("blog_content", blog.getContent());
+            modelMap.put("title", blog.getTitle());
+            if (blog.getAuthority().equals("private")) {
+                modelMap.put("option", "<option value='private' selected>私有</option><option value='public'>公开</option>");
+            } else {
+                modelMap.put("option", "<option value='private'>私有</option><option value='public' selected>公开</option>");
+            }
         }
         return "blog_editor";
     }
