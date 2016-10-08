@@ -11,16 +11,16 @@
                     success: function (data) {
                         if ("" != data) {
                             if (data == "100") {
-                                //“—æ≠µ„π˝‘ﬁ
+                                //Â∑≤ÁªèÁÇπËøáËµû
                                 $("#good").attr("disabled", "disabled");
-                                $("#good_warn").html("<p style='color: red;'>ƒ„“—æ≠µ„π˝‘ﬁ¡À!</p>");
+                                $("#good_warn").html("<p style='color: red;'>‰Ω†Â∑≤ÁªèÁÇπËøáËµû‰∫Ü!</p>");
                             } else if (data == "200") {
-                                //µ„‘ﬁ≥…π¶
+                                //ÁÇπËµûÊàêÂäü
                                 $("#good").attr("disabled", "disabled");
-                                $("#good_warn").html("<p style='color: red;'>µ„‘ﬁ≥…π¶!</p>");
+                                $("#good_warn").html("<p style='color: red;'>ÁÇπËµûÊàêÂäü!</p>");
                             } else {
-                                //µ„‘ﬁ ß∞‹
-                                $("#good_warn").html("<p style='color: red;'>µ„‘ﬁ ß∞‹!</p>");
+                                //ÁÇπËµûÂ§±Ë¥•
+                                $("#good_warn").html("<p style='color: red;'>ÁÇπËµûÂ§±Ë¥•!</p>");
                             }
                         }
                     }

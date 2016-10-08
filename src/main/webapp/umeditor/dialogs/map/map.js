@@ -78,13 +78,13 @@
 
         },
         /**
-         * ³õÊ¼»¯ÇëÇóAPI
+         * åˆå§‹åŒ–è¯·æ±‚API
          */
         initRequestApi: function () {
 
             var $ifr = null;
 
-            //ÒÑ¾­³õÊ¼»¯¹ı£¬ ²»ÓÃÔÙ´Î³õÊ¼»¯
+            //å·²ç»åˆå§‹åŒ–è¿‡ï¼Œ ä¸ç”¨å†æ¬¡åˆå§‹åŒ–
             if (window.BMap && window.BMap.Map) {
                 this.initBaiduMap();
             } else {
@@ -150,10 +150,10 @@
                 map.centerAndZoom(point, Number(me.getPars(url, "zoom")));
                 imgcss = img.attr('style');
             } else {
-                point = new BMap.Point(116.404, 39.915);    // ´´½¨µã×ø±ê
+                point = new BMap.Point(116.404, 39.915);    // åˆ›å»ºç‚¹åæ ‡
                 marker = new BMap.Marker(point);
                 map.addControl(new BMap.NavigationControl());
-                map.centerAndZoom(point, 10);                     // ³õÊ¼»¯µØÍ¼,ÉèÖÃÖĞĞÄµã×ø±êºÍµØÍ¼¼¶±ğ¡£
+                map.centerAndZoom(point, 10);                     // åˆå§‹åŒ–åœ°å›¾,è®¾ç½®ä¸­å¿ƒç‚¹åæ ‡å’Œåœ°å›¾çº§åˆ«ã€‚
             }
             marker.enableDragging();
             map.addOverlay(marker);

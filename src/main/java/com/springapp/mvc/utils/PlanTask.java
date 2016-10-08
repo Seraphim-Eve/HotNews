@@ -6,20 +6,20 @@ import java.util.TimerTask;
 
 /**
  * Created by Xr on 2016/9/2.
- * ¼Æ»®ÈÎÎñ
- * //1Ãë = 1000ºÁÃë
-   //1·ÖÖÓ = 60Ãë
+ * è®¡åˆ’ä»»åŠ¡
+ * //1ç§’ = 1000æ¯«ç§’
+   //1åˆ†é’Ÿ = 60ç§’
 
  */
 public class PlanTask {
 
     /**
-     * Çå¿ÕÓÃ»§emailµÄreset_code
+     * æ¸…ç©ºç”¨æˆ·emailçš„reset_code
      * @param email
      */
     public PlanTask(final String email) {
         Timer timer = new Timer();
-        //30·ÖÖÓ
+        //30åˆ†é’Ÿ
         long time = 30 * 60 * 1000;
         timer.schedule(new TimerTask() {
             @Override
@@ -27,7 +27,7 @@ public class PlanTask {
                 String sql = "update Users set reset_code = null where username = '" + email + "'";
                 try {
                     MySQLUtils.insert(sql);
-                    System.out.println("Çå¿Õ" + email + "µÄreset_code!");
+                    System.out.println("æ¸…ç©º" + email + "çš„reset_code!");
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }

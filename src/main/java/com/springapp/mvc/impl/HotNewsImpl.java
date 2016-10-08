@@ -20,7 +20,7 @@ public class HotNewsImpl implements HotNews {
 
     /**
      * get HotNews from baidu.
-     * Ä¬ÈÏ16ÌõÊı¾İ.
+     * é»˜è®¤16æ¡æ•°æ®.
      * @return
      */
     @Override

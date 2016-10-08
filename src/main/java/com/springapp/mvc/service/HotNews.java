@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 /**
  * Created by Xr on 2016/9/5.
- * 数据收集接口
+ * 鏁版嵁鏀堕泦鎺ュ彛
  */
 public interface HotNews {
 
     /**
-     * 得到热门数据新闻
+     * 寰楀埌鐑棬鏁版嵁鏂伴椈
      * @return
      */
     public ArrayList<String> getHotNews();

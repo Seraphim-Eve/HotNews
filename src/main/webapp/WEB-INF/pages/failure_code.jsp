@@ -1,16 +1,16 @@
 <%--
-  title: 无效code页面.
+  title: 鏃犳晥code椤甸潰.
   Created by IntelliJ IDEA.
   User: Xr
   Date: 2016/9/2
   Time: 15:38
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=GBK" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>密码重置</title>
-    <meta charset="GBK">
+    <title>瀵嗙爜閲嶇疆</title>
+    <meta charset="UTF-8">
     <link rel="shortcut icon" href="favicon.ico">
 
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
@@ -18,11 +18,11 @@
 </head>
 <body>
     <div class="container" style="margin-top: 10%;">
-        <h4 align="center">密码重置</h4>
+        <h4 align="center">瀵嗙爜閲嶇疆</h4>
         <div class="well center-block" style="max-width: 600px; text-align: center;">
-            <h2>对不起，您的验证链接错误或已经过期！</h2>
-            <p>为了您的账号安全请您在所有即时消息中都不要泄露或告诉他人您的账号密码。</p>
-            <a href="index.do" class="btn btn-default btn-lg btn-block">返回登陆</a>
+            <h2>瀵逛笉璧凤紝鎮ㄧ殑楠岃瘉閾炬帴閿欒鎴栧凡缁忚繃鏈燂紒</h2>
+            <p>涓轰簡鎮ㄧ殑璐﹀彿瀹夊叏璇锋偍鍦ㄦ墍鏈夊嵆鏃舵秷鎭腑閮戒笉瑕佹硠闇叉垨鍛婅瘔浠栦汉鎮ㄧ殑璐﹀彿瀵嗙爜銆�</p>
+            <a href="index.do" class="btn btn-default btn-lg btn-block">杩斿洖鐧婚檰</a>
         </div>
     </div>
 </body>

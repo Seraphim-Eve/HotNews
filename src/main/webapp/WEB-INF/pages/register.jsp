@@ -5,7 +5,7 @@
   Time: 15:26
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=GBK" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Join Hot News!</title>
@@ -17,30 +17,30 @@
 
         <form id="register" action="register.do" method="POST" class="form-signin">
 
-            <h2 class="form-signin-heading" align="center">×¢²á</h2>
+            <h2 class="form-signin-heading" align="center">æ³¨å†Œ</h2>
 
             <div class="form-group">
-                <input id="nickname" type="text" name="nickname" class="form-control" placeholder="êÇ³Æ" maxlength="10" value="${nickname}" autofocus>
+                <input id="nickname" type="text" name="nickname" class="form-control" placeholder="æ˜µç§°" maxlength="10" value="${nickname}" autofocus>
             </div>
 
             <div class="form-group">
-                <input id="email" type="text" name="email" class="form-control" placeholder="ÓÊÏä" maxlength="30" value="${email}">
+                <input id="email" type="text" name="email" class="form-control" placeholder="é‚®ç®±" maxlength="30" value="${email}">
             </div>
 
             <div class="form-group">
-                <input id="password" type="password" name="password" class="form-control" placeholder="ÃÜÂë" maxlength="12">
+                <input id="password" type="password" name="password" class="form-control" placeholder="å¯†ç " maxlength="12">
             </div>
 
             <div class="form-group">
-                <input id="repeatPassword" type="password" name="repeatPassword" class="form-control" placeholder="È·ÈÏÃÜÂë" maxlength="12">
+                <input id="repeatPassword" type="password" name="repeatPassword" class="form-control" placeholder="ç¡®è®¤å¯†ç " maxlength="12">
             </div>
 
             <div class="form-group">
-                <input type="submit" class="btn btn-lg btn-primary btn-block" value="×¢²á">
+                <input type="submit" class="btn btn-lg btn-primary btn-block" value="æ³¨å†Œ">
             </div>
 
             <div class="form-group" align="center">
-                <a href="javascript:history.go(-1)">·µ»ØÉÏÒ»Ò³</a>
+                <a href="javascript:history.go(-1)">è¿”å›žä¸Šä¸€é¡µ</a>
             </div>
 
         </form>

@@ -5,7 +5,7 @@
   Time: 17:17
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=GBK" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <link rel="stylesheet" href="sweetalert/sweetalert.css">
@@ -16,31 +16,31 @@
         <div class="panel-heading">
             Blog
             <button class="btn btn-default btn-sm">
-                <a href="blog_editor.do" target="_blank"><span class="glyphicon glyphicon-edit"></span>ĞÂ½¨²©¿Í</a>
+                <a href="blog_editor.do?op=create&id=" target="_blank"><span class="glyphicon glyphicon-edit"></span>æ–°å»ºåšå®¢</a>
             </button>
         </div>
 
         <ul class="list-group">
 
             <c:forEach items="${blog_list}" var="blog">
-                <!-- ²©¿ÍÁĞ±í -->
+                <!-- åšå®¢åˆ—è¡¨ -->
                 <li class="list-group-item title">
 
                     <a href="blog_view.do?id=${blog.getId()}" target="_blank">
                         ${blog.getTitle()}
                     </a>
 
-                    <!-- ÕâÀïµÄ1±íÊ¾£ºÓĞ1¸öĞÂµÄÆÀÂÛ£¬ÈçÓĞn,ÔòÓĞN¸öÆÀÂÛ.-->
-                    <span class="badge pull-right" title="ÆÀÂÛÊı"><span class="glyphicon glyphicon-pencil"></span>${blog.getDiscuss_num()}</span>
-                    <!-- ÔŞÊıÁ¿ -->
-                    <span class="badge pull-right" title="µãÔŞÊı"><span class="glyphicon glyphicon-thumbs-up"></span>${blog.getGood_num()}</span>
+                    <!-- è¿™é‡Œçš„1è¡¨ç¤ºï¼šæœ‰1ä¸ªæ–°çš„è¯„è®ºï¼Œå¦‚æœ‰n,åˆ™æœ‰Nä¸ªè¯„è®º.-->
+                    <span class="badge pull-right" title="è¯„è®ºæ•°"><span class="glyphicon glyphicon-pencil"></span>${blog.getDiscuss_num()}</span>
+                    <!-- èµæ•°é‡ -->
+                    <span class="badge pull-right" title="ç‚¹èµæ•°"><span class="glyphicon glyphicon-thumbs-up"></span>${blog.getGood_num()}</span>
 
-                    <!-- Ö»ÓĞ×Ô¼ºµÄ²©¿Í²ÅÄÜ±à¼­ºÍÉ¾³ı -->
+                    <!-- åªæœ‰è‡ªå·±çš„åšå®¢æ‰èƒ½ç¼–è¾‘å’Œåˆ é™¤ -->
                     <c:if test="${blog.getFlag() eq 'true'}">
                         <div class="btn-group btn-group-xs pull-right">
-                            <button id="editor" type="button" class="btn btn-default">±à¼­</button>
+                            <button id="editor" type="button" class="btn btn-default"><a href="blog_editor.do?id=${blog.getId()}&op=update" target="_blank">ç¼–è¾‘</a></button>
                             <input id="blog_id" type="hidden" value="${blog.getId()}">
-                            <button id="delete" type="button" class="btn btn-default">É¾³ı</button>
+                            <button id="delete" type="button" class="btn btn-default">åˆ é™¤</button>
                         </div>
                     </c:if>
                 </li>
@@ -52,16 +52,16 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        //TODO 1. Ôö¼ÓÈ«¾Öµã»÷É¾³ı°´Å¥; 2. Ôö¼Ó±à¼­°´Å¥ÖØÓÃ²©¿Í´´½¨Ò³Ãæ;
-        $("#delete").click(function () {
+        //å…¨å±€ç‚¹å‡»åˆ é™¤æŒ‰é’®;
+        $("button[id='delete']").click(function () {
             swal({
-                title: "È·¶¨ÒªÉ¾³ı?",
-                text: "Äã½«ÒªÉ¾³ıÕâÆª²©¿Í!",
+                title: "ç¡®å®šè¦åˆ é™¤?",
+                text: "ä½ å°†è¦åˆ é™¤è¿™ç¯‡åšå®¢!",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonClass: "btn-danger",
-                confirmButtonText: "È·¶¨",
-                cancelButtonText: "È¡Ïû",
+                confirmButtonText: "ç¡®å®š",
+                cancelButtonText: "å–æ¶ˆ",
                 closeOnConfirm: false,
                 closeOnCancel: false
             }, function (isConfirm) {
@@ -74,12 +74,12 @@
                                 data: "blog_id=" + blog_id,
                                 success: function (data) {
                                     $("#blog").html(data);
-                                    swal("É¾³ı³É¹¦!", "", "success");
+                                    swal("åˆ é™¤æˆåŠŸ!", "", "success");
                                 }
                             });
                         }
                     } else {
-                        swal("È¡ÏûÉ¾³ı!", "", "error");
+                        swal("å–æ¶ˆåˆ é™¤!", "", "error");
                     }
                 }
             );

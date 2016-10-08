@@ -26,10 +26,10 @@ public class StringUtils {
     }
 
     /**
-     * UserÓÃ»§×Ö·û´®Ìæ»»
-     * @param str ĞèÒªÌæ»»µÄ×Ö·û´®
-     * @param user UserÊµÀı
-     * @return Ìæ»»ºÃºóµÄ×Ö·û´®
+     * Userç”¨æˆ·å­—ç¬¦ä¸²æ›¿æ¢
+     * @param str éœ€è¦æ›¿æ¢çš„å­—ç¬¦ä¸²
+     * @param user Userå®ä¾‹
+     * @return æ›¿æ¢å¥½åçš„å­—ç¬¦ä¸²
      */
     public static String getString(String str, User user) {
 
@@ -50,7 +50,7 @@ public class StringUtils {
 
 
     /**
-     * blog×Ö¶ÎÌæ»»
+     * blogå­—æ®µæ›¿æ¢
      * @param str
      * @param blog
      * @return
@@ -75,9 +75,9 @@ public class StringUtils {
     }
 
     /**
-     * ÅĞ¶Ï¿ÕÖµ
+     * åˆ¤æ–­ç©ºå€¼
      * @param str
-     * @return Èç¹ûÖµstrÊÇ¿Õ»òÕß"",·µ»Ø"",·ñÔò·µ»Østr
+     * @return å¦‚æœå€¼stræ˜¯ç©ºæˆ–è€…"",è¿”å›"",å¦åˆ™è¿”å›str
      */
     public static String nvl(String str) {
         if (null != str && !str.isEmpty()) {

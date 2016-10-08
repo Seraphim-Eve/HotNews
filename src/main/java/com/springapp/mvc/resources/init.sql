@@ -1,39 +1,39 @@
 use test;
-/* ÓÃ»§×¢²á/µÇÂ½±í */
+/* ç”¨æˆ·æ³¨å†Œ/ç™»é™†è¡¨ */
 create table if not exists Users(
-  email varchar(50) NOT NULL COMMENT 'ÓÊÏä¸úÓÃ»§ÃûÏàÍ¬',
-  username varchar(50) PRIMARY KEY COMMENT 'ÓÃ»§Ãû=ÓÊÏä',
-  nickname varchar(100) NOT NULL COMMENT 'êÇ³Æ',
-  password varchar(50) NOT NULL COMMENT 'ÃÜÂëMD5Öµ',
-  reg_time varchar(50) NOT NULL COMMENT '×¢²áÊ±¼ä',
-  reset_code varchar(50) COMMENT 'ÖØÖÃÃÜÂëÑéÖ¤Code.(codeÎª¿ÕÔòÊ§Ğ§,ÔÚ·¢ËÍ¸ü¸ÄÃÜÂëÓÊ¼şºóÄ¬ÈÏ30·ÖÖÓÉèÖÃÎª¿Õ)',
-  last_login_time varchar(50) COMMENT '×îºóÒ»´ÎµÇÂ¼Ê±¼ä'
+  email varchar(50) NOT NULL COMMENT 'é‚®ç®±è·Ÿç”¨æˆ·åç›¸åŒ',
+  username varchar(50) PRIMARY KEY COMMENT 'ç”¨æˆ·å=é‚®ç®±',
+  nickname varchar(100) NOT NULL COMMENT 'æ˜µç§°',
+  password varchar(50) NOT NULL COMMENT 'å¯†ç MD5å€¼',
+  reg_time varchar(50) NOT NULL COMMENT 'æ³¨å†Œæ—¶é—´',
+  reset_code varchar(50) COMMENT 'é‡ç½®å¯†ç éªŒè¯Code.(codeä¸ºç©ºåˆ™å¤±æ•ˆ,åœ¨å‘é€æ›´æ”¹å¯†ç é‚®ä»¶åé»˜è®¤30åˆ†é’Ÿè®¾ç½®ä¸ºç©º)',
+  last_login_time varchar(50) COMMENT 'æœ€åä¸€æ¬¡ç™»å½•æ—¶é—´'
 );
 
-/* ²©¿Í±í */
+/* åšå®¢è¡¨ */
 create table if not exists blog(
-	id varchar(50) primary key comment '²©¿Íid(e.g: blog_)',
-	title varchar(50) not null comment '²©¿Í±êÌâ',
-	discuss_id varchar(50) comment '²©¿ÍÆÀÂÛid(¹ØÁªÆÀÂÛ±í)',
-	good_id VARCHAR(50) comment 'µãÔŞid(¹ØÁªµãÔŞ±í)',
-	create_time varchar(50) not null comment '²©¿Í´´½¨Ê±¼ä',
-  update_time varchar(50) comment '²©¿Í¸üĞÂÊ±¼ä',
-	author varchar(50) not null comment '²©¿Í×÷Õß',
-	authority varchar(20) not null comment '²©¿ÍÈ¨ÏŞ(Ë½ÓĞ/¹«¿ª) default:Ë½ÓĞ(private)',
-	content text comment '²©¿ÍÄÚÈİ'
+	id varchar(50) primary key comment 'åšå®¢id(e.g: blog_)',
+	title varchar(50) not null comment 'åšå®¢æ ‡é¢˜',
+	discuss_id varchar(50) comment 'åšå®¢è¯„è®ºid(å…³è”è¯„è®ºè¡¨)',
+	good_id VARCHAR(50) comment 'ç‚¹èµid(å…³è”ç‚¹èµè¡¨)',
+	create_time varchar(50) not null comment 'åšå®¢åˆ›å»ºæ—¶é—´',
+  update_time varchar(50) comment 'åšå®¢æ›´æ–°æ—¶é—´',
+	author varchar(50) not null comment 'åšå®¢ä½œè€…',
+	authority varchar(20) not null comment 'åšå®¢æƒé™(ç§æœ‰/å…¬å¼€) default:ç§æœ‰(private)',
+	content text comment 'åšå®¢å†…å®¹'
 );
 
-/* ÆÀÂÛ±í */
+/* è¯„è®ºè¡¨ */
 create table if not exists discuss(
-  id varchar(50) not null comment 'ÆÀÂÛid',
-  time varchar(50) not null comment 'ÆÀÂÛÊ±¼ä',
-  d_user varchar(50) not null comment 'ÆÀÂÛÓÃ»§',
-  content text comment 'ÆÀÂÛÄÚÈİ'
+  id varchar(50) not null comment 'è¯„è®ºid',
+  time varchar(50) not null comment 'è¯„è®ºæ—¶é—´',
+  d_user varchar(50) not null comment 'è¯„è®ºç”¨æˆ·',
+  content text comment 'è¯„è®ºå†…å®¹'
 );
 
-/* µãÔŞ±í */
+/* ç‚¹èµè¡¨ */
 create table if not exists good(
-  id varchar(50) not NULL COMMENT 'ÔŞid',
-  good_username varchar(50) not null comment 'µãÔŞµÄÓÃ»§'
+  id varchar(50) not NULL COMMENT 'èµid',
+  good_username varchar(50) not null comment 'ç‚¹èµçš„ç”¨æˆ·'
 )
 

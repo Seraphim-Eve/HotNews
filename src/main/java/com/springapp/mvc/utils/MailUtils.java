@@ -27,8 +27,8 @@ public class MailUtils {
     }
 
     /**
-     * ·¢ËÍÓÊ¼ş
-     * @param emailAddress ÊÕ¼şÈË
+     * å‘é€é‚®ä»¶
+     * @param emailAddress æ”¶ä»¶äºº
      * @throws Exception
      */
     public static void sendMail(String emailAddress, String website_host, String code) throws Exception{
@@ -56,28 +56,28 @@ public class MailUtils {
     }
 
     /**
-     * ´´½¨·¢ËÍÓÊ¼şÖ÷Ìå
+     * åˆ›å»ºå‘é€é‚®ä»¶ä¸»ä½“
      * @param session
-     * @param sendMail ·¢ËÍÈË
-     * @param receiveMail ÊÕ¼şÈË
+     * @param sendMail å‘é€äºº
+     * @param receiveMail æ”¶ä»¶äºº
      * @return
      */
     private static MimeMessage createMime(Session session, String sendMail, String receiveMail, String website_host, String code) throws Exception {
         MimeMessage message = new MimeMessage(session);
 
-        //ÉèÖÃ·¢ËÍÈË
+        //è®¾ç½®å‘é€äºº
         message.setFrom(new InternetAddress(sendMail, "HotNews", "UTF-8"));
 
         String sql = "select * from Users where username = '" + receiveMail + "'";
         User user = MySQLUtils.queryForUser(sql);
 
-        //ÉèÖÃÊÕ¼şÈË
+        //è®¾ç½®æ”¶ä»¶äºº
         message.setRecipient(Message.RecipientType.TO, new InternetAddress(receiveMail, user.getNickname(), "UTF-8"));
 
-        //ÉèÖÃÖ÷Ìâ
-        message.setSubject("HotNewsÃÜÂëÖØÖÃ", "UTF-8");
+        //è®¾ç½®ä¸»é¢˜
+        message.setSubject("HotNewså¯†ç é‡ç½®", "UTF-8");
 
-        //×éºÏurl(receiveMail,code)
+        //ç»„åˆurl(receiveMail,code)
         //http://www.ruixiao.org:80/HotNews
         String url = website_host + "/reset.do?email=" + receiveMail + "&code=" + code;
 
@@ -90,20 +90,20 @@ public class MailUtils {
                 "     <td align=\"center\" colspan=\"2\">\n" +
                 "      <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"680\"> \n" +
                 "       <tbody><tr> \n" +
-                "        <td style=\"color:#333;line-height:28px;font-size:14px;font-family:Verdana,'ËÎÌå';\"> Ç×°®µÄÓÃ»§£º" + user.getEmail() + " ÄúºÃ<br> <br> ÄúµÄÃÜÂëĞŞ¸ÄÁ´½ÓÈçÏÂ£º<br> <br> <a href=\"" + url + "\" target=\"_blank\">" + (website_host + "/reset") + "</a><br> <br> ±¾ÓÊ¼şÇëÊ¹ÓÃHTML·½Ê½ÏÔÊ¾£¬·ñÔòÒÔÉÏÁ´½Ó¿ÉÄÜÎŞ·¨ÕıÈ·ÏÔÊ¾¡£<br> <br> Èç¹ûµã»÷ÒÔÉÏÁ´½Ó²»ÄÜ½øÈë£¬Çë°ÑÒÔÉÏÁ´½Ó¸´ÖÆÕ³Ìùµ½ä¯ÀÀÆ÷µÄµØÖ·À¸£¬È»ºó»Ø³µÀ´Ö´ĞĞ´ËÁ´½Ó¡£<br> <br> ´ËÁ´½Ó°ëĞ¡Ê±ÄÚÓĞĞ§£¬ÈçÁ´½ÓÊ§Ğ§Çëµ½ÍøÕ¾ÖØĞÂ²Ù×÷£¡ </td> \n" +
+                "        <td style=\"color:#333;line-height:28px;font-size:14px;font-family:Verdana,'å®‹ä½“';\"> äº²çˆ±çš„ç”¨æˆ·ï¼š" + user.getEmail() + " æ‚¨å¥½<br> <br> æ‚¨çš„å¯†ç ä¿®æ”¹é“¾æ¥å¦‚ä¸‹ï¼š<br> <br> <a href=\"" + url + "\" target=\"_blank\">" + (website_host + "/reset") + "</a><br> <br> æœ¬é‚®ä»¶è¯·ä½¿ç”¨HTMLæ–¹å¼æ˜¾ç¤ºï¼Œå¦åˆ™ä»¥ä¸Šé“¾æ¥å¯èƒ½æ— æ³•æ­£ç¡®æ˜¾ç¤ºã€‚<br> <br> å¦‚æœç‚¹å‡»ä»¥ä¸Šé“¾æ¥ä¸èƒ½è¿›å…¥ï¼Œè¯·æŠŠä»¥ä¸Šé“¾æ¥å¤åˆ¶ç²˜è´´åˆ°æµè§ˆå™¨çš„åœ°å€æ ï¼Œç„¶åå›è½¦æ¥æ‰§è¡Œæ­¤é“¾æ¥ã€‚<br> <br> æ­¤é“¾æ¥åŠå°æ—¶å†…æœ‰æ•ˆï¼Œå¦‚é“¾æ¥å¤±æ•ˆè¯·åˆ°ç½‘ç«™é‡æ–°æ“ä½œï¼ </td> \n" +
                 "       </tr> \n" +
                 "      </tbody></table></td> \n" +
                 "    </tr>\n" +
                 "   </tbody></table> \n" +
                 "  </div>";
 
-        //ÉèÖÃÓÊ¼şÄÚÈİ
+        //è®¾ç½®é‚®ä»¶å†…å®¹
         message.setContent(html, "text/html;charset=UTF-8");
 
-        //ÉèÖÃ·¢ËÍÊ±¼ä
+        //è®¾ç½®å‘é€æ—¶é—´
         message.setSentDate(new Date());
 
-        //ÉèÖÃ±£´æ
+        //è®¾ç½®ä¿å­˜
         message.saveChanges();
 
         return message;

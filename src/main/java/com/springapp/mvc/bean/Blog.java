@@ -8,41 +8,41 @@ import java.util.Map;
  */
 public class Blog {
 
-    //²©¿ÍÉí·İ±êÊ¾
+    //åšå®¢èº«ä»½æ ‡ç¤º
     public String flag;
 
-    //²©¿Íid
+    //åšå®¢id
     public String id;
 
-    //²©¿Í±êÌâ
+    //åšå®¢æ ‡é¢˜
     public String title;
 
-    //²©¿Í×÷Õß
+    //åšå®¢ä½œè€…
     public String author;
 
-    //²©¿Í´´½¨Ê±¼ä
+    //åšå®¢åˆ›å»ºæ—¶é—´
     public String create_time;
 
-    //²©¿Í¸üĞÂÊ±¼ä
+    //åšå®¢æ›´æ–°æ—¶é—´
     public String update_time;
 
 
-    //²©¿ÍÆÀÂÛid
+    //åšå®¢è¯„è®ºid
     public String discuss_id;
 
-    //²©¿ÍµãÔŞid
+    //åšå®¢ç‚¹èµid
     public String good_id;
 
-    //²©¿ÍÆÀÂÛÊı
+    //åšå®¢è¯„è®ºæ•°
     public int discuss_num;
 
-    //²©¿ÍµãÔŞÊı
+    //åšå®¢ç‚¹èµæ•°
     public int good_num;
 
-    //²©¿ÍÈ¨ÏŞ
+    //åšå®¢æƒé™
     public String authority;
 
-    //²©¿ÍÄÚÈİ
+    //åšå®¢å†…å®¹
     public String content;
 
     public String getId() {
@@ -53,7 +53,7 @@ public class Blog {
         this.id = id;
     }
 
-    //²©¿ÍÆÀÂÛ
+    //åšå®¢è¯„è®º
     public List<Map<String, String>> list;
 
     public String getTitle() {
@@ -150,8 +150,8 @@ public class Blog {
 
     /**
      * map<String user, String comment>
-     * user: ÆÀÂÛÓÃ»§
-     * comment: ÆÀÂÛÄÚÈİ
+     * user: è¯„è®ºç”¨æˆ·
+     * comment: è¯„è®ºå†…å®¹
      * @param list
      */
     public void setList(List<Map<String, String>> list) {

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="gbk">
+    <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="../../third-party/mathquill/mathquill.css"/>
     <style>
@@ -43,7 +43,7 @@
             editor = UM.getEditor(editorId),
             timer;
 
-        /* »ñµÃµ±Ç°¹«Ê½ËùÔÚµÄiframe½Úµã */
+        /* è·å¾—å½“å‰å…¬å¼æ‰€åœ¨çš„iframeèŠ‚ç‚¹ */
         function getSelfIframe(){
             var iframes = parent.document.getElementsByTagName('iframe');
             for (var key in iframes) {
@@ -53,11 +53,11 @@
             }
             return null;
         }
-        /* »ñµÃµ±Ç°urlÉÏµÄhash´æ´¢µÄ²ÎÊıÖµ */
+        /* è·å¾—å½“å‰urlä¸Šçš„hashå­˜å‚¨çš„å‚æ•°å€¼ */
         function getLatex() {
             return $iframe.attr('data-latex') || '';
         }
-        /* ±£´æ³¡¾° */
+        /* ä¿å­˜åœºæ™¯ */
         function saveScene(){
             timer && clearTimeout(timer);
             timer = setTimeout(function(){
@@ -67,20 +67,20 @@
                 timer = null;
             }, 300);
         }
-        /* ÉèÖÃ±à¼­Æ÷¿É±à¼­ */
+        /* è®¾ç½®ç¼–è¾‘å™¨å¯ç¼–è¾‘ */
         function enableEditor(){
             if(editor.body.contentEditable == 'false') {
                 editor.setEnabled();
             }
         }
-        /* ÉèÖÃ±à¼­Æ÷²»¿É±à¼­ */
+        /* è®¾ç½®ç¼–è¾‘å™¨ä¸å¯ç¼–è¾‘ */
         function disableEditor(){
             if(editor.body.contentEditable == 'true') {
                 editor.setDisabled(['undo', 'redo', 'preview', 'formula'], true);
             }
         }
 
-        /* ¹«Ê½ */
+        /* å…¬å¼ */
         var Formula = function(){
             var _this = this,
                 latex = getLatex();
@@ -88,15 +88,15 @@
             this.isFocus = false;
             this.isDisabled = false;
 
-            /* ¼ÓÔØ¹«Ê½ÄÚÈİ */
+            /* åŠ è½½å…¬å¼å†…å®¹ */
             this.$mathquill = $('.mathquill-editable').mathquill('latex', latex);
 
-            /* ÉèÖÃ»î¶¯×´Ì¬µÄ¹«Ê½iframe */
+            /* è®¾ç½®æ´»åŠ¨çŠ¶æ€çš„å…¬å¼iframe */
             this.$mathquill.on('mousedown', function(){
-                /* ±à¼­Æ÷²»¿ÉÓÃÊ±,¹«Ê½Ò²²»¿ÉÓÃ */
+                /* ç¼–è¾‘å™¨ä¸å¯ç”¨æ—¶,å…¬å¼ä¹Ÿä¸å¯ç”¨ */
                 if(_this.disabled) return false;
 
-                /* µÚÒ»´Îµã»÷µ±Ç°¹«Ê½,ÉèÖÃ¹«Ê½»î¶¯ */
+                /* ç¬¬ä¸€æ¬¡ç‚¹å‡»å½“å‰å…¬å¼,è®¾ç½®å…¬å¼æ´»åŠ¨ */
                 if(!$iframe.hasClass('edui-formula-active')) {
                     disableEditor();
                     editor.blur();
@@ -115,11 +115,11 @@
                 enableEditor();
             });
 
-            /* ÀïÃæfocus,±à¼­Æ÷Ò²ÅĞ¶ÏÎªfocus */
+            /* é‡Œé¢focus,ç¼–è¾‘å™¨ä¹Ÿåˆ¤æ–­ä¸ºfocus */
             editor.addListener('isFocus', function(){
                 return _this.isFocus;
             });
-            /* um²»¿ÉÓÃ,¹«Ê½Ò²²»¿É±à¼­ */
+            /* umä¸å¯ç”¨,å…¬å¼ä¹Ÿä¸å¯ç¼–è¾‘ */
             editor.addListener('setDisabled', function(type, except){
                 if (!(except && except.join(' ').indexOf('formula') != -1) && _this.isDisabled != true ) {
                     _this.setDisabled();
@@ -131,17 +131,17 @@
                 }
             });
 
-            /* ÉèÖÃ¸üĞÂÍâ²ãiframeµÄ´óĞ¡ºÍÊôĞÔ */
+            /* è®¾ç½®æ›´æ–°å¤–å±‚iframeçš„å¤§å°å’Œå±æ€§ */
             $(document.body).on('keydown', function(){
                 _this.updateIframe();
             }).on('keyup', function(){
                 _this.updateIframe();
             });
 
-            /* Çå³ı³õÊ¼»¯µÄ¸ßÁÁ×´Ì¬ */
+            /* æ¸…é™¤åˆå§‹åŒ–çš„é«˜äº®çŠ¶æ€ */
             this.$mathquill.removeClass('hasCursor');
 
-            /* ³õÊ¼»¯ºóÑÓ³ÙË¢ĞÂÍâ²ãiframe´óĞ¡ */
+            /* åˆå§‹åŒ–åå»¶è¿Ÿåˆ·æ–°å¤–å±‚iframeå¤§å° */
             setTimeout(function(){
                 _this.updateIframe();
             }, 300);
@@ -204,7 +204,7 @@
             }
         };
 
-        /* °ó¶¨µ½windowÉÏ£¬¸øÉÏ¼¶windowµ÷ÓÃ */
+        /* ç»‘å®šåˆ°windowä¸Šï¼Œç»™ä¸Šçº§windowè°ƒç”¨ */
         window.formula = new Formula();
     });
 </script>

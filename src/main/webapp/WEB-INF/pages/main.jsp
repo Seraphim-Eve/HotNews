@@ -5,7 +5,7 @@
   Time: 14:31
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=GBK" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
@@ -27,10 +27,10 @@
             }
         });
 
-        //√ø√Îµ˜”√“ª¥Œ
+        //ÊØèÁßíË∞ÉÁî®‰∏ÄÊ¨°
         setInterval(setTime, 1000);
 
-        // ±º‰œ‘ æ
+        //Êó∂Èó¥ÊòæÁ§∫
         function setTime() {
             if ($("#time").css("display") == "none") {
                 $("#time").css("display", "block");
@@ -42,13 +42,13 @@
         function currentTime() {
             var now = new Date();
 
-            var year = now.getFullYear();       //ƒÍ
-            var month = now.getMonth() + 1;     //‘¬
-            var day = now.getDate();            //»’
+            var year = now.getFullYear();       //Âπ¥
+            var month = now.getMonth() + 1;     //Êúà
+            var day = now.getDate();            //Êó•
 
-            var hh = now.getHours();            // ±
-            var mm = now.getMinutes();          //∑÷
-            var sec = now.getSeconds();         //√Î
+            var hh = now.getHours();            //Êó∂
+            var mm = now.getMinutes();          //ÂàÜ
+            var sec = now.getSeconds();         //Áßí
 
             var clock = year + "-";
 
@@ -72,7 +72,7 @@
 
 
         $(document).ready(function () {
-            //¥¶¿Ì“≥√Êtab«–ªªµƒactive
+            //Â§ÑÁêÜÈ°µÈù¢tabÂàáÊç¢ÁöÑactive
             $('a[data-toggle="tab"]').click(function () {
                 //console.log(this);
                 var attr = $(this).attr("href");
@@ -96,12 +96,12 @@
 </head>
 <body>
 
-    <!-- µº∫Ω¿∏ -->
+    <!-- ÂØºËà™Ê†è -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
 
             <div class="navbar-header">
-                <img class="navbar-brand" src="favicon.ico" title="ª∂”≠<b style='color: red;'>${nickname}</b>¿¥µΩHotNews!">
+                <img class="navbar-brand" src="favicon.ico" title="Ê¨¢Ëøé<b style='color: red;'>${nickname}</b>Êù•Âà∞HotNews!">
             </div>
 
             <div class="collapse navbar-collapse">
@@ -123,7 +123,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- time to show -->
                     <li style="padding-top:10px; padding-right:10px;">
-                        <div id="time" title="µ±«∞ ±º‰" style="padding: .2em .6em .3em;text-align: center;border-radius: .25em; background-color: #5cb85c; color: #fff; display: none;"></div>
+                        <div id="time" title="ÂΩìÂâçÊó∂Èó¥" style="padding: .2em .6em .3em;text-align: center;border-radius: .25em; background-color: #5cb85c; color: #fff; display: none;"></div>
                     </li>
 
                     <li id="dropdownList" class="dropdown">
@@ -134,19 +134,19 @@
 
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown">
                             <li>
-                                <a href="#reset" data-toggle="tab">√‹¬Î–ﬁ∏ƒ</a>
+                                <a href="#reset" data-toggle="tab">ÂØÜÁ†Å‰øÆÊîπ</a>
                             </li>
 
                             <li class="divider"></li>
 
                             <li>
-                                <a href="#author" data-toggle="tab">¡ÀΩ‚◊˜’ﬂ</a>
+                                <a href="#author" data-toggle="tab">‰∫ÜËß£‰ΩúËÄÖ</a>
                             </li>
                         </ul>
                     </li>
 
                     <li>
-                        <a href="logout.do">µ«≥ˆ</a>
+                        <a href="logout.do">ÁôªÂá∫</a>
                     </li>
                 </ul>
 
@@ -157,27 +157,27 @@
     <!-- music player -->
     <div class="container" style="position: relative; z-index: 1031; width:420px; height:42px; top: -35px;">
         <div id="bar-ui" class="sm2-bar-ui">
-            <!-- “Ù¿÷≤•∑≈øÿ÷∆ -->
+            <!-- Èü≥‰πêÊí≠ÊîæÊéßÂà∂ -->
             <div class="bd sm2-main-controls">
 
-                <!-- ≤•∑≈/‘›Õ£ -->
+                <!-- Êí≠Êîæ/ÊöÇÂÅú -->
                 <div class="sm2-inline-element sm2-button-element">
                     <div class="sm2-button-bd">
-                        <a href="#play" title="≤•∑≈/‘›Õ£" class="sm2-inline-button play-pause">Play / pause</a>
+                        <a href="#play" title="Êí≠Êîæ/ÊöÇÂÅú" class="sm2-inline-button play-pause">Play / pause</a>
                     </div>
                 </div>
 
-                <!-- ≤•∑≈◊¥Ã¨ -->
+                <!-- Êí≠ÊîæÁä∂ÊÄÅ -->
                 <div class="sm2-inline-element sm2-inline-status">
 
-                    <!-- œ‘ æ’˝‘⁄≤•∑≈µƒ∏Ë√˚º∞∏Ë ÷ -->
+                    <!-- ÊòæÁ§∫Ê≠£Âú®Êí≠ÊîæÁöÑÊ≠åÂêçÂèäÊ≠åÊâã -->
                     <div class="sm2-playlist">
                         <div class="sm2-playlist-target">
                             <noscript><p>JavaScript is required.</p></noscript>
                         </div>
                     </div>
 
-                    <!-- ∏Ë«˙≤•∑≈Ω¯∂» -->
+                    <!-- Ê≠åÊõ≤Êí≠ÊîæËøõÂ∫¶ -->
                     <div class="sm2-progress">
                         <div class="sm2-row">
                             <div class="sm2-inline-time">0:00</div>
@@ -195,38 +195,38 @@
 
                 </div>
 
-                <!-- “Ù¡øµ˜Ω⁄ -->
+                <!-- Èü≥ÈáèË∞ÉËäÇ -->
                 <div class="sm2-inline-element sm2-button-element sm2-volume">
                     <div class="sm2-button-bd">
                         <span class="sm2-inline-button sm2-volume-control volume-shade"></span>
-                        <a href="#volume" title="“Ù¡ø" class="sm2-inline-button sm2-volume-control">volume</a>
+                        <a href="#volume" title="Èü≥Èáè" class="sm2-inline-button sm2-volume-control">volume</a>
                     </div>
                 </div>
 
-                <!-- …œ“ª ◊∞¥≈•  -->
+                <!-- ‰∏ä‰∏ÄÈ¶ñÊåâÈíÆ  -->
                 <div class="sm2-inline-element sm2-button-element">
                     <div class="sm2-button-bd">
-                        <a href="#prev" title="…œ“ª ◊" class="sm2-inline-button previous">&lt; …œ“ª ◊</a>
+                        <a href="#prev" title="‰∏ä‰∏ÄÈ¶ñ" class="sm2-inline-button previous">&lt; ‰∏ä‰∏ÄÈ¶ñ</a>
                     </div>
                 </div>
 
-                <!-- œ¬“ª ◊∞¥≈• -->
+                <!-- ‰∏ã‰∏ÄÈ¶ñÊåâÈíÆ -->
                 <div class="sm2-inline-element sm2-button-element">
                     <div class="sm2-button-bd">
-                        <a href="#next" title="œ¬“ª ◊" class="sm2-inline-button next">&gt; œ¬“ª ◊</a>
+                        <a href="#next" title="‰∏ã‰∏ÄÈ¶ñ" class="sm2-inline-button next">&gt; ‰∏ã‰∏ÄÈ¶ñ</a>
                     </div>
                 </div>
 
-                <!-- ≤•∑≈¡–±Ì -->
+                <!-- Êí≠ÊîæÂàóË°® -->
                 <div class="sm2-inline-element sm2-button-element sm2-menu">
                     <div class="sm2-button-bd">
-                        <a id="menu" href="#menu" title="≤Àµ•" class="sm2-inline-button menu">≤Àµ•</a>
+                        <a id="menu" href="#menu" title="ËèúÂçï" class="sm2-inline-button menu">ËèúÂçï</a>
                     </div>
                 </div>
 
             </div>
 
-            <!-- “Ù¿÷≤Àµ•œ¬¿≠±Ì -->
+            <!-- Èü≥‰πêËèúÂçï‰∏ãÊãâË°® -->
             <div id="music_list" class="bd sm2-playlist-drawer sm2-element">
 
                 <div class="sm2-inline-texture">
@@ -251,7 +251,7 @@
                             </div>
                         </li>
 
-                        <!-- TODO –¥∏ˆ≈¿≥Ê◊•∞Ÿ∂»“Ù¿÷ ˝æ› -->
+                        <!-- TODO ÂèØ‰ª•ÂÜô‰∏™Áà¨Ëô´ÊäìÁôæÂ∫¶Èü≥‰πêÊï∞ÊçÆ -->
                         <!-- online mp3 -->
                         <li><a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20People%20Asking.mp3"><b>SonReal</b> - People Asking <span class="label">Explicit</span></a></li>
                         <!-- local mp3 -->
@@ -263,7 +263,7 @@
         </div>
     </div>
 
-    <!-- µº∫Ω¿∏ƒ⁄»› -->
+    <!-- ÂØºËà™Ê†èÂÜÖÂÆπ -->
     <div style="position: relative; z-index: 1029;">
         <div class="tab-content">
             <!-- blog -->
@@ -280,21 +280,21 @@
             <div class="tab-pane fade" id="reset">
                 <div class="container center-block">
                     <form id="reset_password" action="reset_password.do" method="post" class="form-signin">
-                        <h3 align="center">√‹¬Î–ﬁ∏ƒ</h3>
+                        <h3 align="center">ÂØÜÁ†Å‰øÆÊîπ</h3>
                         <div class="form-group">
-                            <input id="s_password" name="s_password" type="password" class="form-control" placeholder="‘≠√‹¬Î" autofocus>
+                            <input id="s_password" name="s_password" type="password" class="form-control" placeholder="ÂéüÂØÜÁ†Å" autofocus>
                         </div>
 
                         <div class="form-group">
-                            <input id="n_password" name="n_password" type="password" class="form-control" placeholder="–¬√‹¬Î" required>
+                            <input id="n_password" name="n_password" type="password" class="form-control" placeholder="Êñ∞ÂØÜÁ†Å" required>
                         </div>
 
                         <div class="form-group">
-                            <input id="repeat_n_password" name="repeat_n_password" type="password" class="form-control" placeholder="÷ÿ∏¥–¬√‹¬Î" required>
+                            <input id="repeat_n_password" name="repeat_n_password" type="password" class="form-control" placeholder="ÈáçÂ§çÊñ∞ÂØÜÁ†Å" required>
                         </div>
 
                         <div class="form-group">
-                            <input type="submit" class="btn btn-primary btn-lg btn-block" value="–ﬁ∏ƒ">
+                            <input type="submit" class="btn btn-primary btn-lg btn-block" value="‰øÆÊîπ">
                         </div>
 
                         <div align="center">
@@ -310,7 +310,7 @@
                 <div class="well center-block" style="max-width: 400px;">
                     <div class="input-group">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                        <input type="text" class="form-control" placeholder="Rui Shawn" readonly>
+                        <input type="text" class="form-control" placeholder="Rui Shaw" readonly>
                     </div>
 
                     <div class="input-group">

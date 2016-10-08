@@ -24,17 +24,17 @@
                 }
             },
             messages: {
-                email: "ÇëÊäÈëÓĞĞ§µÄµç×ÓÓÊÏäµØÖ·!",
+                email: "è¯·è¾“å…¥æœ‰æ•ˆçš„ç”µå­é‚®ç®±åœ°å€!",
                 password: {
-                    required: "ÇëÊäÈëÄúµÄÃÜÂë!",
-                    minlength: "ÊäÈëµÄÃÜÂëĞ¡ÓÚ8Î»!",
-                    maxlength: "ÊäÈëµÄÃÜÂë´óÓÚ12Î»!"
+                    required: "è¯·è¾“å…¥æ‚¨çš„å¯†ç !",
+                    minlength: "è¾“å…¥çš„å¯†ç å°äº8ä½!",
+                    maxlength: "è¾“å…¥çš„å¯†ç å¤§äº12ä½!"
                 }
             }
 
         });
 
-        //jquery email×é¼şÕıÔòÆ¥ÅäÑéÖ¤
+        //jquery emailç»„ä»¶æ­£åˆ™åŒ¹é…éªŒè¯
         $.validator.methods.email = function(value, element) {
             return this.optional(element) || validateEmail(value)
         };

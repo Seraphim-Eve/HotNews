@@ -5,7 +5,7 @@
   Time: 16:05
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=GBK" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Forgot your password?</title>
@@ -16,18 +16,18 @@
     <div class="container">
         <form id="forgot" action="forgot.do" method="post" class="form-signin">
 
-            <h3 class="form-signin-heading" align="center">ÖØÖÃÃÜÂë</h3>
+            <h3 class="form-signin-heading" align="center">é‡ç½®å¯†ç </h3>
 
             <div class="form-group">
-                <input type="text" name="email" class="form-control" placeholder="ÓÊÏä" maxlength="30" autofocus/>
+                <input type="text" name="email" class="form-control" placeholder="é‚®ç®±" maxlength="30" autofocus/>
             </div>
 
             <div class="form-group">
-                <input type="submit" class="btn btn-lg btn-primary btn-block" value="·¢ËÍÖØÖÃÃÜÂëÓÊ¼þ">
+                <input type="submit" class="btn btn-lg btn-primary btn-block" value="å‘é€é‡ç½®å¯†ç é‚®ä»¶">
             </div>
 
             <div class="form-group" align="center">
-                <a href="javascript:history.go(-1)">·µ»ØÉÏÒ»Ò³</a>
+                <a href="javascript:history.go(-1)">è¿”å›žä¸Šä¸€é¡µ</a>
             </div>
 
         </form>

@@ -5,11 +5,11 @@
   Time: 10:35
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=GBK" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Reset your password!</title>
-    <meta charset="GBK">
+    <meta charset="UTF-8">
     <link rel="shortcut icon" href="favicon.ico">
 
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
@@ -21,12 +21,12 @@
 </head>
 <body>
     <div class="container" style="margin-top: 10%;">
-        <h4 align="center">密码重置</h4>
+        <h4 align="center">瀵嗙爜閲嶇疆</h4>
         <div class="well center-block" style="max-width: 400px;">
             <p align="center">
-                <strong style="color: red;">修改成功!</strong>
+                <strong style="color: red;">淇敼鎴愬姛!</strong>
             </p>
-            <a href="index.do" class="btn btn-default btn-lg btn-block">返回登陆</a>
+            <a href="index.do" class="btn btn-default btn-lg btn-block">杩斿洖鐧婚檰</a>
         </div>
     </div>
 </body>

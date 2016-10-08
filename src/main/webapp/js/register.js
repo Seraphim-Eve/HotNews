@@ -7,22 +7,22 @@
                 $.ajax({
                     method: "POST",
                     url: "check.do",
-                    async: false, //ÎªÁË¸³Öµflag±äÁ¿µÄÖµ
+                    async: false, //ä¸ºäº†èµ‹å€¼flagå˜é‡çš„å€¼
                     data: {email: value},
                     success: function(data) {
                         if (data == "true") {
-                            //ÓÊÏä´æÔÚ
+                            //é‚®ç®±å­˜åœ¨
                             flag = false;
                         }
                     }
                 });
             }
             return flag;
-        }, "¸ÃÓÃ»§ÃûÒÑÓĞÈËÊ¹ÓÃ.¸ÄÓÃÆäËûÓÃ»§Ãû?");
+        }, "è¯¥ç”¨æˆ·åå·²æœ‰äººä½¿ç”¨.æ”¹ç”¨å…¶ä»–ç”¨æˆ·å?");
 
         $.validator.addMethod("regex", function(value, element) {
             return validateEmail(value);
-        }, "ÇëÊäÈëÓĞĞ§µÄµç×ÓÓÊÏäµØÖ·!");
+        }, "è¯·è¾“å…¥æœ‰æ•ˆçš„ç”µå­é‚®ç®±åœ°å€!");
 
         //validate email
         function validateEmail(email) {
@@ -66,41 +66,41 @@
             },
             messages: {
                 nickname: {
-                    required: "ÇëÊäÈëêÇ³Æ!",
-                    maxlength: "ÄãÊäÈëµÄêÇ³Æ³¬¹ı10¸ö×Ö·û!"
+                    required: "è¯·è¾“å…¥æ˜µç§°!",
+                    maxlength: "ä½ è¾“å…¥çš„æ˜µç§°è¶…è¿‡10ä¸ªå­—ç¬¦!"
                 },
                 email: {
-                    required: "ÇëÊäÈëÓĞĞ§µÄµç×ÓÓÊÏäµØÖ·!"
+                    required: "è¯·è¾“å…¥æœ‰æ•ˆçš„ç”µå­é‚®ç®±åœ°å€!"
                 },
                 password: {
-                    required: "ÇëÊäÈëÃÜÂë!",
-                    minlength: "ÊäÈëµÄÃÜÂëĞ¡ÓÚ8Î»!",
-                    maxlength: "ÊäÈëµÄÃÜÂë´óÓÚ12Î»!"
+                    required: "è¯·è¾“å…¥å¯†ç !",
+                    minlength: "è¾“å…¥çš„å¯†ç å°äº8ä½!",
+                    maxlength: "è¾“å…¥çš„å¯†ç å¤§äº12ä½!"
                 },
                 repeatPassword: {
-                    required: "Á½¸öÃÜÂë²»Æ¥Åä¡£ÊÇ·ñÖØÊÔ?",
-                    minlength: "ÊäÈëµÄÃÜÂëĞ¡ÓÚ8Î»!",
-                    maxlength: "ÊäÈëµÄÃÜÂëĞ¡ÓÚ12Î»!",
-                    equalTo: "Á½¸öÃÜÂë²»Æ¥Åä¡£ÊÇ·ñÖØÊÔ?"
+                    required: "ä¸¤ä¸ªå¯†ç ä¸åŒ¹é…ã€‚æ˜¯å¦é‡è¯•?",
+                    minlength: "è¾“å…¥çš„å¯†ç å°äº8ä½!",
+                    maxlength: "è¾“å…¥çš„å¯†ç å°äº12ä½!",
+                    equalTo: "ä¸¤ä¸ªå¯†ç ä¸åŒ¹é…ã€‚æ˜¯å¦é‡è¯•?"
                 }
             }
         });
 
         /*$("#nickname").popover({
-            content: 'Äã¿ÉÒÔÊ¹ÓÃÖĞÎÄºÍÓ¢ÎÄ.',
+            content: 'ä½ å¯ä»¥ä½¿ç”¨ä¸­æ–‡å’Œè‹±æ–‡.',
             placement: 'left',
             trigger: 'focus'
         });
 
         $("#email").popover({
-            content: 'ÀıÈç: example@mail.com',
+            content: 'ä¾‹å¦‚: example@mail.com',
             placement: 'left',
             trigger: 'focus'
         });
 
         $("#password").popover({
-            title: 'ÃÜÂëÇ¿¶È:',
-            content: 'ÇëÖÁÉÙÊ¹ÓÃ 8 ¸ö×Ö·û.',
+            title: 'å¯†ç å¼ºåº¦:',
+            content: 'è¯·è‡³å°‘ä½¿ç”¨ 8 ä¸ªå­—ç¬¦.',
             placement: 'left',
             trigger: 'focus'
         });*/

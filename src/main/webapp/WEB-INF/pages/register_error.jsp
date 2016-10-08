@@ -5,11 +5,11 @@
   Time: 10:21
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=GBK" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>注册失败</title>
-    <meta charset="GBK">
+    <title>娉ㄥ唽澶辫触</title>
+    <meta charset="UTF-8">
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="css/signin.css">
     <script type="text/javascript">
@@ -19,7 +19,7 @@
             if (time == 0) {
                 window.location.href = "registerJump.do";
             } else {
-                document.getElementById("show").innerHTML = time + "秒后跳转到<span style='font-weight: bold;'>注册界面</span>!"
+                document.getElementById("show").innerHTML = time + "绉掑悗璺宠浆鍒�<span style='font-weight: bold;'>娉ㄥ唽鐣岄潰</span>!"
             }
             time--;
         }
@@ -27,9 +27,9 @@
 </head>
 <body>
     <div align="center" style="margin-top: 10%;">
-        <h3><span style='color:red; font-weight: bold;'>注册失败</span></h3>
-        <p id="show">10秒后跳转到<span style='font-weight: bold;'>注册界面</span>!</p>
-        <a href="registerJump.do">立即跳转</a>
+        <h3><span style='color:red; font-weight: bold;'>娉ㄥ唽澶辫触</span></h3>
+        <p id="show">10绉掑悗璺宠浆鍒�<span style='font-weight: bold;'>娉ㄥ唽鐣岄潰</span>!</p>
+        <a href="registerJump.do">绔嬪嵆璺宠浆</a>
     </div>
 </body>
 </html>

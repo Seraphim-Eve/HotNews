@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=GBK" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <html>
 <head>
     <title>Hot News</title>
@@ -13,15 +13,15 @@
             <h3 class="form-signin-heading" align="center">Welcome to Hot News!</h3>
 
             <div class="form-group">
-                <input type="email" name="email" class="form-control" placeholder="” œ‰" maxlength="30" value="${email}" autofocus/>
+                <input type="email" name="email" class="form-control" placeholder="ÈÇÆÁÆ±" maxlength="30" value="${email}" autofocus/>
             </div>
 
             <div class="form-group">
-                <input type="password" name="password" class="form-control" placeholder="√‹¬Î" maxlength="12"/>
+                <input type="password" name="password" class="form-control" placeholder="ÂØÜÁ†Å" maxlength="12"/>
             </div>
 
             <div class="form-group">
-                <input type="submit" class="btn btn-lg btn-primary btn-block" value="µ«¬Ω">
+                <input type="submit" class="btn btn-lg btn-primary btn-block" value="ÁôªÈôÜ">
             </div>
 
             <div align="center">
@@ -29,8 +29,8 @@
             </div>
 
             <div class="form-group">
-                <a href="registerJump.do" class="pull-left">¥¥Ω®’Àªß</a>
-                <a href="forgotJump.do" class="pull-right">Õ¸º«√‹¬Î</a>
+                <a href="registerJump.do" class="pull-left">ÂàõÂª∫Ë¥¶Êà∑</a>
+                <a href="forgotJump.do" class="pull-right">ÂøòËÆ∞ÂØÜÁ†Å</a>
             </div>
 
         </form>

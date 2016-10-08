@@ -5,11 +5,11 @@
   Time: 10:35
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=GBK" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Reset your password!</title>
-    <meta charset="GBK">
+    <meta charset="UTF-8">
     <link rel="shortcut icon" href="favicon.ico">
 
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
@@ -17,12 +17,12 @@
 </head>
 <body>
     <div class="container" style="margin-top: 10%;">
-        <h4 align="center">ÖØÖÃÃÜÂë</h4>
+        <h4 align="center">é‡ç½®å¯†ç </h4>
         <div class="well center-block" style="max-width: 400px;">
             <p align="center">
-                <strong style="color: red;">·¢ËÍ³É¹¦</strong>,Çë¼ì²éÄãµÄÓÊÏä,²¢ÖØÖÃÃÜÂë.
+                <strong style="color: red;">å‘é€æˆåŠŸ</strong>,è¯·æ£€æŸ¥ä½ çš„é‚®ç®±,å¹¶é‡ç½®å¯†ç .
             </p>
-            <a href="index.do" class="btn btn-default btn-lg btn-block">·µ»ØµÇÂ½</a>
+            <a href="index.do" class="btn btn-default btn-lg btn-block">è¿”å›žç™»é™†</a>
         </div>
     </div>
 </body>

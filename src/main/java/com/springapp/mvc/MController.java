@@ -5,13 +5,11 @@ import com.springapp.mvc.bean.User;
 import com.springapp.mvc.impl.HotNewsImpl;
 import com.springapp.mvc.service.HotNews;
 import com.springapp.mvc.utils.*;
-import com.sun.deploy.net.HttpResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -26,19 +24,19 @@ import java.util.List;
 public class MController {
 
     /**
-     * µÇÂ½³¬Ê±Ìø×ªÖ÷Ò³
+     * ç™»é™†è¶…æ—¶è·³è½¬ä¸»é¡µ
      * @return
      */
     @RequestMapping(value = "indexTimeout.do", method = RequestMethod.GET)
     public String loginTimeout(@RequestParam("loginTimeout") String loginTimeout, ModelMap modelMap) {
         if (null != loginTimeout && !loginTimeout.isEmpty()) {
-            modelMap.addAttribute("msg", "µÇÂ½³¬Ê±,ÇëÖØĞÂµÇÂ½!");
+            modelMap.addAttribute("msg", "ç™»é™†è¶…æ—¶,è¯·é‡æ–°ç™»é™†!");
         }
         return "index";
     }
 
     /**
-     * Ìø×ªµ½Ö÷Ò³
+     * è·³è½¬åˆ°ä¸»é¡µ
      * @return
      */
     @RequestMapping(value = "index.do")
@@ -47,8 +45,8 @@ public class MController {
     }
 
     /**
-     * µÇÂ½¼ì²é
-     * @param user Ó³ÉäUserÓÃ»§
+     * ç™»é™†æ£€æŸ¥
+     * @param user æ˜ å°„Userç”¨æˆ·
      * @param modelMap
      * @return
      */
@@ -61,42 +59,45 @@ public class MController {
 
         if (MySQLUtils.queryEmail(sql)) {
             session.setAttribute("username", email);
-            //¸üĞÂlast_login_time×Ö¶Î
+            //æ›´æ–°last_login_timeå­—æ®µ
             String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
             sql = "update Users set last_login_time = '" + time  + "' where username = '" + email + "'";
             MySQLUtils.insert(sql);
-            return "forward:main.do"; //µÇÂ½µ½Ö÷Ò³
+            return "forward:main.do"; //ç™»é™†åˆ°ä¸»é¡µ
         }
 
-        //ÖØ¶¨Ïòµ½index.jspÒ³Ãæ
-        modelMap.addAttribute("msg", "ÊäÈëµÄÓÃ»§Ãû»òÃÜÂë´íÎó!");
+        //é‡å®šå‘åˆ°index.jspé¡µé¢
+        modelMap.addAttribute("msg", "è¾“å…¥çš„ç”¨æˆ·åæˆ–å¯†ç é”™è¯¯!");
         modelMap.addAttribute("email", email);
         return "index";
     }
 
     /**
-     * ²©¿ÍÄÚÈİÁĞ±í
+     * åšå®¢å†…å®¹åˆ—è¡¨
      * @param user
      * @param modelMap
      * @return
      * @throws SQLException
      */
     @RequestMapping(value = "blog.do")
-    public String blog(@ModelAttribute User user, ModelMap modelMap) throws SQLException {
-        //TODO ¶ÁÈ¡²©¿ÍÄÚÈİ
+    public String blog(@ModelAttribute User user, ModelMap modelMap, HttpSession httpSession) throws SQLException {
 
         String author = user.getEmail();
 
+        if (author == null) {
+            author = httpSession.getAttribute("username").toString();
+        }
+
         String sql =
-                "select 'true' as flag, id, title, IFNULL(discuss_id, 0) as discuss_id, IFNULL(good_id, 0) as good_id from blog where author = '" + author + "' " + //×÷Õß±¾ÉíËùÓĞµÄ²©¿Í
+                "select 'true' as flag, id, title, IFNULL(discuss_id, 0) as discuss_id, IFNULL(good_id, 0) as good_id from blog where author = '" + author + "' " + //ä½œè€…æœ¬èº«æ‰€æœ‰çš„åšå®¢
                 "union all " +
-                "select 'false' as flag, id, title, IFNULL(discuss_id, 0) as discuss_id, IFNULL(good_id, 0) as good_id from blog where authority = 'public' and author != '" + author + "'"; //ÆäËû¹«¿ªµÄ²©¿Í
+                "select 'false' as flag, id, title, IFNULL(discuss_id, 0) as discuss_id, IFNULL(good_id, 0) as good_id from blog where authority = 'public' and author != '" + author + "'"; //å…¶ä»–å…¬å¼€çš„åšå®¢
 
         Connection conn = MySQLUtils.getConn();
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
 
-        //²©¿ÍÁĞ±í
+        //åšå®¢åˆ—è¡¨
         List<Blog> list = new ArrayList<Blog>();
 
         while (rs.next()) {
@@ -113,22 +114,25 @@ public class MController {
 
             String discuss_id = rs.getString("discuss_id");
             if (!discuss_id.equals("0")) {
-                //²éÑ¯ÌÖÂÛ±í
+                //æŸ¥è¯¢è®¨è®ºè¡¨
                 sql = "select count(*) as discuss_num from discuss where id = '" + discuss_id + "'";
-                //Èç¹û²»ĞÂ´´½¨stmt¾Í»áÅ×Operation not allowed after ResultSet closed!
-                //ÔÚÖØ¸´Ê¹ÓÃstmt.executeQuery(sql)µÄÊ±ºò¾Í»á¹Ø±ÕÉÏÒ»¸öResultSet.
+                //å¦‚æœä¸æ–°åˆ›å»ºstmtå°±ä¼šæŠ›Operation not allowed after ResultSet closed!
+                //åœ¨é‡å¤ä½¿ç”¨stmt.executeQuery(sql)çš„æ—¶å€™å°±ä¼šå…³é—­ä¸Šä¸€ä¸ªResultSet.
                 Statement st = conn.createStatement();
                 ResultSet tmp = st.executeQuery(sql);
                 int discuss_num = Integer.valueOf(tmp.getString("discuss_num"));
                 blog.setDiscuss_num(discuss_num);
+                //release resources
+                tmp.close();
+                st.close();
             } else {
-                //ÌÖÂÛÊıÎª0
+                //è®¨è®ºæ•°ä¸º0
                 blog.setDiscuss_num(0);
             }
 
             String good_id = rs.getString("good_id");
             if (!good_id.equals("0")) {
-                //²éÑ¯µãÔŞ±í
+                //æŸ¥è¯¢ç‚¹èµè¡¨
                 sql = "select count(*) as good_num from good where id = '" + good_id + "'";
                 Statement st = conn.createStatement();
                 ResultSet tmp = st.executeQuery(sql);
@@ -136,33 +140,40 @@ public class MController {
                     int good_num = Integer.valueOf(tmp.getString("good_num"));
                     blog.setGood_num(good_num);
                 }
+
+                //release resources
+                tmp.close();
+                st.close();
             } else {
-                //µãÔŞÊıÎª0
+                //ç‚¹èµæ•°ä¸º0
                 blog.setGood_num(0);
             }
 
             list.add(blog);
         }
 
-        //´æÊı¾İ
+        //release resources
+        rs.close();
+        stmt.close();
+
+        //å­˜æ•°æ®
         modelMap.put("blog_list", list);
 
         return "blog";
     }
 
     /**
-     * ²©¿Í²é¿´
+     * åšå®¢æŸ¥çœ‹(èµå’Œè¯„è®º)
      * @return
      */
     @RequestMapping(value = "blog_view.do", method = RequestMethod.GET)
     public String blogView(@RequestParam String id, ModelMap modelMap, HttpSession httpSession) throws SQLException {
-        //TODO ×¼±¸²©¿ÍÊı¾İ¼°ÆÀÂÛ
         String sql = "select title, IFNULL(discuss_id,0) as discuss_id, IFNULL(good_id, 0) as good_id, content from blog where id = '" + id + "'";
         Connection conn = MySQLUtils.getConn();
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
 
-        //µ±Ç°ÓÃ»§Ãû
+        //å½“å‰ç”¨æˆ·å
         String username = httpSession.getAttribute("username").toString();
 
         while (rs.next()) {
@@ -174,7 +185,7 @@ public class MController {
             String good_id = rs.getString("good_id");
             if (!discuss_id.equals("0")) {
                 sql = "select d_user, content from discuss where id = '" + discuss_id + "'";
-                //TODO ¶ÁÈ¡ÆÀÂÛÁĞ±í
+                //TODO è¯»å–è¯„è®ºåˆ—è¡¨
             }
 
             if (!good_id.equals("0")) {
@@ -182,12 +193,12 @@ public class MController {
                 Statement st = conn.createStatement();
                 ResultSet tmp = st.executeQuery(sql);
                 int count = 0;
-                int max = 0; //¹²¶àÉÙÌõµãÔŞÊı¾İ
+                int max = 0; //å…±å¤šå°‘æ¡ç‚¹èµæ•°æ®
                 while (tmp.next()) {
                     max = tmp.getRow();
                     String g_username = tmp.getString("good_username");
                     if (!g_username.isEmpty() && g_username.equals(username)) {
-                        //µ±Ç°ÓÃ»§²»ÄÜÖØ¸´ÔŞ
+                        //å½“å‰ç”¨æˆ·ä¸èƒ½é‡å¤èµ
                         modelMap.put("good", "<button id='good' type='button' class='btn btn-default btn-lg' disabled='disabled'>\n" +
                                 "                    <span class='glyphicon glyphicon-thumbs-up'></span>\n" +
                                 "                </button>");
@@ -198,21 +209,30 @@ public class MController {
                 }
 
                 if (count != 0 && max != 0 && count == max) {
-                    //Ã»ÓĞµ±Ç°ÓÃ»§µÄµãÔŞ¼ÇÂ¼
+                    //æ²¡æœ‰å½“å‰ç”¨æˆ·çš„ç‚¹èµè®°å½•
                     modelMap.put("good", "<button id='good' type='button' class='btn btn-default btn-lg'>\n" +
                             "                    <span class='glyphicon glyphicon-thumbs-up'></span>\n" +
                             "                </button>");
                 }
 
+                //release resources
+                tmp.close();
+                st.close();
+
             } else {
-                //µ±Ç°ÓÃ»§¿ÉÒÔÔŞ(µ±Ç°ÎÄÕÂ»¹Î´±»µãÔŞ)
+                //å½“å‰ç”¨æˆ·å¯ä»¥èµ(å½“å‰æ–‡ç« è¿˜æœªè¢«ç‚¹èµ)
                 modelMap.put("good", "<button id='good' type='button' class='btn btn-default btn-lg'>\n" +
                         "                    <span class='glyphicon glyphicon-thumbs-up'></span>\n" +
                         "                </button>");
             }
         }
 
-        //²©¿Íid
+
+        //release resources
+        rs.close();
+        stmt.close();
+
+        //åšå®¢id
         modelMap.put("id", id);
 
         return "blog_view";
@@ -220,8 +240,8 @@ public class MController {
 
 
     /**
-     * ²©¿ÍµãÔŞÇëÇó
-     * ·µ»¹code½âÊÍ: 100: ÒÑ¾­µã¹ıÔŞ. 200: µãÔŞ³É¹¦. 300: µãÔŞÊ§°Ü.
+     * åšå®¢ç‚¹èµè¯·æ±‚
+     * è¿”è¿˜codeè§£é‡Š: 100: å·²ç»ç‚¹è¿‡èµ. 200: ç‚¹èµæˆåŠŸ. 300: ç‚¹èµå¤±è´¥.
      * @param blog_id
      * @return
      */
@@ -250,11 +270,11 @@ public class MController {
                 }
 
                 if (row > 0) {
-                    //ÒÑ¾­µã¹ıÔŞÁË
+                    //å·²ç»ç‚¹è¿‡èµäº†
                     return "100";
                 }
 
-                //´æµãÔŞÓÃ»§
+                //å­˜ç‚¹èµç”¨æˆ·
                 sql = "insert into good(id, good_username) values('" + good_id + "', '" + username + "')";
                 String code = "";
                 if (MySQLUtils.insert(sql)) {
@@ -266,17 +286,17 @@ public class MController {
 
             } else {
 
-                //Ã»ÓĞgood_id
+                //æ²¡æœ‰good_id
                 String g_id = "good_" + UUIDUtils.code();
                 sql = "insert into good(id, good_username) values('" + g_id + "', '" + username + "')";
                 String code = "";
                 if (MySQLUtils.insert(sql)) {
-                    //¹ØÁªgood_idÓëblog_id;
+                    //å…³è”good_idä¸blog_id;
                     sql = "update blog set good_id = '" + g_id + "' where id = '" + blog_id + "'";
                     if (MySQLUtils.insert(sql)) {
-                        System.out.println("blog_id: " + blog_id + " Óë " + "good_id: " + g_id + " ¹ØÁª³É¹¦!");
+                        System.out.println("blog_id: " + blog_id + " ä¸ " + "good_id: " + g_id + " å…³è”æˆåŠŸ!");
                     } else {
-                        System.out.println("blog_id: " + blog_id + " Óë " + "good_id: " + g_id + " ¹ØÁªÊ§°Ü!");
+                        System.out.println("blog_id: " + blog_id + " ä¸ " + "good_id: " + g_id + " å…³è”å¤±è´¥!");
                     }
                     code = "200";
                 } else {
@@ -286,24 +306,66 @@ public class MController {
 
             }
         }
+
+        //release resources
+        rs.close();
+        stmt.close();
+
         return "";
     }
 
 
     /**
-     * ²©¿Í±à¼­Ìø×ª
+     * åšå®¢ç¼–è¾‘è·³è½¬
      * @return
      */
     @RequestMapping(value = "blog_editor.do", method = RequestMethod.GET)
-    public String blogEditor(ModelMap modelMap) {
-        modelMap.put("blog_content", "ÊäÈë²©¿ÍÄÚÈİ.");
-        modelMap.put("option", "<option value='private'>Ë½ÓĞ</option><option value='public'>¹«¿ª</option>");
+    public String blogEditor(@RequestParam String op, ModelMap modelMap, @RequestParam String id) throws SQLException {
+        modelMap.put("blog_content", "è¾“å…¥åšå®¢å†…å®¹.");
+        modelMap.put("option", "<option value='private'>ç§æœ‰</option><option value='public'>å…¬å¼€</option>");
+
+        if (!op.isEmpty()) {
+            if (op.equals("create")) {
+                modelMap.put("sub_button", "å‘è¡¨åšå®¢");
+            } else {
+                if (!id.isEmpty()) {
+                    //æ›´æ–°åšå®¢å†…å®¹ç»„ç»‡
+                    String sql = "select title,content,authority from blog where id = '" + id + "'";
+                    Connection conn = MySQLUtils.getConn();
+                    Statement stmt = conn.createStatement();
+                    ResultSet rs = stmt.executeQuery(sql);
+
+                    while (rs.next()) {
+                        String title = rs.getString("title");
+                        String content = rs.getString("content");
+                        String authority = rs.getString("authority");
+
+                        if (authority.equals("private")) {
+                            modelMap.put("option", "<option value='private' selected>ç§æœ‰</option><option value='public'>å…¬å¼€</option>");
+                        } else {
+                            modelMap.put("option", "<option value='private'>ç§æœ‰</option><option value='public' selected>å…¬å¼€</option>");
+                        }
+                        modelMap.put("blog_content", content);
+                        modelMap.put("title", title);
+                        modelMap.put("sub_button", "æ›´æ–°åšå®¢");
+                        modelMap.put("id", id);
+                    }
+                } else {
+                    modelMap.put("op", "create");
+                    modelMap.put("sub_button", "å‘è¡¨åšå®¢");
+                }
+            }
+            modelMap.put("op", op);
+        } else {
+            modelMap.put("op", "create");
+            modelMap.put("sub_button", "å‘è¡¨åšå®¢");
+        }
+
         return "blog_editor";
     }
 
-
     /**
-     * É¾³ı²©¿ÍÇëÇó
+     * åˆ é™¤åšå®¢è¯·æ±‚
      * @param blog_id
      * @return
      * @throws SQLException
@@ -311,64 +373,145 @@ public class MController {
     @RequestMapping(value = "blog_delete.do", method = RequestMethod.POST)
     public String blogDelete(@RequestParam String blog_id) throws SQLException{
 
-        String sql = "delete from blog where id='" + blog_id + "'";
-        if (MySQLUtils.insert(sql)) {
-            System.out.println("É¾³ı²©¿Íid:" + blog_id + " ³É¹¦!");
-        } else {
-            System.out.println("É¾³ı²©¿Íid:" + blog_id + " Ê§°Ü!");
+        String sql = "select discuss_id, good_id from blog where id = '" + blog_id + "'";
+        Connection conn = MySQLUtils.getConn();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+
+        while (rs.next()) {
+            String good_id = rs.getString("good_id");
+            String discuss_id = rs.getString("discuss_id");
+
+            if (good_id != null && !good_id.isEmpty()) {
+                //åˆ é™¤èµ
+                sql = "delete from good where id = '" + good_id + "'";
+                if (MySQLUtils.insert(sql)) {
+                    System.out.println("åˆ é™¤blog_id:" + blog_id + "çš„èµæˆåŠŸ!");
+                } else {
+                    System.out.println("åˆ é™¤blog_id:" + blog_id + "çš„èµå¤±è´¥!");
+                }
+            }
+
+            if (discuss_id != null && !discuss_id.isEmpty()) {
+                //åˆ é™¤è¯„è®º
+                sql = "delete from discuss where id = '" + discuss_id + "'";
+                if (MySQLUtils.insert(sql)) {
+                    System.out.println("åˆ é™¤blog_id:" + blog_id  + "çš„è¯„è®ºæˆåŠŸ!");
+                } else {
+                    System.out.println("åˆ é™¤blog_id:" + blog_id  + "çš„è¯„è®ºå¤±è´¥!");
+                }
+            }
+
         }
-        //TODO Ò³ÃæÎ´Õ¹ÏÖ³ö×îĞÂµÄÊı¾İ
+
+        //release resources
+        rs.close();
+        stmt.close();
+
+        //åˆ é™¤åšå®¢
+        sql = "delete from blog where id='" + blog_id + "'";
+        if (MySQLUtils.insert(sql)) {
+            System.out.println("åˆ é™¤åšå®¢blog_id:" + blog_id + "æˆåŠŸ!");
+        } else {
+            //TODO å¤„ç†åˆ é™¤å¤±è´¥
+            System.out.println("åˆ é™¤åšå®¢blog_id:" + blog_id + "å¤±è´¥!");
+        }
         return "forward:blog.do";
     }
 
     /**
-     * ²©¿Í´´½¨
+     * åšå®¢è¯„è®º
+     * @param comment
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "blog_discuss.do", method = RequestMethod.POST)
+    @ResponseBody
+    public String blogDiscuss(@RequestParam String comment, @RequestParam String id) {
+        System.out.println(comment);
+        System.out.println(id);
+        return "true";
+    }
+
+    /**
+     * åšå®¢åˆ›å»º
      * @param blog
      * @return
      */
     @RequestMapping(value = "blog_create.do", method= RequestMethod.POST)
-    public String blogCreate(@ModelAttribute Blog blog, HttpSession session, ModelMap modelMap) throws SQLException {
-        //²©¿Íid
-        String blog_id = "blog_" + UUIDUtils.code();
-        blog.setId(blog_id);
+    public String blogCreate(@ModelAttribute Blog blog, HttpSession session, ModelMap modelMap, @RequestParam String op) throws SQLException {
+        if (!op.isEmpty()) {
+            if (op.equals("create")) {
+                //åšå®¢id
+                String blog_id = "blog_" + UUIDUtils.code();
+                blog.setId(blog_id);
 
-        //²©¿Í´´½¨Ê±¼ä
-        String create_time = DateUtils.getCurrDate();
-        blog.setCreate_time(create_time);
+                //åšå®¢åˆ›å»ºæ—¶é—´
+                String create_time = DateUtils.getCurrDate();
+                blog.setCreate_time(create_time);
 
-        //²©¿Í×÷Õß
-        String author = session.getAttribute("username").toString();
-        blog.setAuthor(author);
+                //åšå®¢ä½œè€…
+                String author = session.getAttribute("username").toString();
+                blog.setAuthor(author);
 
-        String sql = "insert into blog(id, title, create_time, author, authority, content) values('${id}', '${title}', '${create_time}', '${author}', '${authority}', '${content}')";
+                String sql = "insert into blog(id, title, create_time, author, authority, content) values('${id}', '${title}', '${create_time}', '${author}', '${authority}', '${content}')";
 
-        sql = StringUtils.getString(sql, blog);
+                sql = StringUtils.getString(sql, blog);
 
-        if (MySQLUtils.insert(sql)) {
-            modelMap.put("msg", "²åÈë²©¿Í³É¹¦!");
-            modelMap.put("blog_content", "ÊäÈë²©¿ÍÄÚÈİ.");
-        } else {
-            modelMap.put("msg", "²åÈë²©¿ÍÊ§°Ü!");
-            modelMap.put("blog_content", blog.getContent());
-            modelMap.put("title", blog.getTitle());
-            if (blog.getAuthority().equals("private")) {
-                modelMap.put("option", "<option value='private' selected>Ë½ÓĞ</option><option value='public'>¹«¿ª</option>");
+                if (MySQLUtils.insert(sql)) {
+                    modelMap.put("msg", "æ’å…¥åšå®¢æˆåŠŸ!");
+                    modelMap.put("blog_content", "è¾“å…¥åšå®¢å†…å®¹.");
+                    modelMap.put("option", "<option value='private'>ç§æœ‰</option><option value='public'>å…¬å¼€</option>");
+                } else {
+                    modelMap.put("msg", "æ’å…¥åšå®¢å¤±è´¥!");
+                    modelMap.put("blog_content", blog.getContent());
+                    modelMap.put("title", blog.getTitle());
+                    if (blog.getAuthority().equals("private")) {
+                        modelMap.put("option", "<option value='private' selected>ç§æœ‰</option><option value='public'>å…¬å¼€</option>");
+                    } else {
+                        modelMap.put("option", "<option value='private'>ç§æœ‰</option><option value='public' selected>å…¬å¼€</option>");
+                    }
+                }
+                modelMap.put("sub_button", "å‘è¡¨åšå®¢");
             } else {
-                modelMap.put("option", "<option value='private'>Ë½ÓĞ</option><option value='public' selected>¹«¿ª</option>");
+                //æ›´æ–°blog
+                String sql = "update blog set authority = '" + blog.getAuthority() + "', title = '" + blog.getTitle() + "', content = '" + blog.getContent() + "' where id = '" + blog.getId() + "'";
+
+                if (MySQLUtils.insert(sql)) {
+                    modelMap.put("msg", "æ›´æ–°åšå®¢æˆåŠŸ!");
+                } else {
+                    modelMap.put("msg", "æ›´æ–°åšå®¢å¤±è´¥!");
+                }
+
+                modelMap.put("op", op);
+                modelMap.put("id", blog.getId());
+                modelMap.put("blog_content", blog.getContent());
+                modelMap.put("title", blog.getTitle());
+                if (blog.getAuthority().equals("private")) {
+                    modelMap.put("option", "<option value='private' selected>ç§æœ‰</option><option value='public'>å…¬å¼€</option>");
+                } else {
+                    modelMap.put("option", "<option value='private'>ç§æœ‰</option><option value='public' selected>å…¬å¼€</option>");
+                }
+                modelMap.put("sub_button", "æ›´æ–°åšå®¢");
             }
+            modelMap.put("op", op);
+        } else {
+            modelMap.put("sub_button", "å‘è¡¨åšå®¢");
+            modelMap.put("op", "create");
         }
+
         return "blog_editor";
     }
 
     /**
-     * ĞÂÎÅÒ³Ãæ
+     * æ–°é—»é¡µé¢
      * @param user
      * @return
      */
     @RequestMapping(value = "news.do")
     public String news(@ModelAttribute User user, ModelMap modelMap) {
-        //×¼±¸tabÖĞNewsÊı¾İÏÔÊ¾
-        //Ö÷Ò³ÏÔÊ¾16ÌõĞÂÎÅ
+        //å‡†å¤‡tabä¸­Newsæ•°æ®æ˜¾ç¤º
+        //ä¸»é¡µæ˜¾ç¤º16æ¡æ–°é—»
         HotNews hn = new HotNewsImpl();
         ArrayList<String> hotNews = hn.getHotNews();
         modelMap.addAttribute("hotNews", hotNews);
@@ -376,10 +519,10 @@ public class MController {
     }
 
     /**
-     * µÇÂ½µ½Ö÷Ò³Ãæ
+     * ç™»é™†åˆ°ä¸»é¡µé¢
      * @param user
      * @param modelMap
-     * @return Ö÷Ò³Ãæ
+     * @return ä¸»é¡µé¢
      * @throws SQLException
      */
     @RequestMapping(value = "main.do")
@@ -391,7 +534,7 @@ public class MController {
     }
 
     /**
-     * ²é¿´(²âÊÔsession)
+     * æŸ¥çœ‹(æµ‹è¯•session)
      * @return
      */
     @RequestMapping(value = "view.do", method = RequestMethod.GET)
@@ -400,7 +543,7 @@ public class MController {
     }
 
     /**
-     * ÓÃ»§×¢²áÌø×ª
+     * ç”¨æˆ·æ³¨å†Œè·³è½¬
      * @return
      */
     @RequestMapping(value = "registerJump.do", method = RequestMethod.GET)
@@ -409,7 +552,7 @@ public class MController {
     }
 
     /**
-     * ÓÃ»§×¢²á
+     * ç”¨æˆ·æ³¨å†Œ
      * @param user
      * @return
      */
@@ -431,7 +574,7 @@ public class MController {
 
 
     /**
-     * Íü¼ÇÃÜÂëÌø×ª
+     * å¿˜è®°å¯†ç è·³è½¬
      * @param user
      * @return
      */
@@ -441,19 +584,19 @@ public class MController {
     }
 
     /**
-     * ÖØÖÃÃÜÂëÓÊ¼ş·¢ËÍ
+     * é‡ç½®å¯†ç é‚®ä»¶å‘é€
      * @param user
      * @return
      */
     @RequestMapping(value = "forgot.do", method = RequestMethod.POST)
     public String forgot(@ModelAttribute User user, HttpServletRequest request) {
         try {
-            //ÎªÁË·ÀÖ¹ÖØ¸´Ìá½»¸ü¸ÄÃÜÂë
-            //¼ì²éreset_codeÊÇ·ñÎª¿Õ
+            //ä¸ºäº†é˜²æ­¢é‡å¤æäº¤æ›´æ”¹å¯†ç 
+            //æ£€æŸ¥reset_codeæ˜¯å¦ä¸ºç©º
             if (null != user.getEmail() && !user.getEmail().isEmpty()) {
                 String sql = "select * from Users where username = '" + user.getEmail() + "' and reset_code is null";
                 if (MySQLUtils.queryEmail(sql)) {
-                    //reset_codeÎª¿Õ: Ôò·¢ËÍÖØÖÃÃÜÂëÓÊ¼ş
+                    //reset_codeä¸ºç©º: åˆ™å‘é€é‡ç½®å¯†ç é‚®ä»¶
                     String path = request.getContextPath();
                     String website_host = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
 
@@ -464,10 +607,10 @@ public class MController {
                     sql = "update Users set reset_code = '" + code + "' where username = '" + user.getEmail() + "'";
                     MySQLUtils.insert(sql);
 
-                    //Æô¶¯Ò»¸öÏß³Ì¼ÆËãÖØÖÃÃÜÂëcodeÊ§Ğ§Ê±¼ä
+                    //å¯åŠ¨ä¸€ä¸ªçº¿ç¨‹è®¡ç®—é‡ç½®å¯†ç codeå¤±æ•ˆæ—¶é—´
                     PlanTask pt = new PlanTask(user.getEmail());
                 } else {
-                    //reset_code²»Îª¿Õ: Ôò²»·¢ËÍÖØÖÃÃÜÂëÓÊ¼ş,Ìø×ªµ½ÌáÊ¾ÒÑ¾­·¢ËÍÃÜÂëĞŞ¸ÄÓÊ¼ş.
+                    //reset_codeä¸ä¸ºç©º: åˆ™ä¸å‘é€é‡ç½®å¯†ç é‚®ä»¶,è·³è½¬åˆ°æç¤ºå·²ç»å‘é€å¯†ç ä¿®æ”¹é‚®ä»¶.
                     return "reset_repeat";
                 }
             }
@@ -479,8 +622,8 @@ public class MController {
     }
 
     /**
-     * codeÑéÖ¤
-     * ´¦ÀíÓÊ¼şÖĞµã»÷¹ıÀ´µÄÃÜÂëÖØÖÃÒ³Ãæ
+     * codeéªŒè¯
+     * å¤„ç†é‚®ä»¶ä¸­ç‚¹å‡»è¿‡æ¥çš„å¯†ç é‡ç½®é¡µé¢
      * @param email
      * @param code
      * @return
@@ -493,7 +636,7 @@ public class MController {
             String sql = "select * from Users where email = '" + email + "' and reset_code = '" + code + "'";
             try {
                 if (MySQLUtils.queryEmail(sql)) {
-                    //codeÓĞĞ§ -> effective_code
+                    //codeæœ‰æ•ˆ -> effective_code
                     modelMap.addAttribute("email", email);
                     modelMap.addAttribute("reset_code", code);
                     return "effective_code";
@@ -503,12 +646,12 @@ public class MController {
             }
         }
 
-        //codeÎŞĞ§ -> failure_code
+        //codeæ— æ•ˆ -> failure_code
         return "failure_code";
     }
 
     /**
-     * ÖØÖÃÃÜÂë
+     * é‡ç½®å¯†ç 
      * @return
      */
     @RequestMapping(value = "effective_code.do", method = RequestMethod.POST)
@@ -518,7 +661,7 @@ public class MController {
             String sql = "select * from Users where email = '" + user.getEmail() + "' and reset_code = '" + user.getReset_code() + "'";
             try {
                 if (MySQLUtils.queryEmail(sql)) {
-                    //ĞŞ¸ÄÃÜÂë,ÉèÖÃreset_codeÎªnull(ÉèÖÃÎªnull·ÀÖ¹ÖØ¸´Ìá½»Ò³ÃæĞŞ¸ÄÃÜÂë.)
+                    //ä¿®æ”¹å¯†ç ,è®¾ç½®reset_codeä¸ºnull(è®¾ç½®ä¸ºnullé˜²æ­¢é‡å¤æäº¤é¡µé¢ä¿®æ”¹å¯†ç .)
                     sql = "update Users set password = '" + MD5Utils.getMD5(user.getPassword()) + "', reset_code = null where username = '" + user.getEmail() + "' and reset_code = '" + user.getReset_code() + "'";
                     MySQLUtils.insert(sql);
                     return "effective_success";
@@ -531,7 +674,7 @@ public class MController {
     }
 
     /**
-     * µÇÂ½Ö÷Ò³ºóÃÜÂëĞŞ¸ÄÒ³ÃæÌø×ª
+     * ç™»é™†ä¸»é¡µåå¯†ç ä¿®æ”¹é¡µé¢è·³è½¬
      * @return
      */
     @RequestMapping(value = "reset_password_jump.do")
@@ -540,36 +683,36 @@ public class MController {
     }
 
     /**
-     * µÇÂ½Ö÷Ò³ºóÃÜÂëĞŞ¸ÄÒ³ÃæÌá½»
+     * ç™»é™†ä¸»é¡µåå¯†ç ä¿®æ”¹é¡µé¢æäº¤
      * @return
      */
     @RequestMapping(value = "reset_password.do")
     public String resetPassword2(@RequestParam("s_password") String s_password, @RequestParam("n_password") String n_password,
                                  HttpSession session, ModelMap modelMap) throws SQLException {
 
-        //Ô­ÃÜÂë
+        //åŸå¯†ç 
         s_password = MD5Utils.getMD5(s_password);
-        //ĞÂÃÜÂë
+        //æ–°å¯†ç 
         n_password = MD5Utils.getMD5(n_password);
 
-        //ÓÃ»§Ãû
+        //ç”¨æˆ·å
         String username = session.getAttribute("username").toString();
 
         String sql = "update Users set password = '" + n_password + "' where username = '" + username + "' and password = '" + s_password + "'";
 
         if (MySQLUtils.insert(sql)) {
-            //sessionÊ§Ğ§
+            //sessionå¤±æ•ˆ
             session.invalidate();
-            modelMap.addAttribute("msg", "ÃÜÂëĞŞ¸Ä³É¹¦!ÇëÖØĞÂµÇÂ½!");
+            modelMap.addAttribute("msg", "å¯†ç ä¿®æ”¹æˆåŠŸ!è¯·é‡æ–°ç™»é™†!");
             return "forward:index.do";
         } else {
-            modelMap.addAttribute("msg", "ÃÜÂëĞŞ¸ÄÊ§°Ü!");
+            modelMap.addAttribute("msg", "å¯†ç ä¿®æ”¹å¤±è´¥!");
         }
         return "reset_password";
     }
 
     /**
-     * ×¢Ïú
+     * æ³¨é”€
      * @param session
      * @return
      */
@@ -580,9 +723,9 @@ public class MController {
     }
 
     /**
-     * ÓÊÏäÊÇ·ñ´æÔÚ¼ì²é
-     * @param email ¼ì²éµÄÓÊÏä
-     * @return true: ÓÊÏä´æÔÚ, false: ÓÊÏä²»´æÔÚ.
+     * é‚®ç®±æ˜¯å¦å­˜åœ¨æ£€æŸ¥
+     * @param email æ£€æŸ¥çš„é‚®ç®±
+     * @return true: é‚®ç®±å­˜åœ¨, false: é‚®ç®±ä¸å­˜åœ¨.
      */
     @RequestMapping(value = "check.do", method = RequestMethod.POST)
     @ResponseBody
@@ -595,8 +738,8 @@ public class MController {
     }
 
     /**
-     * ¼ì²éÃÜÂëÊÇ·ñÕıÈ·
-     * @return true: ÃÜÂëÕıÈ·, false: ÃÜÂë´íÎó
+     * æ£€æŸ¥å¯†ç æ˜¯å¦æ­£ç¡®
+     * @return true: å¯†ç æ­£ç¡®, false: å¯†ç é”™è¯¯
      */
     @RequestMapping(value = "check_password.do", method = RequestMethod.POST)
     @ResponseBody

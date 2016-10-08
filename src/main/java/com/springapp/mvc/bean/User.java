@@ -11,7 +11,7 @@ public class User {
     private String email;
 
     /**
-     * ÓÃ»§êÇ³Æ
+     * ç”¨æˆ·æ˜µç§°
      */
     private String nickname;
 
@@ -21,22 +21,22 @@ public class User {
     private String username;
 
     /**
-     * ÓÃ»§ÃÜÂëMD5
+     * ç”¨æˆ·å¯†ç MD5
      */
     private String password;
 
     /**
-     * ÖØÖÃÃÜÂëÑéÖ¤code
+     * é‡ç½®å¯†ç éªŒè¯code
      */
     private String reset_code;
 
     /**
-     * ×îºóÒ»´ÎµÇÂ¼Ê±¼ä
+     * æœ€åä¸€æ¬¡ç™»å½•æ—¶é—´
      */
     private String last_login_time;
 
     /**
-     * ×¢²áÊ±¼ä
+     * æ³¨å†Œæ—¶é—´
      */
     private String reg_time;
 

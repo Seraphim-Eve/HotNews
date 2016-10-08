@@ -51,7 +51,7 @@
             $root.html($.parseTmpl(me.tpl, options));
             me.tabs = $.eduitab({selector: "#edui-formula-tab-Jpanel"});
 
-            /* ³õÊ¼»¯popupµÄÄÚÈİ */
+            /* åˆå§‹åŒ–popupçš„å†…å®¹ */
             var headHtml = [], xMax = 0, yMax = 0,
                 $tabContent = me.root().find('.edui-tab-content');
             $.each(formula, function (k, v) {
@@ -70,24 +70,24 @@
             $root.find('.edui-tab-nav').html(headHtml.join(''));
             $root.find('.edui-tab-content').append('<div class="edui-formula-clearboth"></div>');
 
-            /* Ñ¡ÖĞµÚÒ»¸ötab */
+            /* é€‰ä¸­ç¬¬ä¸€ä¸ªtab */
             me.switchTab(0);
         },
         initEvent: function () {
             var me = this;
 
-            //·ÀÖ¹µã»÷¹ıºó¹Ø±Õpopup
+            //é˜²æ­¢ç‚¹å‡»è¿‡åå…³é—­popup
             me.root().on('click', function (e) {
                 return false;
             });
 
-            //µã»÷tabÇĞ»»²Ëµ¥
+            //ç‚¹å‡»tabåˆ‡æ¢èœå•
             me.root().find('.edui-tab-nav').delegate('.edui-tab-item', 'click', function (evt) {
                 me.switchTab(this);
                 return false;
             });
 
-            //µã»÷Ñ¡ÖĞ¹«Ê½
+            //ç‚¹å‡»é€‰ä¸­å…¬å¼
             me.root().find('.edui-tab-pane').delegate('.edui-formula-latex-item', 'click', function (evt) {
                 var $item = $(this),
                     latex = $item.attr('data-latex') || '';
@@ -107,7 +107,7 @@
             $root.find('.edui-tab-nav .edui-tab-item').removeClass('edui-active').eq(index).addClass('edui-active');
             $root.find('.edui-tab-content .edui-tab-pane').removeClass('edui-active').eq(index).addClass('edui-active');
 
-            /* ×Ô¶¯³¤¸ß */
+            /* è‡ªåŠ¨é•¿é«˜ */
             me.autoHeight(0);
         },
         autoHeight: function () {

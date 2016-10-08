@@ -70,7 +70,7 @@
             }).prev().on("click",function () {
 
                 if ( $(this).parent().remove().hasClass("edui-image-upload-item") ) {
-                    //ÏÔÊ¾Í¼Æ¬¼ÆÊı-1
+                    //æ˜¾ç¤ºå›¾ç‰‡è®¡æ•°-1
                     Upload.showCount--;
                     Upload.updateView();
                 }
@@ -87,7 +87,7 @@
                 //FF4+
                 img.src = window.URL.createObjectURL(file);
             } else {
-                //ÊµÀı»¯file reader¶ÔÏó
+                //å®ä¾‹åŒ–file readerå¯¹è±¡
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     img.src = this.result;
@@ -99,7 +99,7 @@
         callback: function (editor, $w, url, state) {
 
             if (state == "SUCCESS") {
-                //ÏÔÊ¾Í¼Æ¬¼ÆÊı+1
+                //æ˜¾ç¤ºå›¾ç‰‡è®¡æ•°+1
                 Upload.showCount++;
                 var $img = $("<img src='" + editor.options.imagePath + url + "' class='edui-image-pic' />"),
                     $item = $("<div class='edui-image-item edui-image-upload-item'><div class='edui-image-close'></div></div>").append($img);
@@ -134,7 +134,7 @@
     };
 
     /*
-     * ±¾µØÉÏ´«
+     * æœ¬åœ°ä¸Šä¼ 
      * */
     var Upload = {
         showCount: 0,
@@ -177,7 +177,7 @@
             var me = this,
                 url=me.editor.options.imageUrl;
 
-            url=url + (url.indexOf("?") == -1 ? "?" : "&") + "editorid="+me.editor.id;//³õÊ¼formÌá½»µØÖ·;
+            url=url + (url.indexOf("?") == -1 ? "?" : "&") + "editorid="+me.editor.id;//åˆå§‹formæäº¤åœ°å€;
 
             $("form", $(sel, me.dialog)).attr("action", url);
 
@@ -223,7 +223,7 @@
 
             return me;
         },
-        //¸üĞÂinput
+        //æ›´æ–°input
         updateInput: function ( inputField ) {
 
             $( ".edui-image-file", this.dialog ).each( function ( index, ele ) {
@@ -233,7 +233,7 @@
             } );
 
         },
-        //¸üĞÂÉÏ´«¿ò
+        //æ›´æ–°ä¸Šä¼ æ¡†
         updateView: function () {
 
             if ( Upload.showCount !== 0 ) {
@@ -247,24 +247,24 @@
         },
         drag: function () {
             var me = this;
-            //×ö×§ÉÏ´«µÄÖ§³Ö
+            //åšæ‹½ä¸Šä¼ çš„æ”¯æŒ
             if (!UM.browser.ie9below) {
                 me.dialog.find('.edui-image-content').on('drop',function (e) {
 
-                    //»ñÈ¡ÎÄ¼şÁĞ±í
+                    //è·å–æ–‡ä»¶åˆ—è¡¨
                     var fileList = e.originalEvent.dataTransfer.files;
                     var img = document.createElement('img');
                     var hasImg = false;
                     $.each(fileList, function (i, f) {
                         if (/^image/.test(f.type)) {
-                            //´´½¨Í¼Æ¬µÄbase64
+                            //åˆ›å»ºå›¾ç‰‡çš„base64
                             Base.createImgBase64(img, f, me.dialog);
 
                             var xhr = new XMLHttpRequest();
                             xhr.open("post", me.editor.getOpt('imageUrl') + "?type=ajax", true);
                             xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 
-                            //Ä£ÄâÊı¾İ
+                            //æ¨¡æ‹Ÿæ•°æ®
                             var fd = new FormData();
                             fd.append(me.editor.getOpt('imageFieldName'), f);
 
@@ -318,7 +318,7 @@
     };
 
     /*
-     * ÍøÂçÍ¼Æ¬
+     * ç½‘ç»œå›¾ç‰‡
      * */
     var NetWork = {
         init: function (editor, $w) {

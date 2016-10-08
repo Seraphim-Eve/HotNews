@@ -4,12 +4,12 @@ import java.util.UUID;
 
 /**
  * Created by Xr on 2016/9/2.
- * 生成密码重置验证code.
+ * 鐢熸垚瀵嗙爜閲嶇疆楠岃瘉code.
  */
 public class UUIDUtils {
 
     /**
-     * 生成code
+     * 鐢熸垚code
      * @return
      */
     public static String code() {

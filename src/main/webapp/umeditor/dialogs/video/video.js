@@ -70,7 +70,7 @@
 
             me.createAlignButton( ["eduiVideoFloat"] );
 
-            //±à¼­ÊÓÆµÊ±³õÊ¼»¯Ïà¹ØĞÅÏ¢
+            //ç¼–è¾‘è§†é¢‘æ—¶åˆå§‹åŒ–ç›¸å…³ä¿¡æ¯
             if(img && img.className == "edui-faked-video"){
                 $("#eduiVideoUrl", me.$widget)[0].value = url = img.getAttribute("_url");
                 $("#eduiVideoWidth", me.$widget)[0].value = img.width;
@@ -83,7 +83,7 @@
 
         },
         /**
-         * ¸ù¾İurlÉú³ÉÊÓÆµÔ¤ÀÀ
+         * æ ¹æ®urlç”Ÿæˆè§†é¢‘é¢„è§ˆ
          */
         createPreviewVideo: function(url){
 
@@ -105,7 +105,7 @@
 
         },
         /**
-         * ½«µ¥¸öÊÓÆµĞÅÏ¢²åÈë±à¼­Æ÷ÖĞ
+         * å°†å•ä¸ªè§†é¢‘ä¿¡æ¯æ’å…¥ç¼–è¾‘å™¨ä¸­
          */
         insertSingle: function(){
 
@@ -126,7 +126,7 @@
 
         },
         /**
-         * URL×ª»»
+         * URLè½¬æ¢
          */
         convert_url: function(url){
             if ( !url ) return '';
@@ -154,7 +154,7 @@
             return url;
         },
         /**
-         * ¼ì²â´«ÈëµÄËùÓĞinput¿òÖĞÊäÈëµÄ³¤¿íÊÇ·ñÊÇÕıÊı
+         * æ£€æµ‹ä¼ å…¥çš„æ‰€æœ‰inputæ¡†ä¸­è¾“å…¥çš„é•¿å®½æ˜¯å¦æ˜¯æ­£æ•°
          */
         checkNum: function checkNum( nodes ) {
 
@@ -172,7 +172,7 @@
             return true;
         },
         /**
-         * Êı×ÖÅĞ¶Ï
+         * æ•°å­—åˆ¤æ–­
          * @param value
          */
         isNumber: function( value ) {
@@ -195,7 +195,7 @@
 
         },
         /**
-         * ´´½¨Í¼Æ¬¸¡¶¯Ñ¡Ôñ°´Å¥
+         * åˆ›å»ºå›¾ç‰‡æµ®åŠ¨é€‰æ‹©æŒ‰é’®
          * @param ids
          */
         createAlignButton: function( ids ) {
@@ -217,7 +217,7 @@
             }
         },
         /**
-         * Ñ¡ÔñÇĞ»»
+         * é€‰æ‹©åˆ‡æ¢
          */
         switchSelect: function( selectParentId ) {
             var selects = $( "#" + selectParentId, this.$widget )[0].children;
@@ -232,7 +232,7 @@
             }
         },
         /**
-         * ÕÒµ½idÏÂ¾ßÓĞfocusÀàµÄ½Úµã²¢·µ»Ø¸Ã½ÚµãÏÂµÄÄ³¸öÊôĞÔ
+         * æ‰¾åˆ°idä¸‹å…·æœ‰focusç±»çš„èŠ‚ç‚¹å¹¶è¿”å›è¯¥èŠ‚ç‚¹ä¸‹çš„æŸä¸ªå±æ€§
          * @param id
          * @param returnProperty
          */
@@ -248,7 +248,7 @@
             return property;
         },
         /**
-         * Ä©Î²×Ö·û¼ì²â
+         * æœ«å°¾å­—ç¬¦æ£€æµ‹
          */
         endWith: function(str,endStrArr){
             for(var i=0,len = endStrArr.length;i<len;i++){
@@ -272,7 +272,7 @@
             },
             cancel: {
                 exec: function(){
-                    //Çå³ıÊÓÆµ
+                    //æ¸…é™¤è§†é¢‘
                     $("#eduiVideoPreview").html("");
                 }
             }

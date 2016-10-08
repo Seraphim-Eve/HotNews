@@ -12,30 +12,30 @@
             }
         });
 
-        //ÕıÔòÑéÖ¤ÓÊÏä
+        //æ­£åˆ™éªŒè¯é‚®ç®±
         $.validator.addMethod("regex", function(value, element) {
             return validateEmail(value);
-        }, "ÇëÊäÈëÓĞĞ§µÄµç×ÓÓÊÏäµØÖ·!");
+        }, "è¯·è¾“å…¥æœ‰æ•ˆçš„ç”µå­é‚®ç®±åœ°å€!");
 
-        //ÑéÖ¤ÓÊÏäÊÇ·ñ´æÔÚ
+        //éªŒè¯é‚®ç®±æ˜¯å¦å­˜åœ¨
         $.validator.addMethod("isExists", function(value, element) {
             var flag = false;
             if (validateEmail(value)) {
                 $.ajax({
                     method: "POST",
                     url: "check.do",
-                    async: false, //ÎªÁË¸³Öµflag±äÁ¿µÄÖµ
+                    async: false, //ä¸ºäº†èµ‹å€¼flagå˜é‡çš„å€¼
                     data: {email: value},
                     success: function(data) {
                         if (data == "true") {
-                            //ÓÊÏä´æÔÚ
+                            //é‚®ç®±å­˜åœ¨
                             flag = true;
                         }
                     }
                 });
             }
             return flag;
-        }, "ÕÒ²»µ½ÄúµÄEmailÕÊ»§,ÇëÖØÊÔ.");
+        }, "æ‰¾ä¸åˆ°æ‚¨çš„Emailå¸æˆ·,è¯·é‡è¯•.");
 
 
         //validate email
@@ -54,7 +54,7 @@
             },
             messages: {
                 email: {
-                    required: "ÇëÊäÈëÓĞĞ§µÄµç×ÓÓÊÏäµØÖ·!"
+                    required: "è¯·è¾“å…¥æœ‰æ•ˆçš„ç”µå­é‚®ç®±åœ°å€!"
                 }
             }
         });

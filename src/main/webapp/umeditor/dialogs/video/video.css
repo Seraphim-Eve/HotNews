@@ -1,4 +1,4 @@
-@charset "gbk";
+@charset "utf-8";
 .edui-dialog-video .edui-video-wrapper{ width: 570px;_width:575px;margin: 10px auto; zoom:1;position: relative}
 .edui-dialog-video .edui-video-tabbody{height:335px;}
 .edui-dialog-video .edui-video-panel { position: absolute;width:100%; height:100%;background: #fff;}
@@ -14,7 +14,7 @@
 .edui-dialog-video #eduiVideoSearchTxt{margin-left:15px;background: #FFF;width:200px;height:21px;line-height:21px;border: 1px solid #d7d7d7;}
 .edui-dialog-video #searchList{width: 570px;overflow: auto;zoom:1;height: 270px;}
 .edui-dialog-video #searchList div{float: left;width: 120px;height: 135px;margin: 5px 15px;}
-.edui-dialog-video #searchList img{margin: 2px 8px;cursor: pointer;border: 2px solid #fff} /*≤ª”√Àı¬‘Õº*/
+.edui-dialog-video #searchList img{margin: 2px 8px;cursor: pointer;border: 2px solid #fff} /*‰∏çÁî®Áº©Áï•Âõæ*/
 .edui-dialog-video #searchList p{margin-left: 10px;}
 .edui-dialog-video #eduiVideoType{
     width: 65px;

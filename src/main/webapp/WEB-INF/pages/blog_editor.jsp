@@ -5,24 +5,24 @@
   Time: 14:27
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=GBK" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>²©¿Í×«Ð´</title>
+    <title>åšå®¢æ’°å†™</title>
     <link rel="shortcut icon" href="favicon.ico">
-    <!-- ±à¼­Æ÷ÑùÊ½ -->
+    <!-- ç¼–è¾‘å™¨æ ·å¼ -->
     <link href="umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
 
     <link href="bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
 
     <script type="text/javascript" src="js/jquery.min.js"></script>
 
-    <!--±à¼­Æ÷js -->
-    <script type="text/javascript" charset="gbk" src="umeditor/umeditor.config.js"></script>
-    <script type="text/javascript" charset="gbk" src="umeditor/umeditor.min.js"></script>
+    <!--ç¼–è¾‘å™¨js -->
+    <script type="text/javascript" charset="UTF-8" src="umeditor/umeditor.config.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="umeditor/umeditor.min.js"></script>
     <script type="text/javascript" src="umeditor/lang/zh-cn/zh-cn.js"></script>
 
-    <!-- ÆäËûjs -->
+    <!-- å…¶ä»–js -->
     <script type="text/javascript" src="js/jquery.validate.js"></script>
     <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 
@@ -34,30 +34,31 @@
         <div id="content" style="padding: 2% 8% 5% 8%; border: 1px solid LightGrey; border-radius: 4px;">
             <form id="blog_editor" action="blog_create.do" method="post">
                 <div class="form-group">
-                    <label for="title">²©¿Í±êÌâ:</label>
-                    <input id="title" name="title" type="text" class="form-control" placeholder="±êÌâ" maxlength="10" value="${title}" autofocus required>
+                    <label for="title">åšå®¢æ ‡é¢˜:</label>
+                    <input id="title" name="title" type="text" class="form-control" placeholder="æ ‡é¢˜" maxlength="10" value="${title}" autofocus required>
                 </div>
 
                 <div class="form-group">
-                    <label for="sel">²©¿ÍÈ¨ÏÞ:</label>
+                    <label for="sel">åšå®¢æƒé™:</label>
                     <select class="form-control" id="sel" name="authority">
                         ${option}
                     </select>
                 </div>
 
                 <br/>
-                <!-- editor(±à¼­Æ÷) -->
+                <!-- editor(ç¼–è¾‘å™¨) -->
                 <script id="container" name="content" type="text/plain" style="width:956px;height:240px;"><p>${blog_content}</p></script>
 
                 <br/>
-
-                <input type="submit" class="btn btn-primary btn-block bt-lg" value="·¢±í²©¿Í">
+                <input name="op" type="hidden" value="${op}">
+                <input name="id" type="hidden" value="${id}">
+                <input type="submit" class="btn btn-primary btn-block bt-lg" value="${sub_button}">
 
             </form>
 
 
             <div align="center">
-                <p>Notes: Ã¿´Î·¢±í²©¿Íºó,ÇëÖØÐÂË¢ÐÂÖ÷Ò³Ãæ,²ÅÄÜ¿´µ½×îÐÂ·¢±íµÄ²©¿Í!</p>
+                <p>Notes: æ¯æ¬¡å‘è¡¨åšå®¢åŽ,è¯·é‡æ–°åˆ·æ–°ä¸»é¡µé¢,æ‰èƒ½çœ‹åˆ°æœ€æ–°å‘è¡¨çš„åšå®¢!</p>
                 <br/>
                 <p style="color: red;">${msg}</p>
             </div>

@@ -1,35 +1,35 @@
 /**
- * ÖĞÎÄÓïÑÔ°ü
+ * ä¸­æ–‡è¯­è¨€åŒ…
  */
 UM.I18N['zh-cn'] = {
     'labelMap':{
-        'anchor':'Ãªµã', 'undo':'³·Ïú', 'redo':'ÖØ×ö', 'bold':'¼Ó´Ö', 'indent':'Ê×ĞĞËõ½ø', 'snapscreen':'½ØÍ¼',
-        'italic':'Ğ±Ìå', 'underline':'ÏÂ»®Ïß', 'strikethrough':'É¾³ıÏß', 'subscript':'ÏÂ±ê','fontborder':'×Ö·û±ß¿ò',
-        'superscript':'ÉÏ±ê', 'formatmatch':'¸ñÊ½Ë¢', 'source':'Ô´´úÂë', 'blockquote':'ÒıÓÃ',
-        'pasteplain':'´¿ÎÄ±¾Õ³ÌùÄ£Ê½', 'selectall':'È«Ñ¡', 'print':'´òÓ¡', 'preview':'Ô¤ÀÀ',
-        'horizontal':'·Ö¸ôÏß', 'removeformat':'Çå³ı¸ñÊ½', 'time':'Ê±¼ä', 'date':'ÈÕÆÚ',
-        'unlink':'È¡ÏûÁ´½Ó', 'insertrow':'Ç°²åÈëĞĞ', 'insertcol':'Ç°²åÈëÁĞ', 'mergeright':'ÓÒºÏ²¢µ¥Ôª¸ñ', 'mergedown':'ÏÂºÏ²¢µ¥Ôª¸ñ',
-        'deleterow':'É¾³ıĞĞ', 'deletecol':'É¾³ıÁĞ', 'splittorows':'²ğ·Ö³ÉĞĞ', 'splittocols':'²ğ·Ö³ÉÁĞ', 'splittocells':'ÍêÈ«²ğ·Öµ¥Ôª¸ñ',
-        'mergecells':'ºÏ²¢¶à¸öµ¥Ôª¸ñ', 'deletetable':'É¾³ı±í¸ñ', 'cleardoc':'Çå¿ÕÎÄµµ','insertparagraphbeforetable':"±í¸ñÇ°²åÈëĞĞ",'insertcode':'´úÂëÓïÑÔ','fontfamily':'×ÖÌå', 'fontsize':'×ÖºÅ', 'paragraph':'¶ÎÂä¸ñÊ½', 'image':'Í¼Æ¬',
-        'edittable':'±í¸ñÊôĞÔ','edittd':'µ¥Ôª¸ñÊôĞÔ', 'link':'³¬Á´½Ó','emotion':'±íÇé', 'spechars':'ÌØÊâ×Ö·û', 'searchreplace':'²éÑ¯Ìæ»»', 'map':'°Ù¶ÈµØÍ¼', 'gmap':'GoogleµØÍ¼',
-        'video':'ÊÓÆµ', 'help':'°ïÖú', 'justifyleft':'¾Ó×ó¶ÔÆë', 'justifyright':'¾ÓÓÒ¶ÔÆë', 'justifycenter':'¾ÓÖĞ¶ÔÆë',
-        'justifyjustify':'Á½¶Ë¶ÔÆë', 'forecolor':'×ÖÌåÑÕÉ«', 'backcolor':'±³¾°É«', 'insertorderedlist':'ÓĞĞòÁĞ±í',
-        'insertunorderedlist':'ÎŞĞòÁĞ±í', 'fullscreen':'È«ÆÁ', 'directionalityltr':'´Ó×óÏòÓÒÊäÈë', 'directionalityrtl':'´ÓÓÒÏò×óÊäÈë',
-        'rowspacingtop':'¶ÎÇ°¾à', 'rowspacingbottom':'¶Îºó¾à', 'highlightcode':'²åÈë´úÂë', 'pagebreak':'·ÖÒ³', 'insertframe':'²åÈëIframe', 'imagenone':'Ä¬ÈÏ',
-        'imageleft':'×ó¸¡¶¯', 'imageright':'ÓÒ¸¡¶¯', 'attachment':'¸½¼ş', 'imagecenter':'¾ÓÖĞ', 'wordimage':'Í¼Æ¬×ª´æ',
-        'lineheight':'ĞĞ¼ä¾à','edittip' :'±à¼­ÌáÊ¾','customstyle':'×Ô¶¨Òå±êÌâ', 'autotypeset':'×Ô¶¯ÅÅ°æ', 'webapp':'°Ù¶ÈÓ¦ÓÃ',
-        'touppercase':'×ÖÄ¸´óĞ´', 'tolowercase':'×ÖÄ¸Ğ¡Ğ´','background':'±³¾°','template':'Ä£°å','scrawl':'Í¿Ñ»','music':'ÒôÀÖ','inserttable':'²åÈë±í¸ñ',
-        'drafts': '²İ¸åÏä', 'formula':'ÊıÑ§¹«Ê½'
+        'anchor':'é”šç‚¹', 'undo':'æ’¤é”€', 'redo':'é‡åš', 'bold':'åŠ ç²—', 'indent':'é¦–è¡Œç¼©è¿›', 'snapscreen':'æˆªå›¾',
+        'italic':'æ–œä½“', 'underline':'ä¸‹åˆ’çº¿', 'strikethrough':'åˆ é™¤çº¿', 'subscript':'ä¸‹æ ‡','fontborder':'å­—ç¬¦è¾¹æ¡†',
+        'superscript':'ä¸Šæ ‡', 'formatmatch':'æ ¼å¼åˆ·', 'source':'æºä»£ç ', 'blockquote':'å¼•ç”¨',
+        'pasteplain':'çº¯æ–‡æœ¬ç²˜è´´æ¨¡å¼', 'selectall':'å…¨é€‰', 'print':'æ‰“å°', 'preview':'é¢„è§ˆ',
+        'horizontal':'åˆ†éš”çº¿', 'removeformat':'æ¸…é™¤æ ¼å¼', 'time':'æ—¶é—´', 'date':'æ—¥æœŸ',
+        'unlink':'å–æ¶ˆé“¾æ¥', 'insertrow':'å‰æ’å…¥è¡Œ', 'insertcol':'å‰æ’å…¥åˆ—', 'mergeright':'å³åˆå¹¶å•å…ƒæ ¼', 'mergedown':'ä¸‹åˆå¹¶å•å…ƒæ ¼',
+        'deleterow':'åˆ é™¤è¡Œ', 'deletecol':'åˆ é™¤åˆ—', 'splittorows':'æ‹†åˆ†æˆè¡Œ', 'splittocols':'æ‹†åˆ†æˆåˆ—', 'splittocells':'å®Œå…¨æ‹†åˆ†å•å…ƒæ ¼',
+        'mergecells':'åˆå¹¶å¤šä¸ªå•å…ƒæ ¼', 'deletetable':'åˆ é™¤è¡¨æ ¼', 'cleardoc':'æ¸…ç©ºæ–‡æ¡£','insertparagraphbeforetable':"è¡¨æ ¼å‰æ’å…¥è¡Œ",'insertcode':'ä»£ç è¯­è¨€','fontfamily':'å­—ä½“', 'fontsize':'å­—å·', 'paragraph':'æ®µè½æ ¼å¼', 'image':'å›¾ç‰‡',
+        'edittable':'è¡¨æ ¼å±æ€§','edittd':'å•å…ƒæ ¼å±æ€§', 'link':'è¶…é“¾æ¥','emotion':'è¡¨æƒ…', 'spechars':'ç‰¹æ®Šå­—ç¬¦', 'searchreplace':'æŸ¥è¯¢æ›¿æ¢', 'map':'ç™¾åº¦åœ°å›¾', 'gmap':'Googleåœ°å›¾',
+        'video':'è§†é¢‘', 'help':'å¸®åŠ©', 'justifyleft':'å±…å·¦å¯¹é½', 'justifyright':'å±…å³å¯¹é½', 'justifycenter':'å±…ä¸­å¯¹é½',
+        'justifyjustify':'ä¸¤ç«¯å¯¹é½', 'forecolor':'å­—ä½“é¢œè‰²', 'backcolor':'èƒŒæ™¯è‰²', 'insertorderedlist':'æœ‰åºåˆ—è¡¨',
+        'insertunorderedlist':'æ— åºåˆ—è¡¨', 'fullscreen':'å…¨å±', 'directionalityltr':'ä»å·¦å‘å³è¾“å…¥', 'directionalityrtl':'ä»å³å‘å·¦è¾“å…¥',
+        'rowspacingtop':'æ®µå‰è·', 'rowspacingbottom':'æ®µåè·', 'highlightcode':'æ’å…¥ä»£ç ', 'pagebreak':'åˆ†é¡µ', 'insertframe':'æ’å…¥Iframe', 'imagenone':'é»˜è®¤',
+        'imageleft':'å·¦æµ®åŠ¨', 'imageright':'å³æµ®åŠ¨', 'attachment':'é™„ä»¶', 'imagecenter':'å±…ä¸­', 'wordimage':'å›¾ç‰‡è½¬å­˜',
+        'lineheight':'è¡Œé—´è·','edittip' :'ç¼–è¾‘æç¤º','customstyle':'è‡ªå®šä¹‰æ ‡é¢˜', 'autotypeset':'è‡ªåŠ¨æ’ç‰ˆ', 'webapp':'ç™¾åº¦åº”ç”¨',
+        'touppercase':'å­—æ¯å¤§å†™', 'tolowercase':'å­—æ¯å°å†™','background':'èƒŒæ™¯','template':'æ¨¡æ¿','scrawl':'æ¶‚é¸¦','music':'éŸ³ä¹','inserttable':'æ’å…¥è¡¨æ ¼',
+        'drafts': 'è‰ç¨¿ç®±', 'formula':'æ•°å­¦å…¬å¼'
 
 
     },
-    'paragraph':{'p':'¶ÎÂä', 'h1':'±êÌâ 1', 'h2':'±êÌâ 2', 'h3':'±êÌâ 3', 'h4':'±êÌâ 4', 'h5':'±êÌâ 5', 'h6':'±êÌâ 6'},
+    'paragraph':{'p':'æ®µè½', 'h1':'æ ‡é¢˜ 1', 'h2':'æ ‡é¢˜ 2', 'h3':'æ ‡é¢˜ 3', 'h4':'æ ‡é¢˜ 4', 'h5':'æ ‡é¢˜ 5', 'h6':'æ ‡é¢˜ 6'},
     'fontfamily':{
-        'songti':'ËÎÌå',
-        'kaiti':'¿¬Ìå',
-        'heiti':'ºÚÌå',
-        'lishu':'Á¥Êé',
-        'yahei':'Î¢ÈíÑÅºÚ',
+        'songti':'å®‹ä½“',
+        'kaiti':'æ¥·ä½“',
+        'heiti':'é»‘ä½“',
+        'lishu':'éš¶ä¹¦',
+        'yahei':'å¾®è½¯é›…é»‘',
         'andaleMono':'andale mono',
         'arial': 'arial',
         'arialBlack':'arial black',
@@ -37,114 +37,114 @@ UM.I18N['zh-cn'] = {
         'impact':'impact',
         'timesNewRoman':'times new roman'
     },
-    'ok':"È·ÈÏ",
-    'cancel':"È¡Ïû",
-    'closeDialog':"¹Ø±Õ¶Ô»°¿ò",
-    'tableDrag':"±í¸ñÍÏ¶¯±ØĞëÒıÈëuiUtils.jsÎÄ¼ş£¡",
-    'autofloatMsg':"¹¤¾ßÀ¸¸¡¶¯ÒÀÀµ±à¼­Æ÷UI£¬ÄúÊ×ÏÈĞèÒªÒıÈëUIÎÄ¼ş!",
-    'anthorMsg':"Á´½Ó",
-    'clearColor':'Çå¿ÕÑÕÉ«',
-    'standardColor':'±ê×¼ÑÕÉ«',
-    'themeColor':'Ö÷ÌâÑÕÉ«',
-    'property':'ÊôĞÔ',
-    'default':'Ä¬ÈÏ',
-    'modify':'ĞŞ¸Ä',
-    'justifyleft':'×ó¶ÔÆë',
-    'justifyright':'ÓÒ¶ÔÆë',
-    'justifycenter':'¾ÓÖĞ',
-    'justify':'Ä¬ÈÏ',
-    'clear':'Çå³ı',
-    'anchorMsg':'Ãªµã',
-    'delete':'É¾³ı',
-    'clickToUpload':"µã»÷ÉÏ´«",
-    'unset':'ÉĞÎ´ÉèÖÃÓïÑÔÎÄ¼ş',
-    't_row':'ĞĞ',
-    't_col':'ÁĞ',
-    'more':'¸ü¶à',
-    'pasteOpt':'Õ³ÌùÑ¡Ïî',
-    'pasteSourceFormat':"±£ÁôÔ´¸ñÊ½",
-    'tagFormat':'Ö»±£Áô±êÇ©',
-    'pasteTextFormat':'Ö»±£ÁôÎÄ±¾',
+    'ok':"ç¡®è®¤",
+    'cancel':"å–æ¶ˆ",
+    'closeDialog':"å…³é—­å¯¹è¯æ¡†",
+    'tableDrag':"è¡¨æ ¼æ‹–åŠ¨å¿…é¡»å¼•å…¥uiUtils.jsæ–‡ä»¶ï¼",
+    'autofloatMsg':"å·¥å…·æ æµ®åŠ¨ä¾èµ–ç¼–è¾‘å™¨UIï¼Œæ‚¨é¦–å…ˆéœ€è¦å¼•å…¥UIæ–‡ä»¶!",
+    'anthorMsg':"é“¾æ¥",
+    'clearColor':'æ¸…ç©ºé¢œè‰²',
+    'standardColor':'æ ‡å‡†é¢œè‰²',
+    'themeColor':'ä¸»é¢˜é¢œè‰²',
+    'property':'å±æ€§',
+    'default':'é»˜è®¤',
+    'modify':'ä¿®æ”¹',
+    'justifyleft':'å·¦å¯¹é½',
+    'justifyright':'å³å¯¹é½',
+    'justifycenter':'å±…ä¸­',
+    'justify':'é»˜è®¤',
+    'clear':'æ¸…é™¤',
+    'anchorMsg':'é”šç‚¹',
+    'delete':'åˆ é™¤',
+    'clickToUpload':"ç‚¹å‡»ä¸Šä¼ ",
+    'unset':'å°šæœªè®¾ç½®è¯­è¨€æ–‡ä»¶',
+    't_row':'è¡Œ',
+    't_col':'åˆ—',
+    'more':'æ›´å¤š',
+    'pasteOpt':'ç²˜è´´é€‰é¡¹',
+    'pasteSourceFormat':"ä¿ç•™æºæ ¼å¼",
+    'tagFormat':'åªä¿ç•™æ ‡ç­¾',
+    'pasteTextFormat':'åªä¿ç•™æ–‡æœ¬',
 
     //===============dialog i18N=======================
     'image':{
         'static':{
-            'lang_tab_local':"±¾µØÉÏ´«",
-            'lang_tab_imgSearch':"ÍøÂçÍ¼Æ¬",
-            'lang_input_dragTip':"Ö§³ÖÍ¼Æ¬ÍÏ×§ÉÏ´«",
-            'lang_btn_add':"Ìí¼Ó"
+            'lang_tab_local':"æœ¬åœ°ä¸Šä¼ ",
+            'lang_tab_imgSearch':"ç½‘ç»œå›¾ç‰‡",
+            'lang_input_dragTip':"æ”¯æŒå›¾ç‰‡æ‹–æ‹½ä¸Šä¼ ",
+            'lang_btn_add':"æ·»åŠ "
         },
-        'uploadError': 'ÉÏ´«³ö´í'
+        'uploadError': 'ä¸Šä¼ å‡ºé”™'
     },
     'emotion':{
         'static':{
-            'lang_input_choice':'¾«Ñ¡',
-            'lang_input_Tuzki':'ÍÃË¹»ù',
+            'lang_input_choice':'ç²¾é€‰',
+            'lang_input_Tuzki':'å…”æ–¯åŸº',
             'lang_input_BOBO':'BOBO',
-            'lang_input_lvdouwa':'ÂÌ¶¹ÍÜ',
-            'lang_input_babyCat':'babyÃ¨',
-            'lang_input_bubble':'ÅİÅİ',
-            'lang_input_youa':'ÓĞ°¡'
+            'lang_input_lvdouwa':'ç»¿è±†è›™',
+            'lang_input_babyCat':'babyçŒ«',
+            'lang_input_bubble':'æ³¡æ³¡',
+            'lang_input_youa':'æœ‰å•Š'
         }
     },
     'gmap':{
         'static':{
-            'lang_input_address':'µØÖ·',
-            'lang_input_search':'ËÑË÷',
-            'address':{'value':"±±¾©"}
+            'lang_input_address':'åœ°å€',
+            'lang_input_search':'æœç´¢',
+            'address':{'value':"åŒ—äº¬"}
         },
-        'searchError':'ÎŞ·¨¶¨Î»µ½¸ÃµØÖ·!'
+        'searchError':'æ— æ³•å®šä½åˆ°è¯¥åœ°å€!'
     },
     'link':{
         'static':{
-            'lang_input_text':'ÎÄ±¾ÄÚÈİ£º',
-            'lang_input_url':'Á´½ÓµØÖ·£º',
-            'lang_input_title':'±êÌâ£º',
-            'lang_input_target':'ÊÇ·ñÔÚĞÂ´°¿Ú´ò¿ª£º'
+            'lang_input_text':'æ–‡æœ¬å†…å®¹ï¼š',
+            'lang_input_url':'é“¾æ¥åœ°å€ï¼š',
+            'lang_input_title':'æ ‡é¢˜ï¼š',
+            'lang_input_target':'æ˜¯å¦åœ¨æ–°çª—å£æ‰“å¼€ï¼š'
         },
-        'validLink':'Ö»Ö§³ÖÑ¡ÖĞÒ»¸öÁ´½ÓÊ±ÉúĞ§',
-        'httpPrompt':'ÄúÊäÈëµÄ³¬Á´½ÓÖĞ²»°üº¬httpµÈĞ­ÒéÃû³Æ£¬Ä¬ÈÏ½«ÎªÄúÌí¼Óhttp://Ç°×º'
+        'validLink':'åªæ”¯æŒé€‰ä¸­ä¸€ä¸ªé“¾æ¥æ—¶ç”Ÿæ•ˆ',
+        'httpPrompt':'æ‚¨è¾“å…¥çš„è¶…é“¾æ¥ä¸­ä¸åŒ…å«httpç­‰åè®®åç§°ï¼Œé»˜è®¤å°†ä¸ºæ‚¨æ·»åŠ http://å‰ç¼€'
     },
     'map':{
         'static':{
-            'lang_city':"³ÇÊĞ",
-            'lang_address':"µØÖ·",
-            'city':{'value':"±±¾©"},
-            'lang_search':"ËÑË÷",
-            'lang_dynamicmap':"²åÈë¶¯Ì¬µØÍ¼"
+            'lang_city':"åŸå¸‚",
+            'lang_address':"åœ°å€",
+            'city':{'value':"åŒ—äº¬"},
+            'lang_search':"æœç´¢",
+            'lang_dynamicmap':"æ’å…¥åŠ¨æ€åœ°å›¾"
         },
-        'cityMsg':"ÇëÑ¡Ôñ³ÇÊĞ",
-        'errorMsg':"±§Ç¸£¬ÕÒ²»µ½¸ÃÎ»ÖÃ£¡"
+        'cityMsg':"è¯·é€‰æ‹©åŸå¸‚",
+        'errorMsg':"æŠ±æ­‰ï¼Œæ‰¾ä¸åˆ°è¯¥ä½ç½®ï¼"
     },
     'video':{
         'static':{
-            'lang_tab_insertV':"²åÈëÊÓÆµ",
-            'lang_video_url':"ÊÓÆµÍøÖ·",
-            'lang_video_size':"ÊÓÆµ³ß´ç",
-            'lang_videoW':"¿í¶È",
-            'lang_videoH':"¸ß¶È",
-            'lang_alignment':"¶ÔÆë·½Ê½",
-            'videoSearchTxt':{'value':"ÇëÊäÈëËÑË÷¹Ø¼ü×Ö£¡"},
-            'videoType':{'options':["È«²¿", "ÈÈÃÅ", "ÓéÀÖ", "¸ãĞ¦", "ÌåÓı", "¿Æ¼¼", "×ÛÒÕ"]},
-            'videoSearchBtn':{'value':"°Ù¶ÈÒ»ÏÂ"},
-            'videoSearchReset':{'value':"Çå¿Õ½á¹û"}
+            'lang_tab_insertV':"æ’å…¥è§†é¢‘",
+            'lang_video_url':"è§†é¢‘ç½‘å€",
+            'lang_video_size':"è§†é¢‘å°ºå¯¸",
+            'lang_videoW':"å®½åº¦",
+            'lang_videoH':"é«˜åº¦",
+            'lang_alignment':"å¯¹é½æ–¹å¼",
+            'videoSearchTxt':{'value':"è¯·è¾“å…¥æœç´¢å…³é”®å­—ï¼"},
+            'videoType':{'options':["å…¨éƒ¨", "çƒ­é—¨", "å¨±ä¹", "æç¬‘", "ä½“è‚²", "ç§‘æŠ€", "ç»¼è‰º"]},
+            'videoSearchBtn':{'value':"ç™¾åº¦ä¸€ä¸‹"},
+            'videoSearchReset':{'value':"æ¸…ç©ºç»“æœ"}
         },
-        'numError':"ÇëÊäÈëÕıÈ·µÄÊıÖµ£¬Èç123,400",
-        'floatLeft':"×ó¸¡¶¯",
-        'floatRight':"ÓÒ¸¡¶¯",
-        'default':"Ä¬ÈÏ",
-        'block':"¶ÀÕ¼Ò»ĞĞ",
-        'urlError':"ÊäÈëµÄÊÓÆµµØÖ·ÓĞÎó£¬Çë¼ì²éºóÔÙÊÔ£¡",
-        'loading':" &nbsp;ÊÓÆµ¼ÓÔØÖĞ£¬ÇëµÈ´ı¡­¡­",
-        'clickToSelect':"µã»÷Ñ¡ÖĞ",
-        'goToSource':'·ÃÎÊÔ´ÊÓÆµ',
-        'noVideo':" &nbsp; &nbsp;±§Ç¸£¬ÕÒ²»µ½¶ÔÓ¦µÄÊÓÆµ£¬ÇëÖØÊÔ£¡"
+        'numError':"è¯·è¾“å…¥æ­£ç¡®çš„æ•°å€¼ï¼Œå¦‚123,400",
+        'floatLeft':"å·¦æµ®åŠ¨",
+        'floatRight':"å³æµ®åŠ¨",
+        'default':"é»˜è®¤",
+        'block':"ç‹¬å ä¸€è¡Œ",
+        'urlError':"è¾“å…¥çš„è§†é¢‘åœ°å€æœ‰è¯¯ï¼Œè¯·æ£€æŸ¥åå†è¯•ï¼",
+        'loading':" &nbsp;è§†é¢‘åŠ è½½ä¸­ï¼Œè¯·ç­‰å¾…â€¦â€¦",
+        'clickToSelect':"ç‚¹å‡»é€‰ä¸­",
+        'goToSource':'è®¿é—®æºè§†é¢‘',
+        'noVideo':" &nbsp; &nbsp;æŠ±æ­‰ï¼Œæ‰¾ä¸åˆ°å¯¹åº”çš„è§†é¢‘ï¼Œè¯·é‡è¯•ï¼"
     },
     'formula':{
         'static':{
-            'lang_tab_common':'³£ÓÃ¹«Ê½',
-            'lang_tab_symbol':'·ûºÅ',
-            'lang_tab_letter':'×ÖÄ¸'
+            'lang_tab_common':'å¸¸ç”¨å…¬å¼',
+            'lang_tab_symbol':'ç¬¦å·',
+            'lang_tab_letter':'å­—æ¯'
         }
     }
 };

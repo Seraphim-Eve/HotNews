@@ -43,7 +43,7 @@ public class MySQLUtils {
     /**
      * insert data to users table.
      * @param sql
-     * @return ÊÇ·ñ³É¹¦²åÈë
+     * @return æ˜¯å¦æˆåŠŸæ’å…¥
      */
     public static boolean insert(String sql) throws SQLException {
         Statement stmt = conn.createStatement();
@@ -51,9 +51,9 @@ public class MySQLUtils {
     }
 
     /**
-     * ¼ì²éÓÊÏäÊÇ·ñ´æÔÚ
+     * æ£€æŸ¥é‚®ç®±æ˜¯å¦å­˜åœ¨
      * @param sql
-     * @return true: ´æÔÚ, false: ²»´æÔÚ.
+     * @return true: å­˜åœ¨, false: ä¸å­˜åœ¨.
      */
     public static boolean queryEmail(String sql) throws SQLException {
         Statement stmt = conn.createStatement();
@@ -68,9 +68,9 @@ public class MySQLUtils {
     }
 
     /**
-     * ²éÑ¯ÓÃ»§
-     * @param sql ²éÑ¯SQL
-     * @return ·µ»ØÓÃ»§
+     * æŸ¥è¯¢ç”¨æˆ·
+     * @param sql æŸ¥è¯¢SQL
+     * @return è¿”å›ç”¨æˆ·
      */
     public static User queryForUser(String sql) throws SQLException {
         Statement stmt = conn.createStatement();

@@ -5,10 +5,10 @@
   Time: 14:20
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=GBK" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>√‹¬Î–ﬁ∏ƒ</title>
+    <title>ÂØÜÁ†Å‰øÆÊîπ</title>
     <jsp:include page="include.jsp"></jsp:include>
     <script src="js/reset_password.js"></script>
 </head>
@@ -17,19 +17,19 @@
         <form id="reset_password" action="reset_password.do" method="post" class="form-signin">
 
             <div class="form-group">
-                <input id="s_password" name="s_password" type="password" class="form-control" placeholder="‘≠√‹¬Î" autofocus>
+                <input id="s_password" name="s_password" type="password" class="form-control" placeholder="ÂéüÂØÜÁ†Å" autofocus>
             </div>
 
             <div class="form-group">
-                <input id="n_password" name="n_password" type="password" class="form-control" placeholder="–¬√‹¬Î" required>
+                <input id="n_password" name="n_password" type="password" class="form-control" placeholder="Êñ∞ÂØÜÁ†Å" required>
             </div>
 
             <div class="form-group">
-                <input id="repeat_n_password" name="repeat_n_password" type="password" class="form-control" placeholder="÷ÿ∏¥–¬√‹¬Î">
+                <input id="repeat_n_password" name="repeat_n_password" type="password" class="form-control" placeholder="ÈáçÂ§çÊñ∞ÂØÜÁ†Å">
             </div>
 
             <div class="form-group">
-                <input type="submit" class="btn btn-primary btn-lg btn-block" value="–ﬁ∏ƒ">
+                <input type="submit" class="btn btn-primary btn-lg btn-block" value="‰øÆÊîπ">
             </div>
 
             <div align="center">

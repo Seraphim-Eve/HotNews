@@ -1,4 +1,4 @@
-    <meta charset="GBK">
+    <meta charset="UTF-8">
     <link rel="shortcut icon" href="favicon.ico">
 
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">

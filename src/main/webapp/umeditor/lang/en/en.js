@@ -97,10 +97,10 @@ UM.I18N['en'] = {
     },
     'link':{
         'static':{
-            'lang_input_text':'Text£º',
-            'lang_input_url':'URL£º',
-            'lang_input_title':'Title£º',
-            'lang_input_target':'open in new window£º'
+            'lang_input_text':'Textï¼š',
+            'lang_input_url':'URLï¼š',
+            'lang_input_title':'Titleï¼š',
+            'lang_input_target':'open in new windowï¼š'
         },
         'validLink':'Supports only effective when a link is selected',
         'httpPrompt':'The hyperlink you enter should start with "http|https|ftp://"!'
@@ -135,7 +135,7 @@ UM.I18N['en'] = {
         'default':"Default",
         'block':"Display in block",
         'urlError':"The video url format may be wrong!",
-        'loading':" &nbsp;The video is loading, please wait¡­",
+        'loading':" &nbsp;The video is loading, please waitâ€¦",
         'clickToSelect':"Click to select",
         'goToSource':'Visit source video ',
         'noVideo':" &nbsp; &nbsp;Sorry,can't find the video,please try again!"

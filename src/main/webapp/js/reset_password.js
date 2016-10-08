@@ -12,7 +12,7 @@
             }
         });
 
-        //¼ì²éÔ­ÃÜÂëÊÇ·ñÕıÈ·
+        //æ£€æŸ¥åŸå¯†ç æ˜¯å¦æ­£ç¡®
         $.validator.addMethod("isCorrect", function(value, element) {
             var flag = false;
             $.ajax({
@@ -27,7 +27,7 @@
                 }
             });
             return flag;
-        }, "ÊäÈëµÄÔ­Ê¼ÃÜÂë´íÎó!");
+        }, "è¾“å…¥çš„åŸå§‹å¯†ç é”™è¯¯!");
 
         $("#reset_password").validate({
             rules: {
@@ -51,20 +51,20 @@
             },
             messages: {
                 s_password: {
-                    required: "ÇëÊäÈëÃÜÂë!",
-                    minlength: "ÊäÈëµÄÃÜÂëĞ¡ÓÚ8Î»!",
-                    maxlength: "ÊäÈëµÄÃÜÂë´óÓÚ12Î»!"
+                    required: "è¯·è¾“å…¥å¯†ç !",
+                    minlength: "è¾“å…¥çš„å¯†ç å°äº8ä½!",
+                    maxlength: "è¾“å…¥çš„å¯†ç å¤§äº12ä½!"
                 },
                 n_password: {
-                    required: "ÇëÊäÈëÃÜÂë!",
-                    minlength: "ÊäÈëµÄÃÜÂëĞ¡ÓÚ8Î»!",
-                    maxlength: "ÊäÈëµÄÃÜÂë´óÓÚ12Î»!"
+                    required: "è¯·è¾“å…¥å¯†ç !",
+                    minlength: "è¾“å…¥çš„å¯†ç å°äº8ä½!",
+                    maxlength: "è¾“å…¥çš„å¯†ç å¤§äº12ä½!"
                 },
                 repeat_n_password: {
-                    required: "Á½¸öÃÜÂë²»Æ¥Åä¡£ÊÇ·ñÖØÊÔ?",
-                    minlength: "ÊäÈëµÄÃÜÂëĞ¡ÓÚ8Î»!",
-                    maxlength: "ÊäÈëµÄÃÜÂëĞ¡ÓÚ12Î»!",
-                    equalTo: "Á½¸öÃÜÂë²»Æ¥Åä¡£ÊÇ·ñÖØÊÔ?"
+                    required: "ä¸¤ä¸ªå¯†ç ä¸åŒ¹é…ã€‚æ˜¯å¦é‡è¯•?",
+                    minlength: "è¾“å…¥çš„å¯†ç å°äº8ä½!",
+                    maxlength: "è¾“å…¥çš„å¯†ç å°äº12ä½!",
+                    equalTo: "ä¸¤ä¸ªå¯†ç ä¸åŒ¹é…ã€‚æ˜¯å¦é‡è¯•?"
                 }
             }
         });

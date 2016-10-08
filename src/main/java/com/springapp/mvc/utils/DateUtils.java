@@ -9,7 +9,7 @@ import java.util.Date;
 public class DateUtils {
 
     /**
-     * 得到当前时间 2016-10-05 12:52:00
+     * 寰楀埌褰撳墠鏃堕棿 2016-10-05 12:52:00
      * @return
      */
     public static String getCurrDate() {

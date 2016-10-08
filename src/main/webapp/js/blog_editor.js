@@ -9,8 +9,8 @@
             },
             messages: {
                 title: {
-                    required: "<strong style='color: red;'>ÇëÊäÈë±êÌâ!</strong>",
-                    maxlength: "<strong style='color: red;'>ÄãÊäÈëµÄ±êÌâ³¬¹ı10¸ö×Ö·û!</strong>"
+                    required: "<strong style='color: red;'>è¯·è¾“å…¥æ ‡é¢˜!</strong>",
+                    maxlength: "<strong style='color: red;'>ä½ è¾“å…¥çš„æ ‡é¢˜è¶…è¿‡10ä¸ªå­—ç¬¦!</strong>"
                 }
             }
         });
