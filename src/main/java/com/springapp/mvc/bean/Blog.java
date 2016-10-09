@@ -5,6 +5,7 @@ import java.util.Map;
 
 /**
  * Created by Xr on 2016/9/28.
+ * 博客实体
  */
 public class Blog {
 

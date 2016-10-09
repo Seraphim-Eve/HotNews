@@ -1,6 +1,7 @@
 package com.springapp.mvc;
 
 import com.springapp.mvc.bean.Blog;
+import com.springapp.mvc.bean.Discuss;
 import com.springapp.mvc.bean.User;
 import com.springapp.mvc.impl.HotNewsImpl;
 import com.springapp.mvc.service.HotNews;
@@ -10,7 +11,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -120,8 +123,10 @@ public class MController {
                 //在重复使用stmt.executeQuery(sql)的时候就会关闭上一个ResultSet.
                 Statement st = conn.createStatement();
                 ResultSet tmp = st.executeQuery(sql);
-                int discuss_num = Integer.valueOf(tmp.getString("discuss_num"));
-                blog.setDiscuss_num(discuss_num);
+                while (tmp.next()) {
+                    int discuss_num = Integer.valueOf(tmp.getString("discuss_num"));
+                    blog.setDiscuss_num(discuss_num);
+                }
                 //release resources
                 tmp.close();
                 st.close();
@@ -176,6 +181,9 @@ public class MController {
         //当前用户名
         String username = httpSession.getAttribute("username").toString();
 
+        //评论数据
+        List<Discuss> list = new ArrayList<Discuss>();
+
         while (rs.next()) {
             String title = rs.getString("title");
             String content = rs.getString("content");
@@ -184,8 +192,26 @@ public class MController {
             String discuss_id = rs.getString("discuss_id");
             String good_id = rs.getString("good_id");
             if (!discuss_id.equals("0")) {
-                sql = "select d_user, content from discuss where id = '" + discuss_id + "'";
-                //TODO 读取评论列表
+                //读取评论列表
+                sql = "select id, time, d_user, content from discuss where id = '" + discuss_id + "'";
+                Statement stmt_tmp = conn.createStatement();
+                ResultSet rs_tmp = stmt_tmp.executeQuery(sql);
+                while (rs_tmp.next()) {
+                    Discuss d = new Discuss();
+                    String d_id = rs_tmp.getString("id");
+                    d.setId(d_id);
+                    String d_time = rs_tmp.getString("time");
+                    d.setTime(d_time);
+                    String d_user = rs_tmp.getString("d_user");
+                    d.setD_user(d_user);
+                    String d_content = rs_tmp.getString("content");
+                    d.setContent(d_content);
+                    list.add(d);
+                }
+
+                //release resources
+                rs_tmp.close();
+                stmt_tmp.close();
             }
 
             if (!good_id.equals("0")) {
@@ -231,6 +257,9 @@ public class MController {
         //release resources
         rs.close();
         stmt.close();
+
+        //评论列表
+        modelMap.put("discuss_list", list);
 
         //博客id
         modelMap.put("id", id);
@@ -421,16 +450,107 @@ public class MController {
 
     /**
      * 博客评论
-     * @param comment
-     * @param id
+     * @param comment 评论内容
+     * @param id 博客id
      * @return
      */
     @RequestMapping(value = "blog_discuss.do", method = RequestMethod.POST)
     @ResponseBody
-    public String blogDiscuss(@RequestParam String comment, @RequestParam String id) {
-        System.out.println(comment);
-        System.out.println(id);
-        return "true";
+    public void blogDiscuss(@RequestParam String comment, @RequestParam String id, HttpSession httpSession, HttpServletResponse httpServletResponse) throws SQLException {
+
+        httpServletResponse.setCharacterEncoding("UTF-8");
+
+        StringBuffer sb = new StringBuffer();
+        sb.append("{");
+
+        //插入评论
+        if (!comment.isEmpty() && !id.isEmpty()) {
+
+            String sql = "select discuss_id from blog where id = '" + id + "'";
+            Connection conn = MySQLUtils.getConn();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            String discuss_id = "";
+
+            while (rs.next()) {
+                discuss_id = rs.getString("discuss_id");
+            }
+
+            boolean flag = false;
+
+            if (discuss_id == null || discuss_id.isEmpty()) {
+                //没有评论id
+                discuss_id = "dis_" + UUIDUtils.code();
+                flag = true;
+            }
+
+            String dis_time = DateUtils.getCurrDate();
+            String user = httpSession.getAttribute("username").toString();
+
+            sql = "select nickname from Users where username = '" + user +"'";
+            //得到用户昵称
+            Statement stmt_tmp = conn.createStatement();
+            ResultSet resultSet = stmt_tmp.executeQuery(sql);
+            while (resultSet.next()) {
+                user = resultSet.getString("nickname");
+            }
+
+            sql = "insert into discuss(id, time, d_user, content) values('" + discuss_id + "', '" + dis_time + "', '" + user + "', '" + comment + "')";
+
+            if (MySQLUtils.insert(sql)) {
+                System.out.println("评论blog_id: " + id + "成功!");
+            } else {
+                System.out.println("评论blog_id: " + id + "失败!");
+                sb.append("\"flag\":\"false\",");
+            }
+
+            if (flag) {
+                //没有评论id,则与博客关联
+                sql = "update blog set discuss_id = '" + discuss_id + "' where id = '" + id +"'";
+                if (MySQLUtils.insert(sql)) {
+                    System.out.println("关联blog_id: " + id + "的评论成功!");
+                } else {
+                    System.out.println("关联blog_id: " + id + "的评论失败!");
+                    sb.append("\"flag\":\"false\",");
+                }
+            }
+            sb.append("\"flag\":\"true\",");
+
+            //release resources
+            rs.close();
+            stmt.close();
+
+            sql = "select * from blog where id = '" + id + "' and discuss_id = '" + discuss_id + "'";
+            Statement st = conn.createStatement();
+            ResultSet tmp_rs = st.executeQuery(sql);
+            while (tmp_rs.next()) {
+                if (tmp_rs.getRow() > 0) {
+                    sql = "select time, d_user, content from discuss discuss where id = '" + discuss_id + "'";
+                    tmp_rs = st.executeQuery(sql);
+                    sb.append("\"discuss_list\":[");
+                    while (tmp_rs.next()) {
+                        sb.append("{\"time\":\"" + tmp_rs.getString("time") +"\", \"d_user\":\"" + tmp_rs.getString("d_user") +"\", \"content\": \"" + tmp_rs.getString("content") + "\"},");
+                    }
+                    sb.deleteCharAt(sb.toString().lastIndexOf(","));
+                    sb.append("]");
+                } else {
+                    //没有评论
+                    sb.append("\"discuss_list\":[]");
+                }
+            }
+
+            //release resources
+            tmp_rs.close();
+            st.close();
+        }
+
+        sb.append("}");
+
+        try {
+            httpServletResponse.getWriter().write(sb.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

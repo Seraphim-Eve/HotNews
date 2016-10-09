@@ -2,6 +2,7 @@ package com.springapp.mvc.bean;
 
 /**
  * Created by Xr on 2016/8/25.
+ * 用户实体
  */
 public class User {
 

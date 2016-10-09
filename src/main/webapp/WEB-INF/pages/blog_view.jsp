@@ -7,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>博客查看</title>
@@ -70,23 +71,21 @@
                         <!-- TODO 读取评论列表 -->
 
                         <div id="plArea">
-                            <%--<label for="中国">Hello:</label>
-                            <div id="中国" style="border-bottom: 1px LightGrey solid;">
-                                写的真垃圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾
-                            </div>
-                            <div class="pull-right" style="font-size: 10px;">
-                                2016-10-08 16:20:30
-                            </div>
-                            <br/>
-                            <label for="日本">Hello:</label>
-                            <div id="日本" style="border-bottom: 1px LightGrey solid;">
-                                写的真垃圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾圾
-                            </div>--%>
+                            <c:forEach items="${discuss_list}" var="discuss">
+                                <label for="${discuss.d_user}">${discuss.d_user}: </label>
+                                <div id="${discuss.d_user}" style="border-bottom: 1px LightGrey solid;">
+                                    ${discuss.content}
+                                </div>
+                                <div class="pull-right" style="font-size: 10px;">
+                                    ${discuss.time}
+                                </div>
+                                <br/>
+                            </c:forEach>
                         </div>
 
 
                         <br/>
-                        <textarea  id="comments" class="form-control" placeholder="输入评论" maxlength="100" required autofocus></textarea>
+                        <textarea  id="comments" class="form-control" placeholder="输入评论" maxlength="100" required></textarea>
                         <br/>
                         <div align="center">
                             <button id="commentSub" type="button" class="btn btn-defualt" style="background-color: white; border-color: #ccc;">评论</button>
@@ -133,12 +132,29 @@
                     url: "blog_discuss.do",
                     type: "POST",
                     data: "comment=" + comment + "&id=" + id,
+                    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                     success: function (rData) {
-                        NProgress.done();
-                        swal("评论成功!");
                         //至评论为空.
                         $("#comments").val("");
-                        console.log(rData);
+                        //console.log(rData);
+                        var obj = JSON.parse(rData);
+                        if (obj.flag == "true") {
+                            swal("评论成功!");
+                        } else {
+                            swal("评论失败!");
+                        }
+
+                        var html = "";
+
+                        for (var i = 0; i < obj.discuss_list.length; i++) {
+                            var ob = obj.discuss_list[i];
+                            html += "<label for='" + ob.d_user + "'>" + obj.discuss_list[i].d_user + ": </label>"
+                            html += "<div id='" + ob.d_user + "' style='border-bottom: 1px LightGrey solid;'>" + ob.content + "</div>";
+                            html += "<div class='pull-right' style='font-size: 10px;'>" + ob.time + "</div><br/>";
+                        }
+                        $("#plArea").val("");
+                        $("#plArea").html(html);
+                        NProgress.done();
                     }
                 });
 
